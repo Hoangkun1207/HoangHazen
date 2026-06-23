@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Cá Nhân</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(-45deg,#0f172a,#1e293b,#312e81,#4c1d95);
+    background-size:400% 400%;
+    animation:bg 12s ease infinite;
+    overflow-x:hidden;
+    color:white;
+}
+
+@keyframes bg{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* particles */
+
+.particle{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,.7);
+    animation:float linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+
+header{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.glass{
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:30px;
+    padding:50px;
+    width:90%;
+    max-width:900px;
+    box-shadow:0 0 40px rgba(0,0,0,.4);
+}
+
+.avatar{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid rgba(255,255,255,.2);
+    box-shadow:0 0 40px #00ffff;
+    transition:.5s;
+}
+
+.avatar:hover{
+    transform:scale(1.08) rotate(5deg);
+}
+
+h1{
+    font-size:3rem;
+    margin-top:20px;
+}
+
+.typing{
+    color:#00ffff;
+    font-size:1.2rem;
+    margin:15px 0;
+}
+
+.desc{
+    max-width:700px;
+    margin:auto;
+    opacity:.9;
+    line-height:1.8;
+}
+
+.btns{
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-block;
+    margin:10px;
+    padding:14px 30px;
+    border-radius:50px;
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+    transition:.4s;
+}
+
+.primary{
+    background:linear-gradient(45deg,#00ffff,#00ff95);
+    color:#111;
+}
+
+.secondary{
+    border:2px solid #00ffff;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 25px #00ffff;
+}
+
+section{
+    padding:100px 10%;
+}
+
+.title{
+    text-align:center;
+    font-size:2.5rem;
+    margin-bottom:50px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,.07);
+    padding:30px;
+    border-radius:20px;
+    transition:.5s;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 30px rgba(0,255,255,.4);
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#00ffff;
+}
+
+.social{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:30px;
+}
+
+.social a{
+    width:60px;
+    height:60px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    text-decoration:none;
+    font-size:25px;
+    color:white;
+    background:rgba(255,255,255,.1);
+    transition:.4s;
+}
+
+.social a:hover{
+    transform:translateY(-8px) scale(1.1);
+    box-shadow:0 0 20px #00ffff;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(50px);
+    transition:1s;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    opacity:.7;
+}
+
+@media(max-width:768px){
+    h1{
+        font-size:2rem;
+    }
+
+    .glass{
+        padding:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles"></div>
+
+<header>
+    <div class="glass reveal">
+        <img src="https://i.imgur.com/8Km9tLL.jpg" class="avatar">
+
+        <h1>NGUYỄN VĂN A</h1>
+
+        <div class="typing">
+            ✨ Developer | Designer | Creator
+        </div>
+
+        <p class="desc">
+            Chào mừng đến với trang cá nhân của tôi.
+            Tôi đam mê lập trình, thiết kế giao diện hiện đại và xây dựng
+            những sản phẩm sáng tạo với trải nghiệm người dùng tuyệt vời.
+        </p>
+
+        <div class="btns">
+            <a href="#" class="btn primary">Khám Phá</a>
+            <a href="#" class="btn secondary">Liên Hệ</a>
+        </div>
+
+        <div class="social">
+            <a href="#">F</a>
+            <a href="#">T</a>
+            <a href="#">I</a>
+            <a href="#">G</a>
+        </div>
+    </div>
+</header>
+
+<section class="reveal">
+    <h2 class="title">Kỹ Năng</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Frontend</h3>
+            <p>HTML, CSS, JavaScript, React, UI/UX.</p>
+        </div>
+
+        <div class="card">
+            <h3>Backend</h3>
+            <p>NodeJS, PHP, MySQL, API Development.</p>
+        </div>
+
+        <div class="card">
+            <h3>Design</h3>
+            <p>Figma, Photoshop, Motion Graphics.</p>
+        </div>
+    </div>
+</section>
+
+<section class="reveal">
+    <h2 class="title">Dự Án Nổi Bật</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Website Doanh Nghiệp</h3>
+            <p>Thiết kế hiện đại, chuẩn SEO và tốc độ cao.</p>
+        </div>
+
+        <div class="card">
+            <h3>Ứng Dụng Web</h3>
+            <p>Dashboard quản lý dữ liệu trực quan.</p>
+        </div>
+
+        <div class="card">
+            <h3>Portfolio Premium</h3>
+            <p>Giao diện hiệu ứng cao cấp và tương tác mượt.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2025 Portfolio Premium
+</footer>
+
+<script>
+
+// particles
+for(let i=0;i<70;i++){
+    let p=document.createElement("div");
+    p.classList.add("particle");
+
+    let size=Math.random()*6+2;
+
+    p.style.width=size+"px";
+    p.style.height=size+"px";
+    p.style.left=Math.random()*100+"%";
+    p.style.animationDuration=(Math.random()*10+8)+"s";
+    p.style.animationDelay=Math.random()*5+"s";
+
+    document.body.appendChild(p);
+}
+
+// scroll animation
+
+function reveal(){
+    let reveals=document.querySelectorAll(".reveal");
+
+    reveals.forEach(item=>{
+        let windowHeight=window.innerHeight;
+        let elementTop=item.getBoundingClientRect().top;
+
+        if(elementTop<windowHeight-100){
+            item.classList.add("active");
+        }
+    });
+}
+
+window.addEventListener("scroll",reveal);
+reveal();
+
+</script>
+
+</body>
+</html>
