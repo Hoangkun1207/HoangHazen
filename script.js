@@ -3,10 +3,12 @@
 ========================================== */
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
-  setTimeout(() => {
-    loader.style.opacity = "0";
-    loader.style.visibility = "hidden";
-  }, 2000);
+  if (loader) {
+    setTimeout(() => {
+      loader.style.opacity = "0";
+      loader.style.visibility = "hidden";
+    }, 2000);
+  }
 });
 
 /* ==========================================
@@ -106,20 +108,10 @@ revealElements.forEach(el => {
   revealObserver.observe(el);
 });
 
-/* ==========================================
-   ADD REVEAL STYLE
-========================================== */
 const revealStyle = document.createElement("style");
 revealStyle.innerHTML = `
-  .hidden {
-    opacity: 0;
-    transform: translateY(80px);
-    transition: 1s;
-  }
-  .show {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .hidden { opacity: 0; transform: translateY(80px); transition: 1s; }
+  .show { opacity: 1; transform: translateY(0); }
 `;
 document.head.appendChild(revealStyle);
 
@@ -133,11 +125,7 @@ document.body.appendChild(progress);
 const progressStyle = document.createElement("style");
 progressStyle.innerHTML = `
   #progressBar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    width: 0;
+    position: fixed; top: 0; left: 0; height: 4px; width: 0;
     background: linear-gradient(90deg, #00d4ff, #7c3aed);
     z-index: 999999;
   }
@@ -209,10 +197,7 @@ document.addEventListener("mousemove", e => {
   }
 });
 
-/* ==========================================
-   CURSOR HOVER
-========================================== */
-const links = document.querySelectorAll("a, button");
+const links = document.querySelectorAll("a, button, input, textarea");
 links.forEach(link => {
   link.addEventListener("mouseenter", () => {
     if (cursor2) cursor2.style.transform = "scale(1.8)";
@@ -241,25 +226,12 @@ if (backBtn) {
   });
 }
 
-/* ==========================================
-   BACK BUTTON STYLE
-========================================== */
 const topStyle = document.createElement("style");
 topStyle.innerHTML = `
   #backToTop {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-    width: 55px;
-    height: 55px;
-    border: none;
-    border-radius: 50%;
-    background: #00d4ff;
-    color: #000;
-    font-size: 22px;
-    cursor: pointer;
-    display: none;
-    z-index: 9999;
+    position: fixed; bottom: 25px; left: 25px; width: 55px; height: 55px;
+    border: none; border-radius: 50%; background: #00d4ff; color: #000;
+    font-size: 22px; cursor: pointer; display: none; z-index: 9999;
     box-shadow: 0 0 25px #00d4ff;
   }
 `;
@@ -288,21 +260,11 @@ const themeStyle = document.createElement("style");
 themeStyle.innerHTML = `
   .light-theme { background: #f5f7fa; color: #111; }
   .light-theme section { color: #111; }
-  .light-theme .card,
-  .light-theme .service-card,
-  .light-theme .project-card { background: #fff; }
+  .light-theme .card, .light-theme .service-card, .light-theme .project-card, .light-theme .faq-item, .light-theme .timeline-content, .light-theme .pricing-card, .light-theme .testimonial-card, .light-theme .certificate-card, .light-theme .achievement-card, .light-theme .about-card { background: #fff; border-color: #ddd; }
   #themeToggle {
-    position: fixed;
-    right: 25px;
-    top: 100px;
-    width: 55px;
-    height: 55px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 9999;
-    font-size: 22px;
-    background: #00d4ff;
+    position: fixed; right: 25px; top: 100px; width: 55px; height: 55px;
+    border: none; border-radius: 50%; cursor: pointer; z-index: 9999;
+    font-size: 22px; background: #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.5);
   }
 `;
 document.head.appendChild(themeStyle);
@@ -325,9 +287,6 @@ if (closeWidget) {
   });
 }
 
-/* ==========================================
-   FAKE AI CHAT
-========================================== */
 const widgetInput = document.querySelector(".widget-input input");
 const widgetButton = document.querySelector(".widget-input button");
 const widgetBody = document.querySelector(".widget-body");
@@ -344,14 +303,14 @@ function botReply(msg) {
   let reply = "Xin chào 👋";
   const lowerMsg = msg.toLowerCase();
   
-  if (lowerMsg.includes("hello") || lowerMsg.includes("hi")) {
-    reply = "Chào bạn, mình là AI Assistant.";
+  if (lowerMsg.includes("hello") || lowerMsg.includes("hi") || lowerMsg.includes("chào")) {
+    reply = "Chào bạn, mình là AI Assistant của Hoàng Hazen. Mình giúp gì được cho bạn?";
   }
-  if (lowerMsg.includes("website")) {
-    reply = "Hoàng Hazen chuyên thiết kế website hiện đại.";
+  if (lowerMsg.includes("website") || lowerMsg.includes("web")) {
+    reply = "Hoàng Hazen chuyên thiết kế website hiện đại, tích hợp AI và tối ưu UX/UI.";
   }
   if (lowerMsg.includes("price") || lowerMsg.includes("giá")) {
-    reply = "Bạn có thể xem bảng giá ở phần Pricing.";
+    reply = "Bạn có thể xem bảng giá ở phần Pricing hoặc để lại lời nhắn ở form Liên Hệ nhé.";
   }
   
   setTimeout(() => {
@@ -375,25 +334,16 @@ if (widgetButton && widgetInput) {
   });
 }
 
-/* ==========================================
-   AI STYLE
-========================================== */
 const aiStyle = document.createElement("style");
 aiStyle.innerHTML = `
-  .widget-body { height: 360px; overflow-y: auto; padding: 20px; }
-  .bot-message {
-    background: rgba(0, 212, 255, .15);
-    padding: 12px;
-    border-radius: 15px;
-    margin-bottom: 10px;
-  }
-  .user-message {
-    background: rgba(124, 58, 237, .2);
-    padding: 12px;
-    border-radius: 15px;
-    margin-bottom: 10px;
-    text-align: right;
-  }
+  .widget-header { padding: 15px; background: #00d4ff; color: #000; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+  .widget-header button { background: none; border: none; font-size: 18px; cursor: pointer; }
+  .widget-input { display: flex; padding: 15px; border-top: 1px solid rgba(255,255,255,.1); }
+  .widget-input input { flex: 1; padding: 10px; border-radius: 5px; border: none; outline: none; background: rgba(255,255,255,.05); color: #fff; }
+  .widget-input button { padding: 10px 15px; margin-left: 10px; border-radius: 5px; border: none; background: #00d4ff; color: #000; font-weight: bold; cursor: pointer; }
+  .widget-body { height: 350px; overflow-y: auto; padding: 20px; }
+  .bot-message { background: rgba(0, 212, 255, .15); padding: 12px; border-radius: 15px 15px 15px 0; margin-bottom: 10px; width: fit-content; max-width: 80%; }
+  .user-message { background: rgba(124, 58, 237, .3); padding: 12px; border-radius: 15px 15px 0 15px; margin-bottom: 10px; text-align: right; width: fit-content; max-width: 80%; margin-left: auto; }
 `;
 document.head.appendChild(aiStyle);
 
@@ -418,6 +368,13 @@ if (musicBtn && bgMusic) {
   });
 }
 
+const musicStyle = document.createElement("style");
+musicStyle.innerHTML = `
+  #musicPlayer { position: fixed; right: 25px; bottom: 185px; z-index: 999; }
+  #musicToggle { width: 55px; height: 55px; border: none; border-radius: 50%; background: #7c3aed; color: #fff; font-size: 22px; cursor: pointer; box-shadow: 0 0 15px rgba(124,58,237,0.5); }
+`;
+document.head.appendChild(musicStyle);
+
 /* ==========================================
    MOBILE MENU
 ========================================== */
@@ -433,17 +390,7 @@ if (menuBtn && navLinks) {
 const mobileStyle = document.createElement("style");
 mobileStyle.innerHTML = `
   @media(max-width: 768px) {
-    .active-menu {
-      display: flex !important;
-      position: absolute;
-      top: 80px;
-      left: 0;
-      width: 100%;
-      background: #050816;
-      flex-direction: column;
-      padding: 30px;
-      gap: 20px;
-    }
+    .active-menu { display: flex !important; position: absolute; top: 80px; left: 0; width: 100%; background: #050816; flex-direction: column; padding: 30px; gap: 20px; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
   }
 `;
 document.head.appendChild(mobileStyle);
@@ -486,6 +433,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const target = document.querySelector(this.getAttribute("href"));
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
+      if(navLinks.classList.contains('active-menu')){
+          navLinks.classList.remove('active-menu');
+      }
     }
   });
 });
@@ -508,20 +458,8 @@ if (particleContainer) {
 
 const particleStyle = document.createElement("style");
 particleStyle.innerHTML = `
-  .particle {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: #00d4ff;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #00d4ff;
-    animation: floatParticle linear infinite;
-  }
-  @keyframes floatParticle {
-    0% { transform: translateY(0); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-300px); opacity: 0; }
-  }
+  .particle { position: absolute; width: 3px; height: 3px; background: #00d4ff; border-radius: 50%; box-shadow: 0 0 10px #00d4ff; animation: floatParticle linear infinite; }
+  @keyframes floatParticle { 0% { transform: translateY(0); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-300px); opacity: 0; } }
 `;
 document.head.appendChild(particleStyle);
 
@@ -539,15 +477,7 @@ document.addEventListener("mousemove", e => {
 
 const glowStyle = document.createElement("style");
 glowStyle.innerHTML = `
-  #mouseGlow {
-    position: fixed;
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(0, 212, 255, .15), transparent 70%);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-  }
+  #mouseGlow { position: fixed; width: 350px; height: 350px; background: radial-gradient(circle, rgba(0, 212, 255, .15), transparent 70%); pointer-events: none; transform: translate(-50%, -50%); z-index: -1; }
 `;
 document.head.appendChild(glowStyle);
 
@@ -565,21 +495,8 @@ for (let i = 0; i < 120; i++) {
 
 const starStyle = document.createElement("style");
 starStyle.innerHTML = `
-  .star {
-    position: fixed;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    opacity: .6;
-    animation: twinkle 4s infinite;
-    pointer-events: none;
-  }
-  @keyframes twinkle {
-    0% { opacity: .1; }
-    50% { opacity: 1; }
-    100% { opacity: .1; }
-  }
+  .star { position: fixed; width: 2px; height: 2px; background: white; border-radius: 50%; opacity: .6; animation: twinkle 4s infinite; pointer-events: none; z-index: -4; }
+  @keyframes twinkle { 0% { opacity: .1; } 50% { opacity: 1; } 100% { opacity: .1; } }
 `;
 document.head.appendChild(starStyle);
 
@@ -626,7 +543,7 @@ window.addEventListener("mousemove", e => {
 });
 
 /* ==========================================
-   FLOATING CARDS
+   FLOATING CARDS (3D TILT EFFECT)
 ========================================== */
 const floatingCards = document.querySelectorAll(
   ".service-card, .project-card, .certificate-card"
@@ -649,12 +566,66 @@ floatingCards.forEach(card => {
 });
 
 /* ==========================================
+   CYBER FORM SUBMIT EFFECT
+========================================== */
+const contactForm = document.querySelector('.cyber-form');
+const submitBtn = document.getElementById('submitBtn');
+
+if (contactForm && submitBtn) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Ngăn form load lại trang
+    
+    const originalText = submitBtn.querySelector('span').innerText;
+    
+    // Đổi trạng thái thành Đang gửi
+    submitBtn.querySelector('span').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang Gửi...';
+    submitBtn.style.pointerEvents = 'none';
+    submitBtn.style.background = '#7c3aed';
+    submitBtn.style.borderColor = '#7c3aed';
+    submitBtn.style.boxShadow = '0 0 30px #7c3aed';
+    
+    // Giả lập thời gian gửi thành công (2 giây)
+    setTimeout(() => {
+      submitBtn.querySelector('span').innerHTML = '<i class="fas fa-check"></i> Đã Gửi Thành Công';
+      submitBtn.style.background = '#00ff88';
+      submitBtn.style.borderColor = '#00ff88';
+      submitBtn.style.boxShadow = '0 0 30px #00ff88';
+      submitBtn.style.color = '#000';
+      
+      // Reset lại nút và form sau 3 giây
+      setTimeout(() => {
+        submitBtn.querySelector('span').innerText = originalText;
+        submitBtn.style = ''; // Xoá inline style để trả về CSS gốc
+        contactForm.reset();
+      }, 3000);
+      
+    }, 2000);
+  });
+}
+
+// Hiệu ứng nút Newsletter Form
+const newsletterForm = document.querySelector('.cyber-newsletter');
+if(newsletterForm) {
+  const btn = newsletterForm.querySelector('button');
+  newsletterForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const originalText = btn.querySelector('span').innerText;
+    btn.querySelector('span').innerHTML = '<i class="fas fa-check"></i> Xong';
+    btn.style.background = '#00ff88';
+    setTimeout(() => {
+      btn.querySelector('span').innerText = originalText;
+      btn.style.background = '';
+      newsletterForm.querySelector('input').value = '';
+    }, 2000);
+  });
+}
+
+/* ==========================================
    PERFORMANCE OPTIMIZER
 ========================================== */
 window.addEventListener("blur", () => {
   console.log("Animation paused");
 });
-
 window.addEventListener("focus", () => {
   console.log("Animation resumed");
 });
@@ -664,10 +635,6 @@ window.addEventListener("focus", () => {
 ========================================== */
 console.log(
   "%c HOANG HAZEN PORTFOLIO ",
-  "background: #00d4ff; color: #000; padding: 10px; font-size: 18px; font-weight: bold"
+  "background: #00d4ff; color: #000; padding: 10px; font-size: 18px; font-weight: bold; border-radius: 5px;"
 );
-console.log("AI Futuristic Portfolio Loaded");
-
-/* ==========================================
-   END SCRIPT
-========================================== */
+console.log("AI Futuristic Portfolio Loaded Successfully.");
