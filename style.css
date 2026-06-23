@@ -122,7 +122,7 @@ body {
 }
 
 /* ==========================================
-   PARTICLES
+   PARTICLES & MATRIX
 ========================================== */
 #particles {
   position: fixed;
@@ -134,9 +134,6 @@ body {
   z-index: -1;
 }
 
-/* ==========================================
-   MATRIX
-========================================== */
 #matrix {
   position: fixed;
   top: 0;
@@ -173,7 +170,7 @@ body {
 }
 
 /* ==========================================
-   CONTAINER
+   CONTAINER & SECTION
 ========================================== */
 .container {
   width: 90%;
@@ -181,9 +178,6 @@ body {
   margin: auto;
 }
 
-/* ==========================================
-   SECTION TITLE
-========================================== */
 .section-title {
   text-align: center;
   margin-bottom: 80px;
@@ -200,9 +194,6 @@ body {
   margin-top: 15px;
 }
 
-/* ==========================================
-   SECTION
-========================================== */
 section {
   padding: 120px 0;
   position: relative;
@@ -351,7 +342,7 @@ header {
 }
 
 /* ==========================================
-   BUTTONS
+   BUTTONS & SOCIALS (HERO)
 ========================================== */
 .hero-buttons {
   display: flex;
@@ -389,9 +380,6 @@ header {
   color: #000;
 }
 
-/* ==========================================
-   SOCIALS
-========================================== */
 .hero-socials {
   display: flex;
   gap: 15px;
@@ -418,7 +406,7 @@ header {
 }
 
 /* ==========================================
-   AVATAR
+   AVATAR & ORBS
 ========================================== */
 .hero-right {
   display: flex;
@@ -447,9 +435,6 @@ header {
   box-shadow: 0 0 30px #00d4ff, 0 0 80px rgba(0, 212, 255, .4);
 }
 
-/* ==========================================
-   ORB EFFECT
-========================================== */
 .orb {
   position: absolute;
   border-radius: 50%;
@@ -457,31 +442,25 @@ header {
 }
 
 .orb1 {
-  width: 180px;
-  height: 180px;
+  width: 180px; height: 180px;
   background: #00d4ff;
-  top: 0;
-  right: 40px;
+  top: 0; right: 40px;
   opacity: .4;
   animation: floatOrb 6s ease-in-out infinite;
 }
 
 .orb2 {
-  width: 220px;
-  height: 220px;
+  width: 220px; height: 220px;
   background: #7c3aed;
-  bottom: 20px;
-  left: 0;
+  bottom: 20px; left: 0;
   opacity: .35;
   animation: floatOrb 8s ease-in-out infinite;
 }
 
 .orb3 {
-  width: 120px;
-  height: 120px;
+  width: 120px; height: 120px;
   background: #00ff88;
-  bottom: 0;
-  right: 0;
+  bottom: 0; right: 0;
   opacity: .25;
   animation: floatOrb 10s ease-in-out infinite;
 }
@@ -659,8 +638,7 @@ header {
 }
 
 .service-card:hover::before {
-  top: -50%;
-  left: -50%;
+  top: -50%; left: -50%;
 }
 
 .service-card:hover {
@@ -1122,7 +1100,7 @@ header {
 }
 
 /* ==========================================
-   CONTACT
+   CONTACT AREA
 ========================================== */
 .contact-wrapper {
   display: grid;
@@ -1143,34 +1121,145 @@ header {
   margin-bottom: 15px;
 }
 
-.contact-form {
+/* ==========================================
+   CYBER FORM (FLOATING LABELS & GLOW)
+========================================== */
+.cyber-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
+  margin-top: 20px;
 }
 
-.contact-form input,
-.contact-form textarea {
-  padding: 18px;
-  border: none;
+.input-box {
+  position: relative;
+  width: 100%;
+}
+
+.input-box input,
+.input-box textarea {
+  width: 100%;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   outline: none;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, .05);
-  color: white;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.5s;
+  z-index: 2;
+  position: relative;
+  resize: none;
 }
 
-.send-btn {
-  padding: 18px;
-  border: none;
-  border-radius: 15px;
+.input-box label {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  color: #94a3b8;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.5s;
+  z-index: 3;
+}
+
+/* Hiệu ứng trượt Label lên trên */
+.input-box input:valid ~ label,
+.input-box input:focus ~ label,
+.input-box textarea:valid ~ label,
+.input-box textarea:focus ~ label {
+  color: #00d4ff;
+  transform: translateX(-10px) translateY(-32px);
+  font-size: 13px;
+  background: #050816;
+  padding: 0 10px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+}
+
+/* Viền Neon chạy quanh Input */
+.input-box i {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
   background: linear-gradient(90deg, #00d4ff, #7c3aed);
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
+  border-radius: 12px;
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.input-box input:valid ~ i,
+.input-box input:focus ~ i,
+.input-box textarea:valid ~ i,
+.input-box textarea:focus ~ i {
+  height: 100%;
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.input-box input:focus, 
+.input-box textarea:focus {
+  background: transparent;
+  border-color: transparent;
 }
 
 /* ==========================================
-   NEWSLETTER
+   CYBER BUTTON
+========================================== */
+.cyber-btn {
+  position: relative;
+  padding: 18px 40px;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 1px solid #00d4ff;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.5s;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.cyber-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.cyber-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.4), transparent);
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.cyber-btn:hover::before {
+  left: 100%;
+}
+
+.cyber-btn:hover {
+  background: #00d4ff;
+  color: #000;
+  box-shadow: 0 0 30px #00d4ff, 0 0 60px rgba(0, 212, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+/* ==========================================
+   NEWSLETTER CYBER STYLE
 ========================================== */
 .newsletter-box {
   padding: 60px;
@@ -1179,28 +1268,33 @@ header {
   background: rgba(255, 255, 255, .04);
 }
 
-.newsletter-form {
+.cyber-newsletter {
   display: flex;
-  justify-content: center;
   gap: 15px;
   margin-top: 30px;
+  align-items: flex-end;
+  justify-content: center;
 }
 
-.newsletter-form input {
-  width: 400px;
-  padding: 18px;
-  border: none;
-  border-radius: 50px;
-  background: rgba(255, 255, 255, .05);
-  color: white;
+.cyber-newsletter .input-box {
+  width: 350px;
 }
 
-.newsletter-form button {
-  padding: 18px 35px;
+.cyber-btn-small {
+  padding: 15px 30px;
   border: none;
-  border-radius: 50px;
   background: #00d4ff;
-  font-weight: 700;
+  color: #000;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  height: 52px; /* Đồng bộ chiều cao với thẻ input */
+}
+
+.cyber-btn-small:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px #00d4ff;
 }
 
 /* ==========================================
@@ -1355,14 +1449,16 @@ footer {
     display: block;
   }
   
-  .newsletter-form {
+  .cyber-newsletter {
     flex-direction: column;
+    align-items: center;
   }
   
-  .newsletter-form input {
+  .cyber-newsletter .input-box,
+  .cyber-btn-small {
     width: 100%;
   }
-  
+
   .footer-container {
     grid-template-columns: 1fr;
   }
