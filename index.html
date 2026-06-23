@@ -14,7 +14,6 @@
 </head>
 
 <body>
-  <!-- LOADER -->
   <div id="loader">
     <div class="loader-content">
       <div class="loader-ring"></div>
@@ -23,23 +22,18 @@
     </div>
   </div>
 
-  <!-- VIDEO -->
   <video id="bgVideo" autoplay muted loop playsinline>
     <source src="video.mp4" type="video/mp4">
   </video>
   <div class="video-overlay"></div>
 
-  <!-- MATRIX -->
   <canvas id="matrix"></canvas>
 
-  <!-- PARTICLES -->
   <div id="particles"></div>
 
-  <!-- CURSOR -->
   <div class="cursor"></div>
   <div class="cursor2"></div>
 
-  <!-- NAVBAR -->
   <header>
     <nav class="navbar">
       <div class="logo"><span>HOÀNG</span> HAZEN</div>
@@ -58,7 +52,6 @@
     </nav>
   </header>
 
-  <!-- HERO -->
   <section id="home" class="hero">
     <div class="hero-container">
       <div class="hero-left">
@@ -93,7 +86,6 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <div class="section-title">
@@ -135,7 +127,6 @@
     </div>
   </section>
 
-  <!-- STATS -->
   <section id="stats">
     <div class="container">
       <div class="stats-grid">
@@ -159,7 +150,6 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
     <div class="container">
       <div class="section-title">
@@ -206,7 +196,6 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section id="services">
     <div class="container">
       <div class="section-title">
@@ -238,7 +227,6 @@
     </div>
   </section>
 
-  <!-- ========================= PROJECTS ========================= -->
   <section id="projects">
     <div class="container">
       <div class="section-title">
@@ -293,7 +281,6 @@
     </div>
   </section>
 
-  <!-- ========================= TIMELINE ========================= -->
   <section id="timeline">
     <div class="container">
       <div class="section-title">
@@ -337,7 +324,6 @@
     </div>
   </section>
 
-  <!-- ========================= CERTIFICATES ========================= -->
   <section id="certificates">
     <div class="container">
       <div class="section-title">
@@ -364,7 +350,6 @@
     </div>
   </section>
 
-  <!-- ========================= ACHIEVEMENTS ========================= -->
   <section id="achievements">
     <div class="container">
       <div class="section-title">
@@ -392,7 +377,6 @@
     </div>
   </section>
 
-  <!-- ========================= TESTIMONIALS ========================= -->
   <section id="testimonials">
     <div class="container">
       <div class="section-title">
@@ -422,7 +406,6 @@
     </div>
   </section>
 
-  <!-- ========================= PRICING ========================= -->
   <section id="pricing">
     <div class="container">
       <div class="section-title">
@@ -466,7 +449,6 @@
     </div>
   </section>
 
-  <!-- ========================= FAQ ========================= -->
   <section id="faq">
     <div class="container">
       <div class="section-title">
@@ -490,7 +472,6 @@
     </div>
   </section>
 
-  <!-- ========================= BLOG ========================= -->
   <section id="blog">
     <div class="container">
       <div class="section-title">
@@ -523,7 +504,6 @@
     </div>
   </section>
 
-  <!-- ========================= CONTACT ========================= -->
   <section id="contact">
     <div class="container">
       <div class="section-title">
@@ -548,32 +528,61 @@
             <p>Việt Nam</p>
           </div>
         </div>
-        <form class="contact-form">
-          <input type="text" placeholder="Họ và tên">
-          <input type="email" placeholder="Email">
-          <input type="text" placeholder="Tiêu đề">
-          <textarea rows="6" placeholder="Nội dung"></textarea>
-          <button type="submit" class="send-btn">Gửi Tin Nhắn</button>
+        
+        <form class="contact-form cyber-form">
+          <div class="input-box">
+            <input type="text" id="fullname" required="required">
+            <label for="fullname">Họ và tên</label>
+            <i></i>
+          </div>
+        
+          <div class="input-box">
+            <input type="email" id="email" required="required">
+            <label for="email">Email của bạn</label>
+            <i></i>
+          </div>
+        
+          <div class="input-box">
+            <input type="text" id="subject" required="required">
+            <label for="subject">Tiêu đề</label>
+            <i></i>
+          </div>
+        
+          <div class="input-box">
+            <textarea id="message" rows="5" required="required"></textarea>
+            <label for="message">Nội dung tin nhắn...</label>
+            <i></i>
+          </div>
+        
+          <button type="submit" class="cyber-btn" id="submitBtn">
+            <span>Gửi Tin Nhắn</span>
+            <div class="btn-glow"></div>
+          </button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- ========================= NEWSLETTER ========================= -->
   <section id="newsletter">
     <div class="container">
       <div class="newsletter-box">
         <h2>Nhận Thông Tin Mới Nhất</h2>
         <p>Đăng ký để nhận cập nhật mới từ Hoàng Hazen</p>
-        <div class="newsletter-form">
-          <input type="email" placeholder="Nhập Email">
-          <button>Đăng Ký</button>
+        
+        <div class="newsletter-form cyber-newsletter">
+          <div class="input-box">
+            <input type="email" required="required">
+            <label>Nhập Email của bạn</label>
+            <i></i>
+          </div>
+          <button class="cyber-btn-small">
+            <span>Đăng Ký</span>
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========================= AI CHAT WIDGET ========================= -->
   <div id="aiWidget">
     <div class="widget-header">
       <span>AI Assistant</span>
@@ -592,7 +601,6 @@
   </div>
   <button id="openWidget">🤖</button>
 
-  <!-- ========================= MUSIC PLAYER ========================= -->
   <div id="musicPlayer">
     <button id="musicToggle">🎵</button>
     <audio id="bgMusic" loop>
@@ -600,13 +608,10 @@
     </audio>
   </div>
 
-  <!-- ========================= THEME TOGGLE ========================= -->
   <button id="themeToggle">🌙</button>
 
-  <!-- ========================= BACK TO TOP ========================= -->
   <button id="backToTop">↑</button>
 
-  <!-- ========================= FOOTER ========================= -->
   <footer>
     <div class="footer-container">
       <div class="footer-col">
@@ -638,7 +643,6 @@
     </div>
   </footer>
 
-  <!-- ========================= SCRIPT ========================= -->
   <script src="script.js"></script>
 </body>
 </html>
