@@ -1,1727 +1,644 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>
-Nguyễn Việt Hoàng | Hoàng Hazen
-</title>
-
-<meta
-name="description"
-content="AI Futuristic Portfolio">
-
-<link
-rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link
-rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<link
-rel="stylesheet"
-href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nguyễn Việt Hoàng | Hoàng Hazen</title>
+  <meta name="description" content="AI Futuristic Portfolio">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-<!-- LOADER -->
-
-<div id="loader">
-
-<div class="loader-content">
-
-<div class="loader-ring"></div>
-
-<h1>
-HOÀNG HAZEN
-</h1>
-
-<p>
-AI FUTURISTIC PORTFOLIO
-</p>
-
-</div>
-
-</div>
-
-<!-- VIDEO -->
-
-<video
-id="bgVideo"
-autoplay
-muted
-loop
-playsinline>
-
-<source
-src="video.mp4"
-type="video/mp4">
-
-</video>
-
-<div class="video-overlay"></div>
-
-<!-- MATRIX -->
-
-<canvas id="matrix"></canvas>
-
-<!-- PARTICLES -->
-
-<div id="particles"></div>
-
-<!-- CURSOR -->
-
-<div class="cursor"></div>
-
-<div class="cursor2"></div>
-
-<!-- NAVBAR -->
-
-<header>
-
-<nav class="navbar">
-
-<div class="logo">
-
-<span>
-HOÀNG
-</span>
-
-HAZEN
-
-</div>
-
-<ul class="nav-links">
-
-<li>
-<a href="#home">
-Home
-</a>
-</li>
-
-<li>
-<a href="#about">
-About
-</a>
-</li>
-
-<li>
-<a href="#skills">
-Skills
-</a>
-</li>
-
-<li>
-<a href="#services">
-Services
-</a>
-</li>
-
-<li>
-<a href="#projects">
-Projects
-</a>
-</li>
-
-<li>
-<a href="#timeline">
-Timeline
-</a>
-</li>
-
-<li>
-<a href="#contact">
-Contact
-</a>
-</li>
-
-</ul>
-
-<div class="menu-btn">
-
-<i class="fas fa-bars"></i>
-
-</div>
-
-</nav>
-
-</header>
-
-<!-- HERO -->
-
-<section
-id="home"
-class="hero">
-
-<div class="hero-container">
-
-<div class="hero-left">
-
-<div class="hero-badge">
-
-<i class="fas fa-bolt"></i>
-
-AI POWERED PORTFOLIO
-
-</div>
-
-<h1 class="hero-title">
-
-Nguyễn Việt Hoàng
-
-</h1>
-
-<h2 class="hero-subtitle">
-
-Frontend Developer
-
-</h2>
-
-<p class="hero-desc">
-
-Chuyên phát triển website hiện đại,
-UI/UX cao cấp, tích hợp AI,
-automation và các giải pháp công nghệ mới.
-
-</p>
-
-<div class="hero-buttons">
-
-<a
-href="#projects"
-class="btn-primary">
-
-Xem Dự Án
-
-</a>
-
-<a
-href="#contact"
-class="btn-secondary">
-
-Liên Hệ
-
-</a>
-
-</div>
-
-<div class="hero-socials">
-
-<a href="#">
-<i class="fab fa-facebook-f"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-github"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-youtube"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-discord"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-tiktok"></i>
-</a>
-
-</div>
-
-</div>
-
-<div class="hero-right">
-
-<div class="avatar-wrapper">
-
-<div class="orb orb1"></div>
-
-<div class="orb orb2"></div>
-
-<div class="orb orb3"></div>
-
-<img
-src="avatar.png"
-alt="Hoang Hazen"
-class="avatar">
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section id="about">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-ABOUT ME
-</span>
-
-<h2>
-Giới Thiệu
-</h2>
-
-</div>
-
-<div class="about-grid">
-
-<div class="about-image">
-
-<img
-src="avatar.png"
-alt="Hoang Hazen">
-
-</div>
-
-<div class="about-content">
-
-<h3>
-Nguyễn Việt Hoàng
-</h3>
-
-<p>
-Frontend Developer đam mê
-thiết kế giao diện hiện đại,
-công nghệ AI và các giải pháp web tiên tiến.
-</p>
-
-<p>
-Mục tiêu là tạo ra những sản phẩm
-đẹp, nhanh, tối ưu và mang lại
-trải nghiệm người dùng tốt nhất.
-</p>
-
-  <div class="about-cards">
-
-<div class="about-card">
-<h4>Frontend</h4>
-<p>HTML CSS JavaScript</p>
-</div>
-
-<div class="about-card">
-<h4>ReactJS</h4>
-<p>Single Page Apps</p>
-</div>
-
-<div class="about-card">
-<h4>UI / UX</h4>
-<p>Modern Design</p>
-</div>
-
-<div class="about-card">
-<h4>AI Tools</h4>
-<p>Automation</p>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- STATS -->
-
-<section id="stats">
-
-<div class="container">
-
-<div class="stats-grid">
-
-<div class="stat-card">
-
-<h2 class="counter"
-data-target="50">
-
-0
-
-</h2>
-
-<p>Dự Án</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2 class="counter"
-data-target="100">
-
-0
-
-</h2>
-
-<p>Khách Hàng</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2 class="counter"
-data-target="24">
-
-0
-
-</h2>
-
-<p>Hỗ Trợ</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2 class="counter"
-data-target="5">
-
-0
-
-</h2>
-
-<p>Năm Kinh Nghiệm</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- SKILLS -->
-
-<section id="skills">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-TECH STACK
-</span>
-
-<h2>
-Kỹ Năng
-</h2>
-
-</div>
-
-<div class="skills-wrapper">
-
-<div class="skill">
-
-<div class="skill-title">
-
-<span>
-HTML5
-</span>
-
-<span>
-95%
-</span>
-
-</div>
-
-<div class="progress">
-
-<div
-class="progress-bar html">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="skill">
-
-<div class="skill-title">
-
-<span>
-CSS3
-</span>
-
-<span>
-92%
-</span>
-
-</div>
-
-<div class="progress">
-
-<div
-class="progress-bar css">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="skill">
-
-<div class="skill-title">
-
-<span>
-JavaScript
-</span>
-
-<span>
-88%
-</span>
-
-</div>
-
-<div class="progress">
-
-<div
-class="progress-bar js">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="skill">
-
-<div class="skill-title">
-
-<span>
-ReactJS
-</span>
-
-<span>
-80%
-</span>
-
-</div>
-
-<div class="progress">
-
-<div
-class="progress-bar react">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="skill">
-
-<div class="skill-title">
-
-<span>
-NodeJS
-</span>
-
-<span>
-75%
-</span>
-
-</div>
-
-<div class="progress">
-
-<div
-class="progress-bar node">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- SERVICES -->
-
-<section id="services">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-SERVICES
-</span>
-
-<h2>
-Dịch Vụ
-</h2>
-
-</div>
-
-<div class="services-grid">
-
-<div class="service-card">
-
-<i class="fas fa-code"></i>
-
-<h3>
-Web Development
-</h3>
-
-<p>
-Xây dựng website hiện đại,
-responsive và tối ưu hiệu năng.
-</p>
-
-</div>
-
-<div class="service-card">
-
-<i class="fas fa-palette"></i>
-
-<h3>
-UI / UX Design
-</h3>
-
-<p>
-Thiết kế giao diện cao cấp,
-trải nghiệm người dùng hiện đại.
-</p>
-
-</div>
-
-<div class="service-card">
-
-<i class="fas fa-robot"></i>
-
-<h3>
-AI Integration
-</h3>
-
-<p>
-Tích hợp AI,
-chatbot và automation.
-</p>
-
-</div>
-
-<div class="service-card">
-
-<i class="fas fa-bolt"></i>
-
-<h3>
-Performance
-</h3>
-
-<p>
-Tối ưu tốc độ tải trang
-và trải nghiệm thực tế.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-  <!-- =========================
-PROJECTS
-========================= -->
-
-<section id="projects">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-PORTFOLIO
-</span>
-
-<h2>
-Dự Án Nổi Bật
-</h2>
-
-</div>
-
-<div class="projects-grid">
-
-<div class="project-card">
-
-<div class="project-image">
-
-<img src="project1.jpg" alt="Project">
-
-</div>
-
-<div class="project-content">
-
-<h3>
-AI Dashboard
-</h3>
-
-<p>
-Dashboard quản lý dữ liệu AI
-giao diện hiện đại.
-</p>
-
-<div class="project-tags">
-
-<span>HTML</span>
-<span>CSS</span>
-<span>JS</span>
-
-</div>
-
-<a href="#" class="project-btn">
-Xem Dự Án
-</a>
-
-</div>
-
-</div>
-
-<div class="project-card">
-
-<div class="project-image">
-
-<img src="project2.jpg" alt="Project">
-
-</div>
-
-<div class="project-content">
-
-<h3>
-Portfolio Premium
-</h3>
-
-<p>
-Website cá nhân phong cách
-Futuristic 2026.
-</p>
-
-<div class="project-tags">
-
-<span>React</span>
-<span>GSAP</span>
-
-</div>
-
-<a href="#" class="project-btn">
-Xem Dự Án
-</a>
-
-</div>
-
-</div>
-
-<div class="project-card">
-
-<div class="project-image">
-
-<img src="project3.jpg" alt="Project">
-
-</div>
-
-<div class="project-content">
-
-<h3>
-AI Chat Platform
-</h3>
-
-<p>
-Chatbot AI tích hợp
-Automation.
-</p>
-
-<div class="project-tags">
-
-<span>NodeJS</span>
-<span>AI</span>
-
-</div>
-
-<a href="#" class="project-btn">
-Xem Dự Án
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-TIMELINE
-========================= -->
-
-<section id="timeline">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-JOURNEY
-</span>
-
-<h2>
-Hành Trình Phát Triển
-</h2>
-
-</div>
-
-<div class="timeline">
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-content">
-
-<h3>2022</h3>
-
-<h4>Bắt đầu lập trình</h4>
-
-<p>
-Học HTML CSS JavaScript.
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-content">
-
-<h3>2023</h3>
-
-<h4>Frontend Developer</h4>
-
-<p>
-Phát triển website responsive.
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-content">
-
-<h3>2024</h3>
-
-<h4>UI/UX Design</h4>
-
-<p>
-Nâng cao trải nghiệm người dùng.
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-content">
-
-<h3>2025</h3>
-
-<h4>AI Development</h4>
-
-<p>
-Tích hợp AI vào ứng dụng web.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-CERTIFICATES
-========================= -->
-
-<section id="certificates">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-ACHIEVEMENTS
-</span>
-
-<h2>
-Chứng Chỉ
-</h2>
-
-</div>
-
-<div class="certificate-grid">
-
-<div class="certificate-card">
-
-<i class="fas fa-award"></i>
-
-<h3>
-Frontend Development
-</h3>
-
-<p>
-HTML CSS JavaScript
-</p>
-
-</div>
-
-<div class="certificate-card">
-
-<i class="fas fa-medal"></i>
-
-<h3>
-UI / UX Design
-</h3>
-
-<p>
-Modern Design System
-</p>
-
-</div>
-
-<div class="certificate-card">
-
-<i class="fas fa-trophy"></i>
-
-<h3>
-AI Integration
-</h3>
-
-<p>
-Automation & AI
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-ACHIEVEMENTS
-========================= -->
-
-<section id="achievements">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-SUCCESS
-</span>
-
-<h2>
-Thành Tích
-</h2>
-
-</div>
-
-<div class="achievement-grid">
-
-<div class="achievement-card">
-
-<h2>
-50+
-</h2>
-
-<p>
-Dự Án Hoàn Thành
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<h2>
-100+
-</h2>
-
-<p>
-Khách Hàng
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<h2>
-5+
-</h2>
-
-<p>
-Năm Học Tập
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<h2>
-24/7
-</h2>
-
-<p>
-Hỗ Trợ
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-  <!-- =========================
-TESTIMONIALS
-========================= -->
-
-<section id="testimonials">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-CLIENT REVIEW
-</span>
-
-<h2>
-Khách Hàng Nói Gì
-</h2>
-
-</div>
-
-<div class="testimonial-grid">
-
-<div class="testimonial-card">
-
-<img src="client1.jpg">
-
-<h3>
-Nguyễn Văn A
-</h3>
-
-<span>
-CEO Startup
-</span>
-
-<p>
-Website rất đẹp,
-hiệu năng tốt và chuyên nghiệp.
-</p>
-
-</div>
-
-<div class="testimonial-card">
-
-<img src="client2.jpg">
-
-<h3>
-Trần Văn B
-</h3>
-
-<span>
-Business Owner
-</span>
-
-<p>
-Giao diện hiện đại,
-hỗ trợ tận tình.
-</p>
-
-</div>
-
-<div class="testimonial-card">
-
-<img src="client3.jpg">
-
-<h3>
-Lê Văn C
-</h3>
-
-<span>
-Developer
-</span>
-
-<p>
-Code sạch,
-thiết kế cực kỳ đẹp mắt.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-PRICING
-========================= -->
-
-<section id="pricing">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-PRICE
-</span>
-
-<h2>
-Bảng Giá
-</h2>
-
-</div>
-
-<div class="pricing-grid">
-
-<div class="pricing-card">
-
-<h3>
-Basic
-</h3>
-
-<h2>
-999K
-</h2>
-
-<ul>
-
-<li>Landing Page</li>
-
-<li>Responsive</li>
-
-<li>1 Tuần Hỗ Trợ</li>
-
-</ul>
-
-<a href="#" class="pricing-btn">
-
-Chọn Gói
-
-</a>
-
-</div>
-
-<div class="pricing-card featured">
-
-<h3>
-Premium
-</h3>
-
-<h2>
-2.999K
-</h2>
-
-<ul>
-
-<li>Website Cao Cấp</li>
-
-<li>Animation</li>
-
-<li>AI Integration</li>
-
-<li>1 Tháng Hỗ Trợ</li>
-
-</ul>
-
-<a href="#" class="pricing-btn">
-
-Chọn Gói
-
-</a>
-
-</div>
-
-<div class="pricing-card">
-
-<h3>
-Enterprise
-</h3>
-
-<h2>
-Liên Hệ
-</h2>
-
-<ul>
-
-<li>Website Full Custom</li>
-
-<li>Dashboard</li>
-
-<li>Automation</li>
-
-<li>Priority Support</li>
-
-</ul>
-
-<a href="#" class="pricing-btn">
-
-Liên Hệ
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-FAQ
-========================= -->
-
-<section id="faq">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-FAQ
-</span>
-
-<h2>
-Câu Hỏi Thường Gặp
-</h2>
-
-</div>
-
-<div class="faq-wrapper">
-
-<div class="faq-item">
-
-<h3>
-Bạn làm website bằng gì?
-</h3>
-
-<p>
-HTML, CSS, JavaScript,
-ReactJS và các công nghệ hiện đại.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>
-Có hỗ trợ sau bàn giao không?
-</h3>
-
-<p>
-Có, tùy theo gói dịch vụ.
-</p>
-
-</div>
-
-<div class="faq-item">
-
-<h3>
-Có tích hợp AI không?
-</h3>
-
-<p>
-Có thể tích hợp chatbot,
-AI automation và API.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-BLOG
-========================= -->
-
-<section id="blog">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-BLOG
-</span>
-
-<h2>
-Bài Viết Mới
-</h2>
-
-</div>
-
-<div class="blog-grid">
-
-<div class="blog-card">
-
-<img src="blog1.jpg">
-
-<div class="blog-content">
-
-<h3>
-Xu Hướng Web Design 2026
-</h3>
-
-<p>
-Glassmorphism, AI UI,
-Cyberpunk Design.
-</p>
-
-</div>
-
-</div>
-
-<div class="blog-card">
-
-<img src="blog2.jpg">
-
-<div class="blog-content">
-
-<h3>
-AI Trong Web Development
-</h3>
-
-<p>
-Cách AI thay đổi ngành lập trình.
-</p>
-
-</div>
-
-</div>
-
-<div class="blog-card">
-
-<img src="blog3.jpg">
-
-<div class="blog-content">
-
-<h3>
-Tối Ưu Website
-</h3>
-
-<p>
-Tăng tốc độ và SEO.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-  <!-- =========================
-CONTACT
-========================= -->
-
-<section id="contact">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>
-CONTACT
-</span>
-
-<h2>
-Liên Hệ
-</h2>
-
-</div>
-
-<div class="contact-wrapper">
-
-<div class="contact-info">
-
-<div class="contact-card">
-
-<i class="fas fa-envelope"></i>
-
-<h3>Email</h3>
-
-<p>
-yourmail@gmail.com
-</p>
-
-</div>
-
-<div class="contact-card">
-
-<i class="fas fa-phone"></i>
-
-<h3>Số Điện Thoại</h3>
-
-<p>
-+84 xxx xxx xxx
-</p>
-
-</div>
-
-<div class="contact-card">
-
-<i class="fas fa-location-dot"></i>
-
-<h3>Địa Chỉ</h3>
-
-<p>
-Việt Nam
-</p>
-
-</div>
-
-</div>
-
-<form class="contact-form">
-
-<input
-type="text"
-placeholder="Họ và tên">
-
-<input
-type="email"
-placeholder="Email">
-
-<input
-type="text"
-placeholder="Tiêu đề">
-
-<textarea
-rows="6"
-placeholder="Nội dung">
-
-</textarea>
-
-<button
-type="submit"
-class="send-btn">
-
-Gửi Tin Nhắn
-
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-NEWSLETTER
-========================= -->
-
-<section id="newsletter">
-
-<div class="container">
-
-<div class="newsletter-box">
-
-<h2>
-Nhận Thông Tin Mới Nhất
-</h2>
-
-<p>
-Đăng ký để nhận cập nhật mới từ Hoàng Hazen
-</p>
-
-<div class="newsletter-form">
-
-<input
-type="email"
-placeholder="Nhập Email">
-
-<button>
-
-Đăng Ký
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-AI CHAT WIDGET
-========================= -->
-
-<div id="aiWidget">
-
-<div class="widget-header">
-
-<span>
-AI Assistant
-</span>
-
-<button id="closeWidget">
-
-✕
-
-</button>
-
-</div>
-
-<div class="widget-body">
-
-<div class="bot-message">
-
-Xin chào 👋
-
-Tôi là AI Assistant của Hoàng Hazen.
-
-</div>
-
-</div>
-
-<div class="widget-input">
-
-<input
-type="text"
-placeholder="Nhập tin nhắn...">
-
-<button>
-
-Gửi
-
-</button>
-
-</div>
-
-</div>
-
-<button id="openWidget">
-
-🤖
-
-</button>
-
-<!-- =========================
-MUSIC PLAYER
-========================= -->
-
-<div id="musicPlayer">
-
-<button id="musicToggle">
-
-🎵
-
-</button>
-
-<audio
-id="bgMusic"
-loop>
-
-<source
-src="music.mp3"
-type="audio/mpeg">
-
-</audio>
-
-</div>
-
-<!-- =========================
-THEME TOGGLE
-========================= -->
-
-<button id="themeToggle">
-
-🌙
-
-</button>
-
-<!-- =========================
-BACK TO TOP
-========================= -->
-
-<button id="backToTop">
-
-↑
-
-</button>
-
-<!-- =========================
-FOOTER
-========================= -->
-
-<footer>
-
-<div class="footer-container">
-
-<div class="footer-col">
-
-<h3>
-Hoàng Hazen
-</h3>
-
-<p>
-
-AI Futuristic Portfolio
-
-</p>
-
-</div>
-
-<div class="footer-col">
-
-<h3>
-Liên Kết
-</h3>
-
-<ul>
-
-<li>
-<a href="#home">
-Home
-</a>
-</li>
-
-<li>
-<a href="#about">
-About
-</a>
-</li>
-
-<li>
-<a href="#projects">
-Projects
-</a>
-</li>
-
-<li>
-<a href="#contact">
-Contact
-</a>
-</li>
-
-</ul>
-
-</div>
-
-<div class="footer-col">
-
-<h3>
-Mạng Xã Hội
-</h3>
-
-<div class="footer-socials">
-
-<a href="#">
-<i class="fab fa-facebook-f"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-github"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-youtube"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-discord"></i>
-</a>
-
-<a href="#">
-<i class="fab fa-tiktok"></i>
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-
-<p>
-
-© 2026 Nguyễn Việt Hoàng | Hoàng Hazen
-
-</p>
-
-</div>
-
-</footer>
-
-<!-- =========================
-SCRIPT
-========================= -->
-
-<script src="script.js"></script>
-
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-ring"></div>
+      <h1>HOÀNG HAZEN</h1>
+      <p>AI FUTURISTIC PORTFOLIO</p>
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <video id="bgVideo" autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
+
+  <!-- MATRIX -->
+  <canvas id="matrix"></canvas>
+
+  <!-- PARTICLES -->
+  <div id="particles"></div>
+
+  <!-- CURSOR -->
+  <div class="cursor"></div>
+  <div class="cursor2"></div>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar">
+      <div class="logo"><span>HOÀNG</span> HAZEN</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-container">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <i class="fas fa-bolt"></i> AI POWERED PORTFOLIO
+        </div>
+        <h1 class="hero-title">Nguyễn Việt Hoàng</h1>
+        <h2 class="hero-subtitle">Frontend Developer</h2>
+        <p class="hero-desc">
+          Chuyên phát triển website hiện đại, UI/UX cao cấp, tích hợp AI, automation và các giải pháp công nghệ mới.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn-primary">Xem Dự Án</a>
+          <a href="#contact" class="btn-secondary">Liên Hệ</a>
+        </div>
+        <div class="hero-socials">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-discord"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="avatar-wrapper">
+          <div class="orb orb1"></div>
+          <div class="orb orb2"></div>
+          <div class="orb orb3"></div>
+          <img src="avatar.png" alt="Hoang Hazen" class="avatar">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <span>ABOUT ME</span>
+        <h2>Giới Thiệu</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="avatar.png" alt="Hoang Hazen">
+        </div>
+        <div class="about-content">
+          <h3>Nguyễn Việt Hoàng</h3>
+          <p>
+            Frontend Developer đam mê thiết kế giao diện hiện đại, công nghệ AI và các giải pháp web tiên tiến.
+          </p>
+          <p>
+            Mục tiêu là tạo ra những sản phẩm đẹp, nhanh, tối ưu và mang lại trải nghiệm người dùng tốt nhất.
+          </p>
+          <div class="about-cards">
+            <div class="about-card">
+              <h4>Frontend</h4>
+              <p>HTML CSS JavaScript</p>
+            </div>
+            <div class="about-card">
+              <h4>ReactJS</h4>
+              <p>Single Page Apps</p>
+            </div>
+            <div class="about-card">
+              <h4>UI / UX</h4>
+              <p>Modern Design</p>
+            </div>
+            <div class="about-card">
+              <h4>AI Tools</h4>
+              <p>Automation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h2 class="counter" data-target="50">0</h2>
+          <p>Dự Án</p>
+        </div>
+        <div class="stat-card">
+          <h2 class="counter" data-target="100">0</h2>
+          <p>Khách Hàng</p>
+        </div>
+        <div class="stat-card">
+          <h2 class="counter" data-target="24">0</h2>
+          <p>Hỗ Trợ</p>
+        </div>
+        <div class="stat-card">
+          <h2 class="counter" data-target="5">0</h2>
+          <p>Năm Kinh Nghiệm</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <span>TECH STACK</span>
+        <h2>Kỹ Năng</h2>
+      </div>
+      <div class="skills-wrapper">
+        <div class="skill">
+          <div class="skill-title">
+            <span>HTML5</span>
+            <span>95%</span>
+          </div>
+          <div class="progress"><div class="progress-bar html"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-title">
+            <span>CSS3</span>
+            <span>92%</span>
+          </div>
+          <div class="progress"><div class="progress-bar css"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-title">
+            <span>JavaScript</span>
+            <span>88%</span>
+          </div>
+          <div class="progress"><div class="progress-bar js"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-title">
+            <span>ReactJS</span>
+            <span>80%</span>
+          </div>
+          <div class="progress"><div class="progress-bar react"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-title">
+            <span>NodeJS</span>
+            <span>75%</span>
+          </div>
+          <div class="progress"><div class="progress-bar node"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <span>SERVICES</span>
+        <h2>Dịch Vụ</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-code"></i>
+          <h3>Web Development</h3>
+          <p>Xây dựng website hiện đại, responsive và tối ưu hiệu năng.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-palette"></i>
+          <h3>UI / UX Design</h3>
+          <p>Thiết kế giao diện cao cấp, trải nghiệm người dùng hiện đại.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-robot"></i>
+          <h3>AI Integration</h3>
+          <p>Tích hợp AI, chatbot và automation.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-bolt"></i>
+          <h3>Performance</h3>
+          <p>Tối ưu tốc độ tải trang và trải nghiệm thực tế.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= PROJECTS ========================= -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title">
+        <span>PORTFOLIO</span>
+        <h2>Dự Án Nổi Bật</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="project1.jpg" alt="Project">
+          </div>
+          <div class="project-content">
+            <h3>AI Dashboard</h3>
+            <p>Dashboard quản lý dữ liệu AI giao diện hiện đại.</p>
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JS</span>
+            </div>
+            <a href="#" class="project-btn">Xem Dự Án</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="project2.jpg" alt="Project">
+          </div>
+          <div class="project-content">
+            <h3>Portfolio Premium</h3>
+            <p>Website cá nhân phong cách Futuristic 2026.</p>
+            <div class="project-tags">
+              <span>React</span>
+              <span>GSAP</span>
+            </div>
+            <a href="#" class="project-btn">Xem Dự Án</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="project3.jpg" alt="Project">
+          </div>
+          <div class="project-content">
+            <h3>AI Chat Platform</h3>
+            <p>Chatbot AI tích hợp Automation.</p>
+            <div class="project-tags">
+              <span>NodeJS</span>
+              <span>AI</span>
+            </div>
+            <a href="#" class="project-btn">Xem Dự Án</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= TIMELINE ========================= -->
+  <section id="timeline">
+    <div class="container">
+      <div class="section-title">
+        <span>JOURNEY</span>
+        <h2>Hành Trình Phát Triển</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2022</h3>
+            <h4>Bắt đầu lập trình</h4>
+            <p>Học HTML CSS JavaScript.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2023</h3>
+            <h4>Frontend Developer</h4>
+            <p>Phát triển website responsive.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2024</h3>
+            <h4>UI/UX Design</h4>
+            <p>Nâng cao trải nghiệm người dùng.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2025</h3>
+            <h4>AI Development</h4>
+            <p>Tích hợp AI vào ứng dụng web.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CERTIFICATES ========================= -->
+  <section id="certificates">
+    <div class="container">
+      <div class="section-title">
+        <span>ACHIEVEMENTS</span>
+        <h2>Chứng Chỉ</h2>
+      </div>
+      <div class="certificate-grid">
+        <div class="certificate-card">
+          <i class="fas fa-award"></i>
+          <h3>Frontend Development</h3>
+          <p>HTML CSS JavaScript</p>
+        </div>
+        <div class="certificate-card">
+          <i class="fas fa-medal"></i>
+          <h3>UI / UX Design</h3>
+          <p>Modern Design System</p>
+        </div>
+        <div class="certificate-card">
+          <i class="fas fa-trophy"></i>
+          <h3>AI Integration</h3>
+          <p>Automation & AI</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= ACHIEVEMENTS ========================= -->
+  <section id="achievements">
+    <div class="container">
+      <div class="section-title">
+        <span>SUCCESS</span>
+        <h2>Thành Tích</h2>
+      </div>
+      <div class="achievement-grid">
+        <div class="achievement-card">
+          <h2>50+</h2>
+          <p>Dự Án Hoàn Thành</p>
+        </div>
+        <div class="achievement-card">
+          <h2>100+</h2>
+          <p>Khách Hàng</p>
+        </div>
+        <div class="achievement-card">
+          <h2>5+</h2>
+          <p>Năm Học Tập</p>
+        </div>
+        <div class="achievement-card">
+          <h2>24/7</h2>
+          <p>Hỗ Trợ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= TESTIMONIALS ========================= -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <span>CLIENT REVIEW</span>
+        <h2>Khách Hàng Nói Gì</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <img src="client1.jpg" alt="Client 1">
+          <h3>Nguyễn Văn A</h3>
+          <span>CEO Startup</span>
+          <p>Website rất đẹp, hiệu năng tốt và chuyên nghiệp.</p>
+        </div>
+        <div class="testimonial-card">
+          <img src="client2.jpg" alt="Client 2">
+          <h3>Trần Văn B</h3>
+          <span>Business Owner</span>
+          <p>Giao diện hiện đại, hỗ trợ tận tình.</p>
+        </div>
+        <div class="testimonial-card">
+          <img src="client3.jpg" alt="Client 3">
+          <h3>Lê Văn C</h3>
+          <span>Developer</span>
+          <p>Code sạch, thiết kế cực kỳ đẹp mắt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= PRICING ========================= -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-title">
+        <span>PRICE</span>
+        <h2>Bảng Giá</h2>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Basic</h3>
+          <h2>999K</h2>
+          <ul>
+            <li>Landing Page</li>
+            <li>Responsive</li>
+            <li>1 Tuần Hỗ Trợ</li>
+          </ul>
+          <a href="#" class="pricing-btn">Chọn Gói</a>
+        </div>
+        <div class="pricing-card featured">
+          <h3>Premium</h3>
+          <h2>2.999K</h2>
+          <ul>
+            <li>Website Cao Cấp</li>
+            <li>Animation</li>
+            <li>AI Integration</li>
+            <li>1 Tháng Hỗ Trợ</li>
+          </ul>
+          <a href="#" class="pricing-btn">Chọn Gói</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Enterprise</h3>
+          <h2>Liên Hệ</h2>
+          <ul>
+            <li>Website Full Custom</li>
+            <li>Dashboard</li>
+            <li>Automation</li>
+            <li>Priority Support</li>
+          </ul>
+          <a href="#" class="pricing-btn">Liên Hệ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= FAQ ========================= -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-title">
+        <span>FAQ</span>
+        <h2>Câu Hỏi Thường Gặp</h2>
+      </div>
+      <div class="faq-wrapper">
+        <div class="faq-item">
+          <h3>Bạn làm website bằng gì?</h3>
+          <p>HTML, CSS, JavaScript, ReactJS và các công nghệ hiện đại.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Có hỗ trợ sau bàn giao không?</h3>
+          <p>Có, tùy theo gói dịch vụ.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Có tích hợp AI không?</h3>
+          <p>Có thể tích hợp chatbot, AI automation và API.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= BLOG ========================= -->
+  <section id="blog">
+    <div class="container">
+      <div class="section-title">
+        <span>BLOG</span>
+        <h2>Bài Viết Mới</h2>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <img src="blog1.jpg" alt="Blog 1">
+          <div class="blog-content">
+            <h3>Xu Hướng Web Design 2026</h3>
+            <p>Glassmorphism, AI UI, Cyberpunk Design.</p>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="blog2.jpg" alt="Blog 2">
+          <div class="blog-content">
+            <h3>AI Trong Web Development</h3>
+            <p>Cách AI thay đổi ngành lập trình.</p>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="blog3.jpg" alt="Blog 3">
+          <div class="blog-content">
+            <h3>Tối Ưu Website</h3>
+            <p>Tăng tốc độ và SEO.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CONTACT ========================= -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <span>CONTACT</span>
+        <h2>Liên Hệ</h2>
+      </div>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <div class="contact-card">
+            <i class="fas fa-envelope"></i>
+            <h3>Email</h3>
+            <p>yourmail@gmail.com</p>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-phone"></i>
+            <h3>Số Điện Thoại</h3>
+            <p>+84 xxx xxx xxx</p>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-location-dot"></i>
+            <h3>Địa Chỉ</h3>
+            <p>Việt Nam</p>
+          </div>
+        </div>
+        <form class="contact-form">
+          <input type="text" placeholder="Họ và tên">
+          <input type="email" placeholder="Email">
+          <input type="text" placeholder="Tiêu đề">
+          <textarea rows="6" placeholder="Nội dung"></textarea>
+          <button type="submit" class="send-btn">Gửi Tin Nhắn</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= NEWSLETTER ========================= -->
+  <section id="newsletter">
+    <div class="container">
+      <div class="newsletter-box">
+        <h2>Nhận Thông Tin Mới Nhất</h2>
+        <p>Đăng ký để nhận cập nhật mới từ Hoàng Hazen</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Nhập Email">
+          <button>Đăng Ký</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= AI CHAT WIDGET ========================= -->
+  <div id="aiWidget">
+    <div class="widget-header">
+      <span>AI Assistant</span>
+      <button id="closeWidget">✕</button>
+    </div>
+    <div class="widget-body">
+      <div class="bot-message">
+        Xin chào 👋<br>
+        Tôi là AI Assistant của Hoàng Hazen.
+      </div>
+    </div>
+    <div class="widget-input">
+      <input type="text" placeholder="Nhập tin nhắn...">
+      <button>Gửi</button>
+    </div>
+  </div>
+  <button id="openWidget">🤖</button>
+
+  <!-- ========================= MUSIC PLAYER ========================= -->
+  <div id="musicPlayer">
+    <button id="musicToggle">🎵</button>
+    <audio id="bgMusic" loop>
+      <source src="music.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- ========================= THEME TOGGLE ========================= -->
+  <button id="themeToggle">🌙</button>
+
+  <!-- ========================= BACK TO TOP ========================= -->
+  <button id="backToTop">↑</button>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Hoàng Hazen</h3>
+        <p>AI Futuristic Portfolio</p>
+      </div>
+      <div class="footer-col">
+        <h3>Liên Kết</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Mạng Xã Hội</h3>
+        <div class="footer-socials">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-discord"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nguyễn Việt Hoàng | Hoàng Hazen</p>
+    </div>
+  </footer>
+
+  <!-- ========================= SCRIPT ========================= -->
+  <script src="script.js"></script>
 </body>
 </html>
