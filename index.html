@@ -6,12 +6,19 @@
   <title>Nguyễn Việt Hoàng | Portfolio</title>
 
   <script>
+    // 1. Kiểm tra xem người dùng có đang chủ động bấm Tải lại trang (F5 / Reload) không
+    const navEntry = performance.getEntriesByType("navigation")[0];
+    if (navEntry && navEntry.type === "reload") {
+      sessionStorage.removeItem("introDone"); // Nếu có thì mới thu hồi vé
+    }
+
+    // 2. Chuyển hướng Intro
     if (!sessionStorage.getItem("introDone")) {
       window.location.href = "intro.html";
-    } else {
-      sessionStorage.removeItem("introDone");
     }
+    // KHÔNG TỰ ĐỘNG THU HỒI VÉ Ở ĐÂY NỮA
   </script>
+
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
