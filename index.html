@@ -118,19 +118,45 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .nav-links { display: flex; gap: 30px; }
+    .nav-links{
+    display:flex;
+    align-items:center;
+    gap:40px;
+}
+
+.nav-links a{
+    position:relative;
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+}
+
+.nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0;
+    height:2px;
+    background:#00d4ff;
+    transition:.4s;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
     .nav-links a { text-decoration: none; color: white; font-size: 15px; transition: .3s; }
     .nav-links a:hover { color: #00d4ff; }
 
     /* ======================================================
        4. HERO SECTION
     ====================================================== */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 0 10%;
-    }
+   .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:120px 10% 0;
+}
 
     .hero-container {
       width: 100%;
@@ -150,7 +176,12 @@
       margin-bottom: 20px;
     }
 
-    .hero-title { font-size: 90px; font-weight: 800; line-height: 1; }
+  .hero-title{
+font-size:100px;
+font-weight:800;
+line-height:.95;
+}
+    
     .hero-title span { color: #8b5cf6; }
     
     .typing { font-size: 34px; font-weight: 600; margin-top: 20px; color: #00d4ff; height: 50px; }
@@ -162,12 +193,10 @@
     .btn-secondary { border: 1px solid rgba(255, 255, 255, .15); color: white; }
 
     .hero-right { display: flex; justify-content: center; }
-    .hero-right img {
-      width: 700px;
-      max-width: 100%;
-      filter: drop-shadow(0 0 20px #00d4ff) drop-shadow(0 0 50px #7c3aed);
-      animation: floating 5s ease-in-out infinite;
-    }
+    .hero-right img{
+    width:580px;
+    max-width:100%;
+}
 
     @keyframes floating {
       0%, 100% { transform: translateY(0); }
