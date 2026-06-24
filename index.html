@@ -422,7 +422,13 @@
 
   if(aiInput) aiInput.addEventListener("keydown", (e) => { if(e.key === "Enter") handleAiSubmit(); });
   if(aiSendBtn) aiSendBtn.addEventListener("click", handleAiSubmit);
-
-</script>
+    
+    // Kiểm tra xem khách đã xem Intro chưa
+    if (!sessionStorage.getItem("introDone")) {
+      // Nếu chưa xem, đá thẳng sang file intro.html
+      window.location.href = "intro.html";
+    }
+  
+  </script>
 </body>
 </html>
