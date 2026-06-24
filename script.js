@@ -5,9 +5,16 @@ const $ = (el) => document.querySelector(el);
 const $$ = (el) => document.querySelectorAll(el);
 
 /* ======================================================
-   LOADER CONTROL
+   GLOBAL HELPERS
 ====================================================== */
-window.addEventListener("load", () => {
+const $ = (el) => document.querySelector(el);
+const $$ = (el) => document.querySelectorAll(el);
+
+/* ======================================================
+   LOADER CONTROL (ĐÃ FIX LỖI KẸT)
+====================================================== */
+// Cách 1: Tắt Loader ngay khi cấu trúc HTML sẵn sàng (không đợi video nặng)
+document.addEventListener("DOMContentLoaded", () => {
   const loader = $("#loader");
   if (loader) {
     setTimeout(() => {
@@ -19,6 +26,24 @@ window.addEventListener("load", () => {
     }, 1200);
   }
 });
+
+// Cách 2: Fallback an toàn - Ép buộc ẩn Loader sau tối đa 3.5 giây 
+// phòng trường hợp JS bị lỗi mạng không kích hoạt được DOMContentLoaded
+setTimeout(() => {
+  const loader = $("#loader");
+  if (loader && loader.style.display !== "none") {
+    loader.style.opacity = "0";
+    loader.style.transition = "0.6s ease";
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 600);
+  }
+}, 3500);
+
+/* ======================================================
+   SMOOTH SCROLL NAVIGATION
+====================================================== */
+// ... (GIỮ NGUYÊN TOÀN BỘ CODE BÊN DƯỚI CỦA BẠN TỪ ĐOẠN NÀY TRỞ ĐI) ...
 
 /* ======================================================
    SMOOTH SCROLL NAVIGATION
