@@ -14,159 +14,143 @@
 }
 
 body{
-    background:#050816;
+    background:#0b1020;
     height:100vh;
-    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
+    overflow:hidden;
     font-family:Arial,sans-serif;
-    color:white;
+    transition:0.8s;
 }
 
-/* Background Glow */
+/* Glow nền */
 body::before{
     content:"";
     position:absolute;
-    width:800px;
-    height:800px;
-    background:radial-gradient(circle,
-    rgba(0,255,255,.15),
-    rgba(138,43,226,.08),
-    transparent);
-    filter:blur(100px);
+    width:600px;
+    height:600px;
+    background:radial-gradient(
+        circle,
+        rgba(0,212,255,.15),
+        transparent
+    );
+    filter:blur(80px);
 }
 
-/* Grid */
-.grid{
-    position:absolute;
-    inset:0;
-    background:
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-    background-size:40px 40px;
+/* Khung */
+.loader-box{
+    width:700px;
+    max-width:90%;
+    text-align:center;
 }
 
-/* HUD */
-.hud{
+/* Đường */
+.road{
     position:relative;
-    width:250px;
-    height:250px;
+    height:80px;
+    margin-bottom:15px;
 }
 
-.ring{
+.road::after{
+    content:"";
     position:absolute;
-    border-radius:50%;
-    border:4px solid transparent;
+    bottom:20px;
+    left:0;
+    width:100%;
+    height:4px;
+    background:#444;
+    border-radius:20px;
 }
 
-.ring1{
-    inset:0;
-    border-top:4px solid #00e5ff;
-    border-right:4px solid #00e5ff;
-    animation:spin 3s linear infinite;
-}
-
-.ring2{
-    inset:25px;
-    border-left:4px solid #7c3aed;
-    border-bottom:4px solid #7c3aed;
-    animation:spinReverse 2s linear infinite;
-}
-
-.ring3{
-    inset:50px;
-    border-top:4px solid #00e5ff;
-    animation:spin 1.2s linear infinite;
-}
-
-.core{
+/* Xe */
+.car{
     position:absolute;
-    top:50%;
-    left:50%;
-    width:40px;
-    height:40px;
-    transform:translate(-50%,-50%);
-    border-radius:50%;
-    background:#00e5ff;
+    left:0;
+    top:0;
+    font-size:48px;
+    animation:bounce .25s infinite alternate;
+}
+
+@keyframes bounce{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-4px);
+    }
+}
+
+/* Thanh loading */
+.progress{
+    width:100%;
+    height:24px;
+    background:#1a2238;
+    border-radius:50px;
+    overflow:hidden;
+    position:relative;
     box-shadow:
-    0 0 20px #00e5ff,
-    0 0 50px #00e5ff;
-    animation:pulse 1s infinite;
+        inset 0 0 10px rgba(255,255,255,.1);
 }
 
-/* Text */
-.loading{
-    margin-top:40px;
-    font-size:22px;
-    letter-spacing:4px;
-    color:#00e5ff;
+/* Nước */
+.water{
+    width:0%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    border-radius:50px;
+    overflow:hidden;
+    background:linear-gradient(
+        90deg,
+        #00d4ff,
+        #3b82f6,
+        #7c3aed
+    );
+}
+
+/* Sóng nước */
+.water::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    left:-50%;
+    top:-60%;
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,255,255,.4) 10%,
+        transparent 12%
+    );
+
+    background-size:35px 35px;
+
+    animation:wave 2s linear infinite;
+}
+
+@keyframes wave{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-80px);
+    }
 }
 
 .percent{
     margin-top:15px;
-    font-size:32px;
+    color:white;
+    font-size:24px;
     font-weight:bold;
 }
 
-/* Progress */
-.progress{
-    width:320px;
-    height:8px;
-    background:rgba(255,255,255,.08);
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:20px;
-}
-
-.bar{
-    width:0%;
-    height:100%;
-    background:linear-gradient(90deg,#00e5ff,#7c3aed);
-    box-shadow:0 0 20px #00e5ff;
-}
-
-/* Scan Line */
-.scan{
-    position:absolute;
-    left:0;
-    width:100%;
-    height:3px;
-    background:rgba(0,255,255,.3);
-    box-shadow:0 0 20px cyan;
-    animation:scan 3s linear infinite;
-}
-
-/* Particles */
-.particle{
-    position:absolute;
-    width:3px;
-    height:3px;
-    border-radius:50%;
-    background:#00e5ff;
-    box-shadow:0 0 10px #00e5ff;
-}
-
-@keyframes spin{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
-}
-
-@keyframes spinReverse{
-    from{transform:rotate(360deg);}
-    to{transform:rotate(0deg);}
-}
-
-@keyframes pulse{
-    50%{
-        transform:translate(-50%,-50%) scale(1.3);
-    }
-}
-
-@keyframes scan{
-    from{top:-10px;}
-    to{top:100%;}
+.loading-text{
+    margin-top:10px;
+    color:#00d4ff;
+    font-size:18px;
+    letter-spacing:2px;
 }
 </style>
 
@@ -174,63 +158,66 @@ body::before{
 
 <body>
 
-<div class="grid"></div>
-<div class="scan"></div>
+<div class="loader-box">
 
-<div class="hud">
-    <div class="ring ring1"></div>
-    <div class="ring ring2"></div>
-    <div class="ring ring3"></div>
-    <div class="core"></div>
+```
+<div class="road">
+    <div class="car" id="car">🏎️</div>
 </div>
 
-<div class="loading">LOADING SYSTEM</div>
+<div class="progress">
+    <div class="water" id="water"></div>
+</div>
+
 <div class="percent" id="percent">0%</div>
 
-<div class="progress">
-    <div class="bar" id="bar"></div>
+<div class="loading-text">
+    Loading Portfolio...
+</div>
+```
+
 </div>
 
 <script>
 
-// Particles
-for(let i=0;i<60;i++){
+const car = document.getElementById("car");
+const water = document.getElementById("water");
+const percent = document.getElementById("percent");
 
-    let p=document.createElement("div");
-    p.className="particle";
+let progress = 0;
 
-    p.style.left=Math.random()*100+"vw";
-    p.style.top=Math.random()*100+"vh";
+const loading = setInterval(()=>{
 
-    document.body.appendChild(p);
-}
+    progress += 0.5;
 
-// Progress
-let p=0;
+    water.style.width = progress + "%";
 
-const bar=document.getElementById("bar");
-const percent=document.getElementById("percent");
+    car.style.left =
+        `calc(${progress}% - 25px)`;
 
-const load=setInterval(()=>{
+    percent.innerHTML =
+        Math.floor(progress) + "%";
 
-    p++;
+    if(progress >= 100){
 
-    bar.style.width=p+"%";
-    percent.innerHTML=p+"%";
+        clearInterval(loading);
 
-    if(p>=100){
-
-        clearInterval(load);
-
-        document.body.style.transition="1s";
-        document.body.style.opacity="0";
+        car.innerHTML = "🏁";
 
         setTimeout(()=>{
-            window.location.href="index.html";
-        },1000);
+
+            document.body.style.opacity = "0";
+
+            setTimeout(()=>{
+
+                window.location.href = "index.html";
+
+            },800);
+
+        },600);
     }
 
-},40);
+},25);
 
 </script>
 
