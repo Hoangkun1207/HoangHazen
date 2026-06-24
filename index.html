@@ -6,11 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nguyễn Việt Hoàng | Portfolio</title>
 
-  <script>
-    if (!sessionStorage.getItem("introDone")) {
-      window.location.href = "intro.html";
-    } else {
-      sessionStorage.removeItem("introDone");
+ <script>
+    try {
+      if (!sessionStorage.getItem("introDone")) {
+        window.location.href = "intro.html";
+      } else {
+        sessionStorage.removeItem("introDone");
+      }
+    } catch(e) {
+      console.log("Điện thoại chặn sessionStorage, load thẳng vào web!");
     }
   </script>
 
