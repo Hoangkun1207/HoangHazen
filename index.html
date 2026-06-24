@@ -476,6 +476,69 @@
       .stats { grid-template-columns: 1fr 1fr; }
       .about-container { grid-template-columns: 1fr; }
     }
+
+/* LOAD ANIMATION */
+
+.fade-left,
+.fade-right,
+.fade-up,
+.fade-down,
+.zoom-in{
+opacity:0;
+animation:1s ease forwards;
+}
+
+.fade-left{
+transform:translateX(-80px);
+animation-name:fadeLeft;
+}
+
+.fade-right{
+transform:translateX(80px);
+animation-name:fadeRight;
+}
+
+.fade-up{
+transform:translateY(80px);
+animation-name:fadeUp;
+}
+
+.fade-down{
+transform:translateY(-80px);
+animation-name:fadeDown;
+}
+
+.zoom-in{
+transform:scale(.7);
+animation:zoomIn 1.2s ease forwards;
+}
+
+.delay1{animation-delay:.3s}
+.delay2{animation-delay:.6s}
+.delay3{animation-delay:.9s}
+.delay4{animation-delay:1.2s}
+.delay5{animation-delay:1.5s}
+
+@keyframes fadeLeft{
+to{opacity:1;transform:translateX(0)}
+}
+
+@keyframes fadeRight{
+to{opacity:1;transform:translateX(0)}
+}
+
+@keyframes fadeUp{
+to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes fadeDown{
+to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes zoomIn{
+to{opacity:1;transform:scale(1)}
+}
+    
   </style>
 </head>
 <body>
