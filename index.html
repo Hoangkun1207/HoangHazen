@@ -3,23 +3,198 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>Nguyễn Việt Hoàng | AI Futuristic Portfolio</title>
   <meta name="description" content="Portfolio AI Futuristic & Pixel Art - Nguyễn Việt Hoàng">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ======================================================
+       ROOT SYSTEM & BASE
+    ====================================================== */
+    :root {
+      --bg: #05060a;
+      --primary: #00d4ff;
+      --secondary: #7c3aed;
+      --accent: #22c55e;
+      --text: #ffffff;
+      --muted: #9aa4b2;
+      --glass: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow-neon: 0 0 25px rgba(0, 212, 255, 0.25);
+      --shadow-purple: 0 0 25px rgba(124, 58, 237, 0.25);
+      --radius: 16px;
+    }
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: "Poppins", sans-serif; scroll-behavior: smooth;
+    }
+
+    body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0f1a; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 10px; }
+
+    /* ======================================================
+       BACKGROUND & CURSOR
+    ====================================================== */
+    .bg-container { position: fixed; inset: 0; z-index: -3; background: #05060a; }
+    #bg-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.35) contrast(1.1); }
+    .overlay { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(0,0,0,0.3), var(--bg)); z-index: 1; }
+    #particles { position: absolute; inset: 0; z-index: 2; opacity: 0.6; pointer-events: none; }
+
+    .cursor {
+      width: 8px; height: 8px; background: var(--primary); border-radius: 50%;
+      position: fixed; z-index: 9999; pointer-events: none;
+      box-shadow: 0 0 20px var(--primary); transition: transform 0.05s linear;
+    }
+    .cursor-follower {
+      width: 35px; height: 35px; border: 1px solid var(--primary); border-radius: 50%;
+      position: fixed; z-index: 9998; pointer-events: none; transition: transform 0.15s ease; opacity: 0.6;
+    }
+
+    /* ======================================================
+       LOADER
+    ====================================================== */
+    #loader {
+      position: fixed; inset: 0; background: radial-gradient(circle, #05060a, #000);
+      display: flex; align-items: center; justify-content: center; z-index: 99999;
+      transition: opacity 0.5s ease;
+    }
+    .loader-inner { text-align: center; }
+    .loader-ring {
+      width: 80px; height: 80px; border-radius: 50%; border: 3px solid rgba(0,212,255,0.15);
+      border-top: 3px solid var(--primary); animation: spin 1s linear infinite;
+      margin: auto; box-shadow: var(--shadow-neon);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-inner h1 { margin-top: 20px; font-size: 22px; letter-spacing: 3px; color: var(--primary); text-shadow: 0 0 15px var(--primary); }
+    .loader-inner p { color: var(--muted); margin-top: 10px; font-size: 12px; letter-spacing: 2px; }
+
+    /* ======================================================
+       NAVBAR
+    ====================================================== */
+    .navbar {
+      position: fixed; top: 0; width: 100%; padding: 18px 10%; display: flex;
+      justify-content: space-between; align-items: center; background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); z-index: 1000;
+    }
+    .logo { font-weight: 800; letter-spacing: 1px; }
+    .logo span { color: var(--primary); text-shadow: var(--shadow-neon); }
+    .nav-links { display: flex; gap: 25px; list-style: none; }
+    .nav-links a { position: relative; color: var(--muted); text-decoration: none; transition: 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--primary); transform: translateY(-2px); }
+    .menu-btn { display: none; cursor: pointer; color: var(--primary); font-size: 24px; }
+
+    /* ======================================================
+       HERO & SECTIONS
+    ====================================================== */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 10% 60px; }
+    .hero-container { display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; align-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: var(--glass); border: 1px solid var(--border); color: var(--primary); margin-bottom: 20px; }
+    .title { font-size: 60px; font-weight: 800; line-height: 1.1; background: linear-gradient(90deg,#fff,var(--primary),var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { font-size: 22px; color: var(--primary); margin: 10px 0; }
+    .desc { color: var(--muted); max-width: 520px; line-height: 1.6; margin-bottom: 25px; }
+    
+    .buttons { display: flex; gap: 15px; margin-bottom: 30px; }
+    .btn { display: inline-block; padding: 12px 24px; border-radius: 999px; text-decoration: none; transition: 0.3s; font-weight: 500; border: none; cursor: pointer; }
+    .btn.primary { background: linear-gradient(90deg,var(--primary),var(--secondary)); color: #fff; box-shadow: var(--shadow-neon); }
+    .btn.secondary { border: 1px solid var(--primary); color: var(--primary); }
+    .btn:hover { transform: translateY(-4px) scale(1.03); }
+
+    .socials { display: flex; gap: 15px; }
+    .socials a { color: var(--muted); font-size: 20px; transition: 0.3s; }
+    .socials a:hover { color: var(--primary); transform: translateY(-3px); }
+
+    .avatar-box { position: relative; width: 340px; height: 340px; margin: auto; }
+    .avatar-box img { width: 100%; border-radius: 50%; border: 3px solid var(--primary); box-shadow: var(--shadow-neon); transition: 0.4s; z-index: 2; position: relative; background: #111;}
+    .avatar-box img:hover { transform: scale(1.05) rotate(2deg); }
+
+    .section { padding: 100px 10%; }
+    .section-title { text-align: center; font-size: 40px; margin-bottom: 60px; position: relative; }
+    .section-title::after { content: ""; width: 80px; height: 3px; background: linear-gradient(90deg,var(--primary),var(--secondary)); position: absolute; left: 50%; transform: translateX(-50%); bottom: -15px; }
+
+    /* ======================================================
+       ABOUT, SKILLS, PROJECTS
+    ====================================================== */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-img img { width: 100%; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow-purple); background: #111;}
+    .about-text h3 { font-size: 28px; color: var(--primary); margin-bottom: 15px; }
+    .about-text p { color: var(--muted); margin-bottom: 15px; line-height: 1.6; }
+    .about-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; margin-top: 30px; }
+    .stat { padding: 15px; background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; transition: 0.3s; }
+    .stat h4 { font-size: 24px; color: var(--primary); }
+    .stat span { font-size: 13px; color: var(--muted); }
+    .stat:hover { transform: translateY(-5px); box-shadow: var(--shadow-neon); }
+
+    .skills-grid { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .skill span { display: block; margin-bottom: 8px; color: #fff; font-weight: 500; }
+    .bar { width: 100%; height: 10px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
+    .bar div { height: 100%; background: linear-gradient(90deg,var(--primary),var(--secondary)); border-radius: 999px; box-shadow: var(--shadow-neon); }
+
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .project-card { background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: 0.4s; padding-bottom: 20px; text-align: center; }
+    .project-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-neon); }
+    .project-card img { width: 100%; height: 200px; object-fit: cover; filter: brightness(0.8); transition: 0.4s; margin-bottom: 15px; background: #111;}
+    .project-card:hover img { transform: scale(1.05); filter: brightness(1); }
+    .project-card h3 { color: var(--text); margin-bottom: 10px; font-size: 20px; }
+    .project-card p { color: var(--muted); font-size: 14px; padding: 0 15px; }
+
+    /* ======================================================
+       PRICING & CONTACT
+    ====================================================== */
+    .pricing-card { max-width: 420px; margin: auto; padding: 40px 30px; background: var(--glass); border: 1px solid var(--primary); border-radius: var(--radius); text-align: center; transition: 0.4s; position: relative; box-shadow: var(--shadow-purple); }
+    .pricing-card h3 { font-size: 24px; margin-bottom: 15px; color: var(--muted); }
+    .pricing-card h2 { font-size: 40px; color: var(--primary); margin-bottom: 30px; }
+    .pricing-card ul { list-style: none; text-align: left; margin-bottom: 30px; }
+    .pricing-card ul li { margin-bottom: 15px; color: #fff; font-size: 15px; display: flex; gap: 10px; align-items: center; }
+
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    form { display: flex; flex-direction: column; gap: 20px; }
+    input, textarea { width: 100%; padding: 15px; background: var(--glass); border: 1px solid var(--border); border-radius: 10px; color: white; outline: none; transition: 0.3s; font-size: 15px; }
+    textarea { resize: vertical; min-height: 150px; }
+    input:focus, textarea:focus { border-color: var(--primary); box-shadow: var(--shadow-neon); background: rgba(0,0,0,0.5); }
+    
+    .contact-info { background: var(--glass); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+    .contact-info p { display: flex; align-items: center; gap: 15px; color: var(--muted); font-size: 16px; }
+
+    /* ======================================================
+       AI WIDGET
+    ====================================================== */
+    #openAI { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-size: 28px; border: none; cursor: pointer; box-shadow: var(--shadow-neon); z-index: 999; display: flex; align-items: center; justify-content: center; }
+    #ai-widget { position: fixed; bottom: 100px; right: 30px; width: 320px; background: #0a0f1a; border: 1px solid var(--primary); border-radius: var(--radius); box-shadow: var(--shadow-purple); z-index: 1000; overflow: hidden; transition: 0.4s ease; transform-origin: bottom right; }
+    #ai-widget.hidden { opacity: 0; pointer-events: none; transform: translateY(20px) scale(0.9); }
+    .ai-header { background: linear-gradient(90deg, var(--primary), var(--secondary)); padding: 15px; display: flex; justify-content: space-between; align-items: center; color: #fff; font-weight: 600; }
+    .ai-header button { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; }
+    .ai-body { padding: 20px; min-height: 150px; max-height: 250px; overflow-y: auto; color: var(--muted); font-size: 14px; }
+    .ai-input { display: flex; padding: 10px; border-top: 1px solid var(--border); background: var(--bg); }
+    .ai-input input { border: none; background: transparent; flex: 1; padding: 10px; color: #fff; outline: none; }
+    .ai-input button { background: transparent; border: none; color: var(--primary); padding: 0 10px; cursor: pointer; font-size: 18px; }
+
+    footer { padding: 30px; text-align: center; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; background: #000; }
+
+    /* Animation Reveal */
+    .reveal-hidden { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+    .reveal-hidden.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .hero-container, .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .title { font-size: 40px; }
+      .hero { text-align: center; padding-top: 150px; }
+      .buttons, .socials { justify-content: center; }
+      .avatar-box { width: 280px; height: 280px; }
+      #ai-widget { bottom: 90px; right: 15px; width: calc(100% - 30px); }
+      #openAI { bottom: 15px; right: 15px; width: 50px; height: 50px; font-size: 22px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- ================= LOADER ================= -->
 <div id="loader">
   <div class="loader-inner">
     <div class="loader-ring"></div>
@@ -28,7 +203,6 @@
   </div>
 </div>
 
-<!-- ================= BACKGROUND ================= -->
 <div class="bg-container">
   <video autoplay muted loop playsinline id="bg-video">
     <source src="assets/video.mp4" type="video/mp4">
@@ -37,15 +211,12 @@
   <canvas id="particles"></canvas>
 </div>
 
-<!-- ================= CURSOR ================= -->
 <div class="cursor"></div>
 <div class="cursor-follower"></div>
 
-<!-- ================= NAVBAR ================= -->
 <header>
   <nav class="navbar">
     <div class="logo"><span>VIỆT</span> HOÀNG</div>
-
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
@@ -54,199 +225,263 @@
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-
-    <div class="menu-btn">
-      <i class="fas fa-bars"></i>
-    </div>
   </nav>
 </header>
 
-<!-- ================= HERO ================= -->
 <section id="home" class="hero section">
   <div class="container hero-container">
     <div class="hero-left">
-      <div class="badge">
-        <i class="fas fa-bolt"></i> WEB DEVELOPER & UI ENGINEER
-      </div>
-
+      <div class="badge"><i class="fas fa-bolt"></i> WEB DEVELOPER & UI ENGINEER</div>
       <h1 class="title">Nguyễn Việt Hoàng</h1>
       <h2 class="subtitle">Chuyên gia Frontend & Quản trị Hệ thống</h2>
-
-      <p class="desc">
-        Tôi xây dựng các website hiện đại, tối ưu UI/UX kết hợp phong cách thiết kế Pixel Art độc đáo, tích hợp hệ thống thanh toán tự động và AI automation cho tương lai.
-      </p>
-
+      <p class="desc">Tôi xây dựng các website hiện đại, tối ưu UI/UX kết hợp phong cách thiết kế Pixel Art độc đáo, tích hợp hệ thống thanh toán tự động và AI automation cho tương lai.</p>
       <div class="buttons">
         <a href="#projects" class="btn primary">Xem Dự Án</a>
         <a href="#contact" class="btn secondary">Liên Hệ</a>
       </div>
-
       <div class="socials">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
       </div>
     </div>
-
     <div class="hero-right">
-      <div class="avatar-box">
-        <img src="assets/avatar.png" alt="Avatar Nguyễn Việt Hoàng">
-        <div class="glow"></div>
-      </div>
+      <div class="avatar-box"><img src="assets/avatar.png" alt="Avatar"></div>
     </div>
   </div>
 </section>
 
-<!-- ================= ABOUT ================= -->
 <section id="about" class="section">
   <div class="container">
     <h2 class="section-title">Về Tôi</h2>
     <div class="about-grid">
-      <div class="about-img">
-        <img src="assets/about.jpg" alt="About Me">
-      </div>
+      <div class="about-img"><img src="assets/about.jpg" alt="About"></div>
       <div class="about-text">
         <h3>Lập Trình Viên Frontend</h3>
-        <p>
-          Tôi tập trung vào việc xây dựng giao diện người dùng trực quan, hiệu năng cao và có tính thẩm mỹ. Đặc biệt yêu thích việc kết hợp các yếu tố "tương lai" và "Pixel Art" vào trong thiết kế.
-        </p>
-        <p>
-          Mục tiêu của tôi là tạo ra các nền tảng tự động hóa giúp người dùng trải nghiệm sự mượt mà từ khâu chọn sản phẩm đến hệ thống thanh toán.
-        </p>
+        <p>Tôi tập trung vào việc xây dựng giao diện người dùng trực quan, hiệu năng cao và có tính thẩm mỹ. Đặc biệt yêu thích việc kết hợp các yếu tố "tương lai" và "Pixel Art" vào thiết kế.</p>
         <div class="about-stats">
-          <div class="stat">
-            <h4>3+</h4>
-            <span>Năm kinh nghiệm</span>
-          </div>
-          <div class="stat">
-            <h4>20+</h4>
-            <span>Dự án thực tế</span>
-          </div>
-          <div class="stat">
-            <h4>100%</h4>
-            <span>Đam mê công nghệ</span>
-          </div>
+          <div class="stat"><h4>3+</h4><span>Năm kinh nghiệm</span></div>
+          <div class="stat"><h4>20+</h4><span>Dự án thực tế</span></div>
+          <div class="stat"><h4>100%</h4><span>Đam mê code</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= SKILLS ================= -->
 <section id="skills" class="section">
   <div class="container">
-    <h2 class="section-title">Kỹ Năng Kỹ Thuật</h2>
+    <h2 class="section-title">Kỹ Năng</h2>
     <div class="skills-grid">
-      <div class="skill">
-        <span>HTML & CSS / SCSS</span>
-        <div class="bar"><div style="width:95%"></div></div>
-      </div>
-      <div class="skill">
-        <span>JavaScript / ReactJS</span>
-        <div class="bar"><div style="width:85%"></div></div>
-      </div>
-      <div class="skill">
-        <span>Quản trị Server & Game (ARK, Roblox)</span>
-        <div class="bar"><div style="width:90%"></div></div>
-      </div>
-      <div class="skill">
-        <span>Thiết kế Pixel Art UI</span>
-        <div class="bar"><div style="width:88%"></div></div>
-      </div>
+      <div class="skill"><span>HTML & CSS / SCSS</span><div class="bar"><div style="width:95%"></div></div></div>
+      <div class="skill"><span>JavaScript / ReactJS</span><div class="bar"><div style="width:85%"></div></div></div>
+      <div class="skill"><span>Quản trị Server (ARK, Roblox)</span><div class="bar"><div style="width:90%"></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ================= PROJECTS ================= -->
 <section id="projects" class="section">
   <div class="container">
-    <h2 class="section-title">Dự Án Nổi Bật</h2>
+    <h2 class="section-title">Dự Án</h2>
     <div class="project-grid">
       <div class="project-card">
-        <img src="assets/hoangkun.jpg" alt="HOANGKUN STORE">
+        <img src="assets/hoangkun.jpg" alt="HOANGKUN">
         <h3>HOANGKUN STORE</h3>
-        <p>Nền tảng thương mại điện tử chuyên cung cấp source code web với hệ thống quản lý giao diện hiện đại.</p>
+        <p>Thương mại điện tử bán source code web.</p>
       </div>
-
       <div class="project-card">
-        <img src="assets/pixelkun.jpg" alt="Pixel Kun Master">
+        <img src="assets/pixelkun.jpg" alt="Pixel">
         <h3>Pixel Kun Master</h3>
-        <p>Dự án game sinh tồn với thiết kế màn hình chờ và cơ chế in-game mang đậm phong cách Pixel Art.</p>
+        <p>Game sinh tồn phong cách Pixel Art.</p>
       </div>
-
       <div class="project-card">
-        <img src="assets/dashboard.jpg" alt="Admin Dashboard">
-        <h3>Hệ thống Auto-Payment</h3>
-        <p>Dashboard quản trị tích hợp API nhận diện giao dịch tự động và xác nhận đơn hàng bằng Bot.</p>
+        <img src="assets/dashboard.jpg" alt="Dash">
+        <h3>Auto-Payment System</h3>
+        <p>Hệ thống tự động duyệt đơn SePay.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= PRICING ================= -->
 <section id="pricing" class="section">
   <div class="container">
-    <h2 class="section-title">Báo Giá & Dịch Vụ</h2>
+    <h2 class="section-title">Báo Giá</h2>
     <div class="pricing-card">
       <h3>Gói Website Premium</h3>
       <h2>2.999.000 VNĐ</h2>
       <ul>
         <li><i class="fas fa-check"></i> Thiết kế UI/UX độc quyền</li>
-        <li><i class="fas fa-check"></i> Hiệu ứng Animation cực mượt</li>
-        <li><i class="fas fa-check"></i> Tích hợp thanh toán tự động (SePay qua MB Bank)</li>
-        <li><i class="fas fa-check"></i> Tương thích mọi thiết bị (Responsive)</li>
+        <li><i class="fas fa-check"></i> Tích hợp Auto SePay</li>
+        <li><i class="fas fa-check"></i> Tương thích mọi thiết bị</li>
       </ul>
       <a href="#contact" class="btn primary">Đăng ký ngay</a>
     </div>
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
 <section id="contact" class="section">
   <div class="container">
-    <h2 class="section-title">Liên Hệ Với Tôi</h2>
+    <h2 class="section-title">Liên Hệ</h2>
     <div class="contact-wrapper">
       <form id="contactForm">
-        <input type="text" id="user_name" placeholder="Họ tên của bạn" required>
-        <input type="email" id="user_email" placeholder="Email của bạn" required>
-        <textarea id="message" placeholder="Nội dung tin nhắn..." required></textarea>
-        <button type="submit" class="btn primary">Gửi Tin Nhắn <i class="fas fa-paper-plane"></i></button>
+        <input type="text" id="user_name" placeholder="Họ tên" required>
+        <input type="email" id="user_email" placeholder="Email" required>
+        <textarea id="message" placeholder="Nội dung..." required></textarea>
+        <button type="submit" class="btn primary">Gửi Tin Nhắn</button>
       </form>
-
       <div class="contact-info">
-        <p><i class="fas fa-envelope"></i> Email: lienhe@hoangkunstore.id.vn</p>
-        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Hải Phòng, Việt Nam</p>
-        <p><i class="fas fa-globe"></i> Website: hoangkunstore.id.vn</p>
+        <p><i class="fas fa-envelope"></i> lienhe@hoangkunstore.id.vn</p>
+        <p><i class="fas fa-map-marker-alt"></i> Hải Phòng, Việt Nam</p>
+        <p><i class="fas fa-globe"></i> hoangkunstore.id.vn</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= AI WIDGET ================= -->
 <div id="ai-widget" class="hidden">
   <div class="ai-header">
     <span><i class="fas fa-robot"></i> Trợ lý AI</span>
-    <button id="closeAI" aria-label="Close">×</button>
+    <button id="closeAI">&times;</button>
   </div>
-  <div class="ai-body">
-    <p>Xin chào 👋 Tôi có thể giúp gì cho bạn trong việc tìm hiểu về các dự án hoặc dịch vụ setup server?</p>
-  </div>
+  <div class="ai-body"><p>Xin chào 👋 Tôi có thể giúp gì cho bạn?</p></div>
   <div class="ai-input">
-    <input type="text" placeholder="Hỏi tôi bất cứ điều gì...">
+    <input type="text" placeholder="Hỏi tôi...">
     <button><i class="fas fa-paper-plane"></i></button>
   </div>
 </div>
-<button id="openAI" aria-label="Open AI Assistant">🤖</button>
+<button id="openAI">🤖</button>
 
-<!-- ================= FOOTER ================= -->
-<footer>
-  <p>© 2026 Nguyễn Việt Hoàng | Đã đăng ký bản quyền</p>
-</footer>
+<footer><p>© 2026 Nguyễn Việt Hoàng | Đã đăng ký bản quyền</p></footer>
 
-<!-- JS -->
-<script src="js/main.js"></script>
-<script src="js/cursor.js"></script>
-<script src="js/loader.js"></script>
+<script>
+  /* ======================================================
+     FIX LỖI KẸT LOADER (ÉP TẮT SAU 1.5s HOẶC TỐI ĐA 3s)
+  ====================================================== */
+  const hideLoader = () => {
+    const loader = document.getElementById("loader");
+    if (loader) {
+      loader.style.opacity = "0";
+      setTimeout(() => loader.style.display = "none", 500);
+    }
+  };
+  
+  // Tắt khi tải xong cấu trúc cơ bản
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(hideLoader, 1000);
+  });
+  // Lệnh tối thượng: Ép tắt Loader sau 2.5s dù có lỗi video hay ảnh 404
+  setTimeout(hideLoader, 2500);
 
+  /* ======================================================
+     CURSOR & HELPERS
+  ====================================================== */
+  const $ = (el) => document.querySelector(el);
+  const $$ = (el) => document.querySelectorAll(el);
+
+  const cursor = $(".cursor"), follower = $(".cursor-follower");
+  let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    if(cursor) cursor.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+  });
+
+  function animateCursor() {
+    currentX += (mouseX - currentX) * 0.12;
+    currentY += (mouseY - currentY) * 0.12;
+    if(follower) follower.style.transform = `translate(${currentX - 17.5}px, ${currentY - 17.5}px)`;
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  /* ======================================================
+     SCROLL NAVIGATION & REVEAL
+  ====================================================== */
+  $$("a[href^='#']").forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = $(link.getAttribute("href"));
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  const sections = $$("section"), navLinks = $$(".nav-links a");
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(sec => {
+      if (scrollY >= sec.offsetTop - 120 && scrollY < sec.offsetTop + sec.offsetHeight) current = sec.getAttribute("id");
+    });
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === "#" + current) link.classList.add("active");
+    });
+  });
+
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("show"); });
+  }, { threshold: 0.15 });
+
+  $$(".project-card, .about-grid, .skill, .pricing-card, .contact-wrapper").forEach(el => {
+    el.classList.add("reveal-hidden");
+    revealObs.observe(el);
+  });
+
+  /* ======================================================
+     PARTICLES
+  ====================================================== */
+  const canvas = $("#particles");
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    let parts = [];
+    for (let i = 0; i < 50; i++) parts.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, s: Math.random()*2, dx: (Math.random()-0.5)*0.5, dy: (Math.random()-0.5)*0.5 });
+    
+    function drawParts() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      parts.forEach(p => {
+        p.x += p.dx; p.y += p.dy;
+        if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
+        ctx.fillStyle = "rgba(0,212,255,0.4)"; ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI*2); ctx.fill();
+      });
+      requestAnimationFrame(drawParts);
+    }
+    drawParts();
+  }
+
+  /* ======================================================
+     AI CHAT WIDGET
+  ====================================================== */
+  const aiWidget = $("#ai-widget"), openAI = $("#openAI"), closeAI = $("#closeAI");
+  const aiInput = $(".ai-input input"), aiSendBtn = $(".ai-input button"), aiBody = $(".ai-body");
+
+  if(openAI) openAI.addEventListener("click", () => aiWidget.classList.toggle("hidden"));
+  if(closeAI) closeAI.addEventListener("click", () => aiWidget.classList.add("hidden"));
+
+  function handleAiSubmit() {
+    const msg = aiInput.value.trim();
+    if (!msg) return;
+    
+    const userMsg = document.createElement("p");
+    userMsg.style.color = "#fff"; userMsg.style.marginTop = "10px";
+    userMsg.innerHTML = `<i class="fas fa-user"></i> Bạn: ${msg}`;
+    aiBody.appendChild(userMsg);
+    aiInput.value = "";
+
+    setTimeout(() => {
+      const reply = document.createElement("p");
+      reply.style.color = "var(--primary)"; reply.style.marginTop = "10px";
+      let response = "Hãy liên hệ qua form để Hoàng hỗ trợ bạn nhé!";
+      if (msg.toLowerCase().includes("web")) response = "Hoàng chuyên Web chuẩn UI/UX, tích hợp Auto SePay!";
+      reply.innerHTML = `<i class="fas fa-robot"></i> AI: ${response}`;
+      aiBody.appendChild(reply);
+      aiBody.scrollTop = aiBody.scrollHeight;
+    }, 600);
+  }
+
+  if(aiInput) aiInput.addEventListener("keydown", (e) => { if(e.key === "Enter") handleAiSubmit(); });
+  if(aiSendBtn) aiSendBtn.addEventListener("click", handleAiSubmit);
+
+</script>
 </body>
 </html>
