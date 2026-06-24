@@ -82,53 +82,63 @@
       transform: translateY(0);
     }
 
-    /* ======================================================
-       3. NAVBAR
-    ====================================================== */
-  .navbar{
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+/* ================= NAVBAR ================= */
 
-    width: 80%;
-    max-width: 1100px;
-    height: 75px;
+.navbar{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width:80%;
+    max-width:1100px;
+    height:75px;
 
-    padding: 0 50px;
-
-    background: rgba(255,255,255,.05);
-    backdrop-filter: blur(20px);
-
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 20px;
-
-    z-index: 999;
-}
-    
-    .logo {
-      font-size: 26px;
-      font-weight: 800;
-      background: linear-gradient(90deg, #00d4ff, #7c3aed);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .nav-links{
     display:flex;
     align-items:center;
-    gap:40px;
+
+    padding:0 50px;
+
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+
+    z-index:999;
+}
+
+.logo{
+    font-size:26px;
+    font-weight:800;
+
+    background:linear-gradient(90deg,#00d4ff,#7c3aed);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* MENU RA GIỮA */
+.nav-links{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+
+    display:flex;
+    gap:45px;
+    align-items:center;
 }
 
 .nav-links a{
     position:relative;
-    color:#fff;
     text-decoration:none;
+    color:#fff;
+    font-size:15px;
     font-weight:500;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#00d4ff;
 }
 
 .nav-links a::after{
@@ -136,8 +146,10 @@
     position:absolute;
     left:0;
     bottom:-8px;
+
     width:0;
     height:2px;
+
     background:#00d4ff;
     transition:.4s;
 }
@@ -145,9 +157,6 @@
 .nav-links a:hover::after{
     width:100%;
 }
-    .nav-links a { text-decoration: none; color: white; font-size: 15px; transition: .3s; }
-    .nav-links a:hover { color: #00d4ff; }
-
     /* ======================================================
        4. HERO SECTION
     ====================================================== */
