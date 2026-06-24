@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Welcome | Nguyễn Việt Hoàng</title>
   
-  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+    
     body {
       background: #110622;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -18,14 +18,22 @@
     }
     
     .intro-icons { display: flex; gap: 20px; margin-bottom: 30px; }
+    
     .icon-circle {
       width: 50px; height: 50px; border-radius: 50%; background: rgba(124, 58, 237, 0.1);
       display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff;
       box-shadow: 0 0 25px rgba(124, 58, 237, 0.4); border: 1px solid rgba(124, 58, 237, 0.2);
     }
     
-    .intro-title { color: #ffffff; font-size: 45px; font-weight: 700; margin-bottom: 5px; text-align: center; }
-    .intro-subtitle { color: #a855f7; font-size: 50px; font-weight: 800; text-align: center; margin-bottom: 40px; text-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
+    /* Layout chứa chữ */
+    .intro-title { 
+      color: #ffffff; font-size: 45px; font-weight: 700; margin-bottom: 5px; 
+      display: flex; gap: 12px; justify-content: center;
+    }
+    .intro-subtitle { 
+      color: #a855f7; font-size: 50px; font-weight: 800; text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+      display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; 
+    }
     
     .intro-typing-box {
       background: rgba(124, 58, 237, 0.15); border: 1px solid rgba(124, 58, 237, 0.3);
@@ -36,35 +44,40 @@
     .cursor-blink { font-weight: bold; animation: blink 0.8s infinite; color: #c084fc; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-    /* --- HIỆU ỨNG ẨN TRƯỚC KHI HIỆN --- */
-    .step-animate {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    /* --- CÁC HƯỚNG BAY --- */
+    .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .fade-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .fade-right { opacity: 0; transform: translateX(50px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
     
-    /* Class thêm vào bằng JS để làm nó hiện lên */
-    .step-animate.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* Kích hoạt hiện lên */
+    .show { opacity: 1 !important; transform: translate(0, 0) !important; }
 
-    @media (max-width: 768px) { .intro-title { font-size: 30px; } .intro-subtitle { font-size: 35px; } }
+    @media (max-width: 768px) { 
+      .intro-title { font-size: 30px; gap: 8px; } 
+      .intro-subtitle { font-size: 35px; gap: 10px; } 
+    }
   </style>
 </head>
 <body>
 
   <div class="intro-icons">
-    <!-- Gắn class step-animate cho từng phần tử -->
-    <div class="icon-circle step-animate"><i class="fas fa-code"></i></div>
-    <div class="icon-circle step-animate"><i class="fas fa-user"></i></div>
-    <div class="icon-circle step-animate"><i class="fab fa-github"></i></div>
+    <div class="icon-circle fade-up"><i class="fas fa-code"></i></div>
+    <div class="icon-circle fade-up"><i class="fas fa-user"></i></div>
+    <div class="icon-circle fade-up"><i class="fab fa-github"></i></div>
   </div>
   
-  <h1 class="intro-title step-animate">Welcome To My</h1>
-  <h2 class="intro-subtitle step-animate">Portfolio Website</h2>
+  <h1 class="intro-title">
+    <span class="fade-left">Welcome</span>
+    <span class="fade-up">To</span>
+    <span class="fade-right">My</span>
+  </h1>
   
-  <div class="intro-typing-box step-animate">
+  <h2 class="intro-subtitle">
+    <span class="fade-left">Portfolio</span>
+    <span class="fade-right">Website</span>
+  </h2>
+  
+  <div class="intro-typing-box fade-up" id="link-box">
     <i class="fas fa-globe"></i>
     <span id="typing-text"></span><span class="cursor-blink">|</span>
   </div>
@@ -73,46 +86,65 @@
     document.addEventListener("DOMContentLoaded", () => {
       const textToType = "hoangkunstore.id.vn"; 
       const typingElement = document.getElementById("typing-text");
-      const steps = document.querySelectorAll(".step-animate");
+      
+      const icons = document.querySelectorAll(".icon-circle");
+      const titleWords = document.querySelectorAll(".intro-title span");
+      const subtitleWords = document.querySelectorAll(".intro-subtitle span");
+      const linkBox = document.getElementById("link-box");
       
       let delay = 300; 
       
-      // 1. Cho lần lượt từng cái hiện lên
-      steps.forEach((step) => {
-        setTimeout(() => {
-          step.classList.add("show");
-        }, delay);
-        delay += 300; 
+      // 1. Icon hiện lần lượt từ dưới lên
+      icons.forEach((icon, index) => {
+        setTimeout(() => { icon.classList.add("show"); }, delay + (index * 150));
       });
+      
+      delay += 600; // Đợi icon hiện xong
 
-      // 2. Chờ mọi thứ hiện lên hết rồi mới gõ chữ
+      // 2. Chữ "Welcome To My" bay từ 3 hướng vào cùng lúc
+      setTimeout(() => {
+        titleWords.forEach(word => word.classList.add("show"));
+      }, delay);
+      
+      delay += 300;
+
+      // 3. Chữ "Portfolio Website" bay từ 2 hướng vào cùng lúc
+      setTimeout(() => {
+        subtitleWords.forEach(word => word.classList.add("show"));
+      }, delay);
+      
+      delay += 400;
+
+      // 4. Hiện hộp link từ dưới lên
+      setTimeout(() => {
+        linkBox.classList.add("show");
+      }, delay);
+      
+      delay += 500;
+
+      // 5. Chờ hộp link hiện xong thì bắt đầu gõ chữ
       setTimeout(() => {
         let index = 0;
         function typeEffect() {
           if (index < textToType.length) {
             typingElement.textContent += textToType.charAt(index);
             index++;
-            setTimeout(typeEffect, 100); 
+            setTimeout(typeEffect, 80); // Tốc độ gõ
           } else {
-            // 3. Gõ xong -> Làm mờ trang -> Cấp vé -> Chuyển về index
+            // Gõ xong -> Mờ trang -> Đá về trang chính
             setTimeout(() => {
               document.body.style.opacity = "0"; 
               setTimeout(() => {
-                
-                // BẮT BUỘC PHẢI CÓ CÁI NÀY ĐỂ FILE BỐ NHẬN DIỆN
                 sessionStorage.setItem("introDone", "true");
-                
-                // ĐÁ VỀ TRANG CHÍNH
                 window.location.href = "index.html"; 
-
               }, 800);
             }, 1000);
           }
         }
         
         typeEffect();
-        
-      }, delay + 200);
+      }, delay);
+      
     });
   </script>
 
