@@ -7,7 +7,6 @@
 <title>Loading...</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -21,7 +20,7 @@ body{
     justify-content:center;
     align-items:center;
     overflow:hidden;
-    font-family:Poppins,sans-serif;
+    font-family:Arial,sans-serif;
     transition:1s;
 }
 
@@ -30,79 +29,37 @@ body{
     max-width:90%;
 }
 
-/* Đường */
+/* Khu vực xe */
 
-.road{
+.car-wrap{
     position:relative;
-    height:100px;
+    height:90px;
 }
-
-/* Mặt đường */
-
-.road::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:20px;
-    width:100%;
-    height:14px;
-    background:#2d2d2d;
-    border-radius:50px;
-    box-shadow:0 0 10px rgba(0,0,0,.5);
-}
-
-/* Vạch kẻ đường */
-
-.road::before{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:25px;
-    width:100%;
-    height:4px;
-
-    background:
-    repeating-linear-gradient(
-        90deg,
-        white 0px,
-        white 30px,
-        transparent 30px,
-        transparent 60px
-    );
-
-    animation:roadMove .4s linear infinite;
-}
-
-@keyframes roadMove{
-
-    from{
-        background-position:0 0;
-    }
-
-    to{
-        background-position:-60px 0;
-    }
-
-}
-
-/* Xe */
 
 .car{
     position:absolute;
     left:0;
     top:0;
-    font-size:55px;
+    font-size:60px;
+
+    /* quay sang phải */
+    transform:scaleX(-1);
+
     animation:bounce .25s infinite alternate;
 }
 
 @keyframes bounce{
 
     from{
-        transform:translateY(0);
+        transform:
+        scaleX(-1)
+        translateY(0);
     }
 
     to{
-        transform:translateY(-5px);
+        transform:
+        scaleX(-1)
+        translateY(-5px);
     }
 
 }
@@ -111,11 +68,14 @@ body{
 
 .progress{
     width:100%;
-    height:24px;
-    background:#1a2238;
+    height:28px;
+    background:#1b2540;
     border-radius:50px;
     overflow:hidden;
     position:relative;
+
+    box-shadow:
+    inset 0 0 10px rgba(255,255,255,.1);
 }
 
 /* Nước */
@@ -183,7 +143,6 @@ body{
     margin-top:10px;
     color:#00d4ff;
     font-size:18px;
-    letter-spacing:2px;
 }
 
 </style>
@@ -195,8 +154,8 @@ body{
 <div class="loader">
 
 ```
-<div class="road">
-    <div class="car" id="car">🚘</div>
+<div class="car-wrap">
+    <div class="car" id="car">🚗</div>
 </div>
 
 <div class="progress">
@@ -227,7 +186,7 @@ const loading = setInterval(()=>{
     water.style.width = progress + "%";
 
     car.style.left =
-    `calc(${progress}% - 30px)`;
+    `calc(${progress}% - 40px)`;
 
     percent.innerHTML =
     progress + "%";
@@ -240,7 +199,7 @@ const loading = setInterval(()=>{
 
         setTimeout(()=>{
 
-            document.body.style.opacity = "0";
+            document.body.style.opacity="0";
 
             setTimeout(()=>{
 
