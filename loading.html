@@ -6,148 +6,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loading...</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
 }
 
 body{
-    background:#05060a;
-    overflow:hidden;
+    width:100%;
     height:100vh;
+    background:#0f1017;
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-direction:column;
-    color:#fff;
-    transition:1s;
+    overflow:hidden;
+    transition:0.8s;
 }
 
-/* Background Glow */
-body::before{
-    content:'';
-    position:absolute;
-    width:700px;
-    height:700px;
-    background:radial-gradient(circle,
-    rgba(0,212,255,.18),
-    rgba(124,58,237,.12),
-    transparent);
-    filter:blur(80px);
+.loader-container{
+    text-align:center;
 }
 
-/* Loader */
-.loader-wrap{
-    position:relative;
-    width:220px;
-    height:220px;
-}
-
-.ring{
-    position:absolute;
-    inset:0;
+/* Vòng tròn */
+.loader-ring{
+    width:120px;
+    height:120px;
     border-radius:50%;
+    border:12px solid rgba(255,255,255,.08);
+    position:relative;
+    margin:auto;
+    box-shadow:
+    inset 0 0 10px rgba(255,255,255,.05);
 }
 
-.ring1{
-    border:6px solid transparent;
-    border-top:6px solid #00d4ff;
-    animation:spin 2s linear infinite;
-}
-
-.ring2{
-    inset:20px;
-    border:6px solid transparent;
-    border-right:6px solid #7c3aed;
-    animation:spinReverse 3s linear infinite;
-}
-
-.ring3{
-    inset:40px;
-    border:6px solid transparent;
-    border-bottom:6px solid #00d4ff;
-    animation:spin 1.5s linear infinite;
-}
-
-.core{
+/* Thanh xanh chạy */
+.loader-dot{
+    width:38px;
+    height:14px;
+    border-radius:30px;
+    background:#00aaff;
     position:absolute;
     top:50%;
     left:50%;
-    transform:translate(-50%,-50%);
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#00d4ff,#7c3aed);
+    transform-origin:-40px center;
     box-shadow:
-    0 0 30px #00d4ff,
-    0 0 60px #7c3aed;
-    animation:pulse 1.5s infinite;
+    0 0 10px #00aaff,
+    0 0 20px #00aaff,
+    0 0 30px #00aaff;
+    animation:rotateDot 1.5s linear infinite;
 }
 
-.title{
-    margin-top:40px;
-    font-size:34px;
-    font-weight:800;
-    letter-spacing:3px;
+.loading-text{
+    margin-top:25px;
+    color:#ffffff;
+    font-size:38px;
+    font-family:Arial,sans-serif;
+    font-weight:700;
 }
 
-.subtitle{
-    color:#00d4ff;
-    margin-top:10px;
-    font-size:14px;
-    letter-spacing:4px;
+.loading-dots{
+    display:inline-block;
+    width:30px;
 }
 
-.progress{
-    width:320px;
-    height:10px;
-    background:rgba(255,255,255,.08);
-    margin-top:30px;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.progress-bar{
-    width:0%;
-    height:100%;
-    background:linear-gradient(90deg,#00d4ff,#7c3aed);
-    box-shadow:0 0 20px #00d4ff;
-}
-
-.percent{
-    margin-top:15px;
-    font-size:18px;
-    color:#00d4ff;
-}
-
-.status{
-    margin-top:10px;
-    color:#aaa;
-    font-size:14px;
-}
-
-@keyframes spin{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
-}
-
-@keyframes spinReverse{
-    from{transform:rotate(360deg);}
-    to{transform:rotate(0deg);}
-}
-
-@keyframes pulse{
-    0%,100%{
-        transform:translate(-50%,-50%) scale(1);
+@keyframes rotateDot{
+    from{
+        transform:
+        rotate(0deg)
+        translateX(40px);
     }
-    50%{
-        transform:translate(-50%,-50%) scale(1.2);
+
+    to{
+        transform:
+        rotate(360deg)
+        translateX(40px);
     }
+}
+
+/* Glow nền */
+body::before{
+    content:'';
+    position:absolute;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    background:rgba(0,170,255,.08);
+    filter:blur(100px);
 }
 </style>
 
@@ -155,67 +100,50 @@ body::before{
 
 <body>
 
-<div class="loader-wrap">
-    <div class="ring ring1"></div>
-    <div class="ring ring2"></div>
-    <div class="ring ring3"></div>
-    <div class="core"></div>
+<div class="loader-container">
+
+```
+<div class="loader-ring">
+    <div class="loader-dot"></div>
 </div>
 
-<div class="title">VIỆT HOÀNG</div>
-<div class="subtitle">AI FUTURISTIC PORTFOLIO</div>
-
-<div class="progress">
-    <div class="progress-bar" id="bar"></div>
+<div class="loading-text">
+    Loading<span class="loading-dots" id="dots"></span>
 </div>
+```
 
-<div class="percent" id="percent">0%</div>
-<div class="status" id="status">Initializing System...</div>
+</div>
 
 <script>
-const bar = document.getElementById("bar");
-const percent = document.getElementById("percent");
-const statusText = document.getElementById("status");
 
-const statusList = [
-    "Initializing System...",
-    "Loading Portfolio...",
-    "Loading Assets...",
-    "Connecting AI...",
-    "Optimizing Interface...",
-    "Welcome Nguyễn Việt Hoàng"
-];
+const dots = document.getElementById("dots");
 
-let progress = 0;
+let count = 0;
 
-const loading = setInterval(() => {
+setInterval(()=>{
 
-    progress++;
+    count++;
 
-    bar.style.width = progress + "%";
-    percent.innerHTML = progress + "%";
+    if(count > 3) count = 0;
 
-    if(progress === 20) statusText.innerHTML = statusList[1];
-    if(progress === 40) statusText.innerHTML = statusList[2];
-    if(progress === 60) statusText.innerHTML = statusList[3];
-    if(progress === 80) statusText.innerHTML = statusList[4];
-    if(progress === 100) statusText.innerHTML = statusList[5];
+    dots.innerHTML = ".".repeat(count);
 
-    if(progress >= 100){
+},400);
 
-        clearInterval(loading);
+/* Sau 4 giây chuyển trang */
 
-        setTimeout(()=>{
-            document.body.style.opacity = "0";
+setTimeout(()=>{
 
-            setTimeout(()=>{
-                window.location.href = "index.html";
-            },1000);
+    document.body.style.opacity="0";
 
-        },800);
-    }
+    setTimeout(()=>{
 
-},40);
+        window.location.href="index.html";
+
+    },800);
+
+},4000);
+
 </script>
 
 </body>
