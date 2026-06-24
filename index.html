@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Hoàng Hazen | AI Futuristic Portfolio</title>
-  <meta name="description" content="Portfolio AI Futuristic - Nguyễn Việt Hoàng">
+  <title>Nguyễn Việt Hoàng | AI Futuristic Portfolio</title>
+  <meta name="description" content="Portfolio AI Futuristic & Pixel Art - Nguyễn Việt Hoàng">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,18 +23,19 @@
 <div id="loader">
   <div class="loader-inner">
     <div class="loader-ring"></div>
-    <h1>HOÀNG HAZEN</h1>
+    <h1>NGUYỄN VIỆT HOÀNG</h1>
     <p>INITIALIZING AI SYSTEM...</p>
   </div>
 </div>
 
 <!-- ================= BACKGROUND ================= -->
-<video autoplay muted loop id="bg-video">
-  <source src="assets/video.mp4" type="video/mp4">
-</video>
-<div class="overlay"></div>
-
-<canvas id="particles"></canvas>
+<div class="bg-container">
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="assets/video.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <canvas id="particles"></canvas>
+</div>
 
 <!-- ================= CURSOR ================= -->
 <div class="cursor"></div>
@@ -43,16 +44,14 @@
 <!-- ================= NAVBAR ================= -->
 <header>
   <nav class="navbar">
-    <div class="logo"><span>HOÀNG</span> HAZEN</div>
+    <div class="logo"><span>VIỆT</span> HOÀNG</div>
 
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
 
@@ -63,19 +62,18 @@
 </header>
 
 <!-- ================= HERO ================= -->
-<section id="home" class="hero">
-  <div class="hero-container">
-
+<section id="home" class="hero section">
+  <div class="container hero-container">
     <div class="hero-left">
       <div class="badge">
-        <i class="fas fa-bolt"></i> AI POWERED DEVELOPER
+        <i class="fas fa-bolt"></i> WEB DEVELOPER & UI ENGINEER
       </div>
 
       <h1 class="title">Nguyễn Việt Hoàng</h1>
-      <h2 class="subtitle">Frontend Developer & UI Engineer</h2>
+      <h2 class="subtitle">Chuyên gia Frontend & Quản trị Hệ thống</h2>
 
       <p class="desc">
-        Tôi xây dựng website hiện đại, tối ưu UI/UX, tích hợp AI automation và hệ thống web tương lai.
+        Tôi xây dựng các website hiện đại, tối ưu UI/UX kết hợp phong cách thiết kế Pixel Art độc đáo, tích hợp hệ thống thanh toán tự động và AI automation cho tương lai.
       </p>
 
       <div class="buttons">
@@ -84,46 +82,37 @@
       </div>
 
       <div class="socials">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-discord"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
       </div>
     </div>
 
     <div class="hero-right">
       <div class="avatar-box">
-        <img src="assets/avatar.png" alt="avatar">
+        <img src="assets/avatar.png" alt="Avatar Nguyễn Việt Hoàng">
         <div class="glow"></div>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- ================= ABOUT ================= -->
 <section id="about" class="section">
   <div class="container">
-
-    <h2 class="section-title">About Me</h2>
-
+    <h2 class="section-title">Về Tôi</h2>
     <div class="about-grid">
-
       <div class="about-img">
-        <img src="assets/about.jpg" alt="">
+        <img src="assets/about.jpg" alt="About Me">
       </div>
-
       <div class="about-text">
-        <h3>Frontend Developer</h3>
-
+        <h3>Lập Trình Viên Frontend</h3>
         <p>
-          Tôi tập trung vào xây dựng giao diện hiện đại, hiệu ứng mượt và trải nghiệm người dùng cao cấp.
+          Tôi tập trung vào việc xây dựng giao diện người dùng trực quan, hiệu năng cao và có tính thẩm mỹ. Đặc biệt yêu thích việc kết hợp các yếu tố "tương lai" và "Pixel Art" vào trong thiết kế.
         </p>
-
         <p>
-          Mục tiêu: tạo ra website mang cảm giác “tương lai + AI + tốc độ cao”.
+          Mục tiêu của tôi là tạo ra các nền tảng tự động hóa giúp người dùng trải nghiệm sự mượt mà từ khâu chọn sản phẩm đến hệ thống thanh toán.
         </p>
-
         <div class="about-stats">
           <div class="stat">
             <h4>3+</h4>
@@ -131,16 +120,14 @@
           </div>
           <div class="stat">
             <h4>20+</h4>
-            <span>Dự án</span>
+            <span>Dự án thực tế</span>
           </div>
           <div class="stat">
-            <h4>10+</h4>
-            <span>Khách hàng</span>
+            <h4>100%</h4>
+            <span>Đam mê công nghệ</span>
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
 </section>
@@ -148,188 +135,112 @@
 <!-- ================= SKILLS ================= -->
 <section id="skills" class="section">
   <div class="container">
-
-    <h2 class="section-title">Skills</h2>
-
-    <div class="skills">
-
+    <h2 class="section-title">Kỹ Năng Kỹ Thuật</h2>
+    <div class="skills-grid">
       <div class="skill">
-        <span>HTML</span>
+        <span>HTML & CSS / SCSS</span>
         <div class="bar"><div style="width:95%"></div></div>
       </div>
-
       <div class="skill">
-        <span>CSS / SCSS</span>
-        <div class="bar"><div style="width:92%"></div></div>
-      </div>
-
-      <div class="skill">
-        <span>JavaScript</span>
-        <div class="bar"><div style="width:88%"></div></div>
-      </div>
-
-      <div class="skill">
-        <span>ReactJS</span>
-        <div class="bar"><div style="width:80%"></div></div>
-      </div>
-
-      <div class="skill">
-        <span>UI/UX Design</span>
+        <span>JavaScript / ReactJS</span>
         <div class="bar"><div style="width:85%"></div></div>
       </div>
-
+      <div class="skill">
+        <span>Quản trị Server & Game (ARK, Roblox)</span>
+        <div class="bar"><div style="width:90%"></div></div>
+      </div>
+      <div class="skill">
+        <span>Thiết kế Pixel Art UI</span>
+        <div class="bar"><div style="width:88%"></div></div>
+      </div>
     </div>
-
   </div>
 </section>
 
 <!-- ================= PROJECTS ================= -->
 <section id="projects" class="section">
   <div class="container">
-
-    <h2 class="section-title">Projects</h2>
-
+    <h2 class="section-title">Dự Án Nổi Bật</h2>
     <div class="project-grid">
-
       <div class="project-card">
-        <img src="assets/p1.jpg">
-        <h3>E-commerce Platform</h3>
-        <p>Website bán hàng tự động hóa</p>
+        <img src="assets/hoangkun.jpg" alt="HOANGKUN STORE">
+        <h3>HOANGKUN STORE</h3>
+        <p>Nền tảng thương mại điện tử chuyên cung cấp source code web với hệ thống quản lý giao diện hiện đại.</p>
       </div>
 
       <div class="project-card">
-        <img src="assets/p2.jpg">
-        <h3>Pixel Game</h3>
-        <p>Game pixel survival UI</p>
+        <img src="assets/pixelkun.jpg" alt="Pixel Kun Master">
+        <h3>Pixel Kun Master</h3>
+        <p>Dự án game sinh tồn với thiết kế màn hình chờ và cơ chế in-game mang đậm phong cách Pixel Art.</p>
       </div>
 
       <div class="project-card">
-        <img src="assets/p3.jpg">
-        <h3>AI Dashboard</h3>
-        <p>Dashboard điều khiển AI system</p>
+        <img src="assets/dashboard.jpg" alt="Admin Dashboard">
+        <h3>Hệ thống Auto-Payment</h3>
+        <p>Dashboard quản trị tích hợp API nhận diện giao dịch tự động và xác nhận đơn hàng bằng Bot.</p>
       </div>
-
     </div>
-
-  </div>
-</section>
-
-<!-- ================= GALLERY ================= -->
-<section id="gallery" class="section">
-  <div class="container">
-
-    <h2 class="section-title">Gallery</h2>
-
-    <div class="gallery-grid">
-
-      <div class="gallery-item"></div>
-      <div class="gallery-item"></div>
-      <div class="gallery-item"></div>
-
-    </div>
-
   </div>
 </section>
 
 <!-- ================= PRICING ================= -->
 <section id="pricing" class="section">
   <div class="container">
-
-    <h2 class="section-title">Pricing</h2>
-
+    <h2 class="section-title">Báo Giá & Dịch Vụ</h2>
     <div class="pricing-card">
-      <h3>Premium Website</h3>
-      <h2>2.999K</h2>
-
+      <h3>Gói Website Premium</h3>
+      <h2>2.999.000 VNĐ</h2>
       <ul>
-        <li>UI/UX cao cấp</li>
-        <li>Animation mượt</li>
-        <li>AI Integration</li>
-        <li>Responsive full device</li>
+        <li><i class="fas fa-check"></i> Thiết kế UI/UX độc quyền</li>
+        <li><i class="fas fa-check"></i> Hiệu ứng Animation cực mượt</li>
+        <li><i class="fas fa-check"></i> Tích hợp thanh toán tự động (SePay qua MB Bank)</li>
+        <li><i class="fas fa-check"></i> Tương thích mọi thiết bị (Responsive)</li>
       </ul>
-
-      <a href="#contact" class="btn">Chọn gói</a>
+      <a href="#contact" class="btn primary">Đăng ký ngay</a>
     </div>
-
-  </div>
-</section>
-
-<!-- ================= FAQ ================= -->
-<section id="faq" class="section">
-  <div class="container">
-
-    <h2 class="section-title">FAQ</h2>
-
-    <div class="faq">
-
-      <div class="faq-item">
-        <h3>Website làm bằng gì?</h3>
-        <p>HTML, CSS, JavaScript, ReactJS</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Có hỗ trợ AI không?</h3>
-        <p>Có thể tích hợp chatbot AI hoặc API</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Thời gian hoàn thành?</h3>
-        <p>1 - 3 ngày tùy dự án</p>
-      </div>
-
-    </div>
-
   </div>
 </section>
 
 <!-- ================= CONTACT ================= -->
 <section id="contact" class="section">
   <div class="container">
-
-    <h2 class="section-title">Contact</h2>
-
+    <h2 class="section-title">Liên Hệ Với Tôi</h2>
     <div class="contact-wrapper">
-
       <form id="contactForm">
-        <input type="text" placeholder="Họ tên" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Nội dung"></textarea>
-        <button type="submit">Gửi tin nhắn</button>
+        <input type="text" id="user_name" placeholder="Họ tên của bạn" required>
+        <input type="email" id="user_email" placeholder="Email của bạn" required>
+        <textarea id="message" placeholder="Nội dung tin nhắn..." required></textarea>
+        <button type="submit" class="btn primary">Gửi Tin Nhắn <i class="fas fa-paper-plane"></i></button>
       </form>
 
       <div class="contact-info">
-        <p>Email: example@gmail.com</p>
-        <p>Phone: +84 xxx xxx xxx</p>
-        <p>Location: Hải Phòng</p>
+        <p><i class="fas fa-envelope"></i> Email: lienhe@hoangkunstore.id.vn</p>
+        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Hải Phòng, Việt Nam</p>
+        <p><i class="fas fa-globe"></i> Website: hoangkunstore.id.vn</p>
       </div>
-
     </div>
-
   </div>
 </section>
 
 <!-- ================= AI WIDGET ================= -->
-<div id="ai-widget">
+<div id="ai-widget" class="hidden">
   <div class="ai-header">
-    <span>AI Assistant</span>
-    <button id="closeAI">×</button>
+    <span><i class="fas fa-robot"></i> Trợ lý AI</span>
+    <button id="closeAI" aria-label="Close">×</button>
   </div>
-
   <div class="ai-body">
-    <p>Xin chào 👋 Tôi là AI trợ lý.</p>
+    <p>Xin chào 👋 Tôi có thể giúp gì cho bạn trong việc tìm hiểu về các dự án hoặc dịch vụ setup server?</p>
   </div>
-
   <div class="ai-input">
-    <input type="text" placeholder="Nhập câu hỏi...">
-    <button>Gửi</button>
+    <input type="text" placeholder="Hỏi tôi bất cứ điều gì...">
+    <button><i class="fas fa-paper-plane"></i></button>
   </div>
 </div>
-
-<button id="openAI">🤖</button>
+<button id="openAI" aria-label="Open AI Assistant">🤖</button>
 
 <!-- ================= FOOTER ================= -->
 <footer>
-  <p>© 2026 Hoàng Hazen | AI Portfolio</p>
+  <p>© 2026 Nguyễn Việt Hoàng | Đã đăng ký bản quyền</p>
 </footer>
 
 <!-- JS -->
