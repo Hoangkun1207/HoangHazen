@@ -6,9 +6,14 @@
   <title>Nguyễn Việt Hoàng | AI Futuristic Portfolio</title>
   <meta name="description" content="Portfolio AI Futuristic & Pixel Art - Nguyễn Việt Hoàng">
 
-  <script>
+ <script>
     if (!sessionStorage.getItem("introDone")) {
+      // Chưa có vé -> Đẩy ra xem Intro
       window.location.href = "intro.html";
+    } else {
+      // Đã xem Intro và vào được web chính -> Xé vé ngay lập tức!
+      // Việc này giúp mỗi khi load lại trang (F5), web sẽ chạy lại Intro từ đầu.
+      sessionStorage.removeItem("introDone");
     }
   </script>
   
