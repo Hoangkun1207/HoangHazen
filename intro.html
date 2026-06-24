@@ -73,18 +73,16 @@
     document.addEventListener("DOMContentLoaded", () => {
       const textToType = "hoangkunstore.id.vn"; 
       const typingElement = document.getElementById("typing-text");
-      
-      // Lấy tất cả các phần tử cần hiệu ứng hiện lên
       const steps = document.querySelectorAll(".step-animate");
       
-      let delay = 300; // Thời gian chờ ban đầu
+      let delay = 300; 
       
       // 1. Cho lần lượt từng cái hiện lên
-      steps.forEach((step, index) => {
+      steps.forEach((step) => {
         setTimeout(() => {
           step.classList.add("show");
         }, delay);
-        delay += 300; // Mỗi phần tử cách nhau 0.3 giây
+        delay += 300; 
       });
 
       // 2. Chờ mọi thứ hiện lên hết rồi mới gõ chữ
@@ -96,11 +94,17 @@
             index++;
             setTimeout(typeEffect, 100); 
           } else {
-            // 3. Gõ xong -> Chuyển trang
+            // 3. Gõ xong -> Làm mờ trang -> Cấp vé -> Chuyển về index
             setTimeout(() => {
               document.body.style.opacity = "0"; 
               setTimeout(() => {
+                
+                // BẮT BUỘC PHẢI CÓ CÁI NÀY ĐỂ FILE BỐ NHẬN DIỆN
+                sessionStorage.setItem("introDone", "true");
+                
+                // ĐÁ VỀ TRANG CHÍNH
                 window.location.href = "index.html"; 
+
               }, 800);
             }, 1000);
           }
@@ -108,7 +112,7 @@
         
         typeEffect();
         
-      }, delay + 200); // Bắt đầu gõ sau khi cái hộp hiện ra được 0.2s
+      }, delay + 200);
     });
   </script>
 
