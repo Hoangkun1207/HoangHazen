@@ -221,6 +221,52 @@
       .hero-buttons { flex-direction: column; }
       .section-title { font-size: 40px; }
     }
+
+    /* Styling cho phần Connect Box */
+.connect-box {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.connect-header { margin-bottom: 20px; }
+.blue-line {
+    width: 40px; height: 3px;
+    background: #00d4ff; margin-top: 8px;
+    border-radius: 2px;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 cột */
+    gap: 15px;
+}
+
+.social-card {
+    display: flex; align-items: center; gap: 15px;
+    padding: 15px; background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px; text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.social-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-5px);
+    border-color: rgba(0, 212, 255, 0.5);
+}
+
+.social-card i { font-size: 24px; }
+.card-text .title { color: #fff; font-weight: 600; font-size: 14px; }
+.card-text .handle { color: #888; font-size: 12px; }
+
+/* Responsive cho điện thoại */
+@media (max-width: 600px) {
+    .social-grid { grid-template-columns: 1fr; }
+}
   </style>
 </head>
 <body>
@@ -443,16 +489,43 @@
                 <button type="submit" class="btn-submit">Gửi Tin Nhắn</button>
             </form>
 
-            <div class="connect-wrapper">
-                <h3>Kết nối với tôi</h3>
-                <div class="social-grid">
-                    <a href="#" class="social-item"><i class="fab fa-facebook"></i> <span>Facebook</span></a>
-                    <a href="#" class="social-item"><i class="fab fa-tiktok"></i> <span>TikTok</span></a>
-                    <a href="#" class="social-item"><i class="fab fa-github"></i> <span>Github</span></a>
-                    <a href="#" class="social-item"><i class="fab fa-telegram"></i> <span>Telegram</span></a>
-                </div>
+           <div class="connect-box reveal">
+    <div class="connect-header">
+        <h3>Connect With Me</h3>
+        <div class="blue-line"></div>
+    </div>
+    
+    <div class="social-grid">
+        <a href="#" class="social-card">
+            <i class="fab fa-linkedin" style="color: #0077b5;"></i>
+            <div class="card-text">
+                <p class="title">Let's Connect</p>
+                <p class="handle">on LinkedIn</p>
             </div>
-        </div>
+        </a>
+        <a href="#" class="social-card">
+            <i class="fab fa-instagram" style="color: #e1306c;"></i>
+            <div class="card-text">
+                <p class="title">Instagram</p>
+                <p class="handle">@your_handle</p>
+            </div>
+        </a>
+        <a href="#" class="social-card">
+            <i class="fab fa-youtube" style="color: #ff0000;"></i>
+            <div class="card-text">
+                <p class="title">Youtube</p>
+                <p class="handle">@channel_name</p>
+            </div>
+        </a>
+        <a href="#" class="social-card">
+            <i class="fab fa-github" style="color: #fff;"></i>
+            <div class="card-text">
+                <p class="title">Github</p>
+                <p class="handle">@username</p>
+            </div>
+        </a>
+    </div>
+</div>
 
         <div class="form-wrapper">
             <h2>Bình Luận (220)</h2>
