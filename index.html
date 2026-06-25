@@ -476,80 +476,89 @@
     </div>
   </section>
 
- <section id="contact-section" class="contact-section">
+<!-- PHẦN LIÊN HỆ & BÌNH LUẬN (ĐÃ SẮP XẾP) -->
+<section id="contact-section" class="contact-section">
     <div class="contact-container">
         
-        <div class="form-wrapper">
-            <h2>Liên Hệ</h2>
-            <p>Có điều gì muốn thảo luận? Hãy gửi tin nhắn cho tôi.</p>
-            <form id="contactForm">
-                <input type="text" class="input-field" placeholder="Họ và tên">
-                <input type="email" class="input-field" placeholder="Email của bạn">
-                <textarea class="input-field" rows="4" placeholder="Nội dung..."></textarea>
-                <button type="submit" class="btn-submit">Gửi Tin Nhắn</button>
-            </form>
+        <!-- CỘT TRÁI (Liên hệ & Connect) -->
+        <div class="left-column">
+            <!-- Form Liên hệ -->
+            <div class="form-wrapper">
+                <h2>Liên Hệ</h2>
+                <p>Có điều gì muốn thảo luận? Hãy gửi tin nhắn cho tôi.</p>
+                <form id="contactForm">
+                    <input type="text" class="input-field" placeholder="Họ và tên">
+                    <input type="email" class="input-field" placeholder="Email của bạn">
+                    <textarea class="input-field" rows="4" placeholder="Nội dung..."></textarea>
+                    <button type="submit" class="btn-submit">Gửi Tin Nhắn</button>
+                </form>
+            </div>
 
-           <div class="connect-box reveal">
-    <div class="connect-header">
-        <h3>Connect With Me</h3>
-        <div class="blue-line"></div>
-    </div>
-    
-    <div class="social-grid">
-        <a href="#" class="social-card">
-            <i class="fab fa-linkedin" style="color: #0077b5;"></i>
-            <div class="card-text">
-                <p class="title">Let's Connect</p>
-                <p class="handle">on LinkedIn</p>
-            </div>
-        </a>
-        <a href="#" class="social-card">
-            <i class="fab fa-instagram" style="color: #e1306c;"></i>
-            <div class="card-text">
-                <p class="title">Instagram</p>
-                <p class="handle">@your_handle</p>
-            </div>
-        </a>
-        <a href="#" class="social-card">
-            <i class="fab fa-youtube" style="color: #ff0000;"></i>
-            <div class="card-text">
-                <p class="title">Youtube</p>
-                <p class="handle">@channel_name</p>
-            </div>
-        </a>
-        <a href="#" class="social-card">
-            <i class="fab fa-github" style="color: #fff;"></i>
-            <div class="card-text">
-                <p class="title">Github</p>
-                <p class="handle">@username</p>
-            </div>
-        </a>
-    </div>
-</div>
-
-        <div class="form-wrapper">
-            <h2>Bình Luận (220)</h2>
-            <form id="commentForm">
-                <input type="text" class="input-field" placeholder="Tên của bạn">
-                <textarea class="input-field" rows="3" placeholder="Viết bình luận..."></textarea>
-                <button type="submit" class="btn-submit">Đăng Bình Luận</button>
-            </form>
-
-            <div class="comments-list">
-                <div class="comment-item pinned">
-                    <div class="comment-header"><strong>Admin</strong> <span class="badge">Admin</span></div>
-                    <p>Cảm ơn các bạn đã ghé thăm! Nếu có thắc mắc cứ nhắn mình nhé.</p>
+            <!-- Connect With Me (Đặt dưới form) -->
+            <div class="connect-box reveal">
+                <div class="connect-header">
+                    <h3>Connect With Me</h3>
+                    <div class="blue-line"></div>
                 </div>
-                <div class="comment-item">
-                    <div class="comment-header"><strong>Lam</strong></div>
-                    <p>Template đẹp quá bro ơi!</p>
+                <div class="social-grid">
+                    <a href="#" class="social-card">
+                        <i class="fab fa-linkedin" style="color: #0077b5;"></i>
+                        <div class="card-text">
+                            <p class="title">LinkedIn</p>
+                            <p class="handle">@your_link</p>
+                        </div>
+                    </a>
+                    <a href="#" class="social-card">
+                        <i class="fab fa-instagram" style="color: #e1306c;"></i>
+                        <div class="card-text">
+                            <p class="title">Instagram</p>
+                            <p class="handle">@your_handle</p>
+                        </div>
+                    </a>
+                    <a href="#" class="social-card">
+                        <i class="fab fa-youtube" style="color: #ff0000;"></i>
+                        <div class="card-text">
+                            <p class="title">Youtube</p>
+                            <p class="handle">@channel</p>
+                        </div>
+                    </a>
+                    <a href="#" class="social-card">
+                        <i class="fab fa-github" style="color: #fff;"></i>
+                        <div class="card-text">
+                            <p class="title">Github</p>
+                            <p class="handle">@username</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CỘT PHẢI (Bình luận) -->
+        <div class="right-column">
+            <div class="form-wrapper">
+                <h2>Bình Luận (220)</h2>
+                <form id="commentForm">
+                    <input type="text" class="input-field" placeholder="Tên của bạn">
+                    <textarea class="input-field" rows="3" placeholder="Viết bình luận..."></textarea>
+                    <button type="submit" class="btn-submit">Đăng Bình Luận</button>
+                </form>
+
+                <div class="comments-list">
+                    <div class="comment-item pinned">
+                        <div class="comment-header"><strong>Admin</strong> <span class="badge">Admin</span></div>
+                        <p>Cảm ơn các bạn đã ghé thăm! Nếu có thắc mắc cứ nhắn mình nhé.</p>
+                    </div>
+                    <div class="comment-item">
+                        <div class="comment-header"><strong>Lam</strong></div>
+                        <p>Template đẹp quá bro ơi!</p>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
 </section>
-
+  
 <style>
     /* CSS CHO SECTION NÀY */
     .contact-container {
