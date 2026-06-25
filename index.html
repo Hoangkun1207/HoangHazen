@@ -230,52 +230,60 @@
     .hero-buttons { display: flex; gap: 20px; margin-top: 35px; }
     
  /* =========================
-       NÚT BẤM (BẢN SÁNG RÕ & SANG TRỌNG)
+       NÚT BẤM (STYLE GAME PIXEL 8-BIT)
        ========================= */
+    /* Import Font chữ Pixel Art (Chèn dòng này ở ngay trên phần .btn nhé) */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
     .btn { 
-        padding: 15px 35px; 
-        border-radius: 50px; /* Bo tròn hoàn toàn nhìn cực kỳ cao cấp */
+        padding: 16px 25px; 
+        font-family: 'Press Start 2P', monospace; /* Ép dùng font Pixel */
+        font-size: 11px; /* Font pixel khá to nên 11-12px là vừa */
+        color: #ffffff;
         text-decoration: none; 
-        font-weight: 600; 
-        font-size: 16px;
-        transition: all 0.4s ease; 
+        text-transform: uppercase;
         display: inline-flex; 
         align-items: center; 
         justify-content: center; 
-        letter-spacing: 1px;
         position: relative;
         z-index: 1;
+        border-radius: 0; /* Xóa bo góc */
+        border: none;
+        
+        /* Hiệu ứng Pixel: Màu viền tối tạo khối 3D */
+        box-shadow: 
+            inset -4px -4px 0px rgba(0, 0, 0, 0.3), /* Khối tối dưới/phải */
+            inset 4px 4px 0px rgba(255, 255, 255, 0.2), /* Khối sáng trên/trái */
+            0 0 0 3px #111; /* Viền đen ngoài cùng */
+            
+        transition: transform 0.1s, box-shadow 0.1s; /* Chuyển động phải nhanh, giật */
     }
 
-    /* NÚT XEM DỰ ÁN (Nổi bần bật, chữ trắng rõ ràng) */
+    /* NÚT XEM DỰ ÁN (Màu tím giống nút RONIN) */
     .btn-primary { 
-        background: linear-gradient(90deg, #00d4ff, #7c3aed); 
-        color: #ffffff; 
-        border: none; 
-        box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3); 
+        background-color: #6a35ff; 
     }
 
     .btn-primary:hover { 
-        /* Tỏa hào quang khi rê chuột vào */
-        box-shadow: 0 8px 30px rgba(0, 212, 255, 0.6), 0 8px 30px rgba(124, 58, 237, 0.5); 
-        transform: translateY(-5px) scale(1.05); 
-        color: #fff;
+        background-color: #8352ff; /* Sáng hơn khi rê chuột */
     }
 
-    /* NÚT LIÊN HỆ (Nền kính mờ, viền trắng sáng) */
+    /* NÚT LIÊN HỆ (Màu tối hơn cho có phân cấp) */
     .btn-secondary { 
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(5px);
-        border: 2px solid rgba(255, 255, 255, 0.5); 
-        color: #ffffff; 
+        background-color: #4a25b2; 
     }
 
     .btn-secondary:hover { 
-        background: #ffffff; 
-        color: #050816; /* Đổi màu chữ sang đen khi nền trắng */
-        border-color: #ffffff;
-        box-shadow: 0 5px 25px rgba(255, 255, 255, 0.6); 
-        transform: translateY(-5px);
+        background-color: #5d34d3; 
+    }
+
+    /* HIỆU ỨNG KHI BẤM NÚT (Lún xuống) */
+    .btn:active {
+        box-shadow: 
+            inset 4px 4px 0px rgba(0, 0, 0, 0.4), /* Đảo ngược khối tạo cảm giác lún */
+            inset -2px -2px 0px rgba(255, 255, 255, 0.1),
+            0 0 0 3px #111;
+        transform: translateY(4px); /* Nhấn nút rớt xuống 4 pixel */
     }
     
     .hero-right { display: flex; justify-content: center; }
