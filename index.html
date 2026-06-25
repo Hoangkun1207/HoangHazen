@@ -973,11 +973,34 @@ commentForm.addEventListener("submit", function(e){
 
 
 function lockWebsite(reason = "Phát hiện hành vi truy cập công cụ dành cho nhà phát triển.") {
-
     if (document.getElementById("hk-lock")) return;
 
-    const style = document.createElement("style");
+    const overlay = document.createElement("div");
+    overlay.id = "hk-lock";
 
+    overlay.innerHTML = `
+        <div class="hk-bg"></div>
+
+        <div class="hk-card">
+            <div class="hk-icon">🤖</div>
+
+            <h1>HOANG KUN SECURITY</h1>
+
+            <div class="hk-message">
+                <span class="warn">⚠</span>
+                <div>
+                    <p>${reason}</p>
+                    <small>Trang web đã bị khóa vì lý do bảo mật</small>
+                </div>
+            </div>
+
+            <button onclick="location.reload()">🔄 TẢI LẠI TRANG</button>
+
+            <p class="hk-footer">© 2026 HOANG KUN</p>
+        </div>
+    `;
+
+    const style = document.createElement("style");
     style.innerHTML = `
     #hk-lock{
         position:fixed;
@@ -986,191 +1009,132 @@ function lockWebsite(reason = "Phát hiện hành vi truy cập công cụ dành
         display:flex;
         justify-content:center;
         align-items:center;
+        font-family:Poppins, sans-serif;
         overflow:hidden;
-        background:
-        radial-gradient(circle at center,
-        #12052d 0%,
-        #090116 40%,
-        #02020a 100%);
-        font-family:'Segoe UI',sans-serif;
     }
 
-    .hk-particles{
+    /* nền sao */
+    .hk-bg{
         position:absolute;
         inset:0;
-        background-image:
-        radial-gradient(#00e5ff 1px, transparent 1px),
-        radial-gradient(#ff00ff 1px, transparent 1px);
-        background-size:120px 120px, 180px 180px;
-        opacity:.3;
-        animation:moveStars 25s linear infinite;
+        background: radial-gradient(circle at center, #0b001a, #05010f 60%, #000);
     }
 
-    @keyframes moveStars{
-        from{ transform:translateY(0); }
-        to{ transform:translateY(-200px); }
+    .hk-bg::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        background-image: radial-gradient(#7c3aed 1px, transparent 1px);
+        background-size: 60px 60px;
+        opacity:0.25;
+        animation: move 20s linear infinite;
     }
 
-    .hk-box{
-        width:850px;
+    @keyframes move{
+        from{transform:translateY(0);}
+        to{transform:translateY(-200px);}
+    }
+
+    /* card chính */
+    .hk-card{
+        position:relative;
+        width:520px;
         max-width:92%;
+        padding:50px 35px;
+        border-radius:25px;
         text-align:center;
-        padding:70px 50px;
-        border-radius:30px;
-        backdrop-filter:blur(15px);
-        background:rgba(10,10,30,.45);
-        border:1px solid rgba(255,255,255,.08);
+        background:rgba(15, 10, 40, 0.6);
+        border:1px solid rgba(124,58,237,0.3);
+        backdrop-filter:blur(18px);
         box-shadow:
-        0 0 20px #00bfff,
-        0 0 60px #8a2be2;
+            0 0 25px rgba(0,212,255,0.3),
+            0 0 60px rgba(124,58,237,0.4);
+        animation: pop .5s ease;
     }
 
-    .hk-shield{
-        width:120px;
-        height:120px;
+    @keyframes pop{
+        from{transform:scale(0.8); opacity:0;}
+        to{transform:scale(1); opacity:1;}
+    }
+
+    /* icon robot */
+    .hk-icon{
+        width:90px;
+        height:90px;
         margin:auto;
-        border-radius:50%;
         display:flex;
         align-items:center;
         justify-content:center;
-        font-size:60px;
-        background:linear-gradient(135deg,#00e5ff,#ff00ff);
-        box-shadow:0 0 40px #00e5ff,0 0 80px #ff00ff;
-        animation:pulse 2s infinite;
+        font-size:42px;
+        border-radius:50%;
+        background:linear-gradient(135deg,#00d4ff,#7c3aed);
+        box-shadow:0 0 30px #00d4ff;
+        margin-bottom:20px;
     }
 
-    @keyframes pulse{
-        0%,100%{transform:scale(1);}
-        50%{transform:scale(1.08);}
-    }
-
-    .hk-box h1{
-        margin-top:30px;
-        font-size:58px;
-        font-weight:900;
-        background:linear-gradient(90deg,#00bfff,#ff00ff);
+    h1{
+        font-size:28px;
+        font-weight:800;
+        background:linear-gradient(90deg,#00d4ff,#a855f7,#ff00ff);
         -webkit-background-clip:text;
-        color:transparent;
+        -webkit-text-fill-color:transparent;
+        margin-bottom:20px;
     }
 
-    .hk-alert{
+    /* message box */
+    .hk-message{
         display:flex;
-        gap:20px;
-        padding:25px;
-        border-radius:20px;
-        background:rgba(255,255,255,.04);
-        border:1px solid rgba(255,0,255,.3);
-        margin:30px 0;
+        gap:12px;
+        text-align:left;
+        padding:18px;
+        border-radius:15px;
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.1);
+        margin-bottom:25px;
     }
 
-    .hk-box button{
-        border:none;
-        cursor:pointer;
-        padding:18px 50px;
+    .warn{
+        color:#ffcc00;
         font-size:20px;
-        border-radius:15px;
+    }
+
+    .hk-message p{
+        margin:0;
+        color:#fff;
+        font-size:14px;
+    }
+
+    .hk-message small{
+        color:#aaa;
+    }
+
+    button{
+        padding:12px 30px;
+        border:none;
+        border-radius:12px;
+        cursor:pointer;
+        font-weight:600;
         color:white;
-        background:linear-gradient(90deg,#00bfff,#7b2cff,#ff00ff);
-        box-shadow:0 0 30px #00bfff;
+        background:linear-gradient(90deg,#00d4ff,#7c3aed);
+        box-shadow:0 0 20px rgba(124,58,237,0.5);
+        transition:0.3s;
+    }
+
+    button:hover{
+        transform:scale(1.05);
     }
 
     .hk-footer{
-        margin-top:25px;
+        margin-top:15px;
+        font-size:12px;
         color:#777;
-        font-size:14px;
     }
     `;
 
     document.head.appendChild(style);
-
-    const overlay = document.createElement("div");
-    overlay.id = "hk-lock";
-
-    overlay.innerHTML = `
-        <div class="hk-particles"></div>
-
-        <div class="hk-box">
-
-            <div class="hk-shield">🔒</div>
-
-            <h1>HOANG KUN SECURITY</h1>
-
-            <div class="hk-alert">
-                <div>⚠️</div>
-                <div>
-                    <div>${reason}</div>
-                    <small>Trang web đã bị khóa vì lý do bảo mật.</small>
-                </div>
-            </div>
-
-            <button onclick="location.reload()">🔄 TẢI LẠI TRANG</button>
-
-            <div class="hk-footer">© 2026 HOANG KUN</div>
-
-        </div>
-    `;
-
     document.body.appendChild(overlay);
 }
-
-document.addEventListener("keydown", function(e){
-
-    const blocked =
-        e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && e.key === "I") ||
-        (e.ctrlKey && e.shiftKey && e.key === "J") ||
-        (e.ctrlKey && e.shiftKey && e.key === "C") ||
-        (e.ctrlKey && e.key === "U") ||
-        (e.ctrlKey && e.key === "S");
-
-    if(blocked){
-
-        e.preventDefault();
-
-        lockWebsite(
-            "Phát hiện hành vi truy cập công cụ dành cho nhà phát triển."
-        );
-    }
-});
-
-/* -------------------------
-   PHÁT HIỆN DEVTOOLS
-------------------------- */
-let devtoolsOpened = false;
-
-setInterval(() => {
-
-    const widthThreshold =
-        window.outerWidth - window.innerWidth > 160;
-
-    const heightThreshold =
-        window.outerHeight - window.innerHeight > 160;
-
-    if((widthThreshold || heightThreshold) &&
-        !devtoolsOpened){
-
-        devtoolsOpened = true;
-
-        lockWebsite(
-            "DevTools đã được phát hiện. Trang web đã bị khóa."
-        );
-    }
-
-},1000);
-
-/* -------------------------
-   CHUỘT PHẢI
-------------------------- */
-document.addEventListener("contextmenu", e => {
-
-    e.preventDefault();
-
-    showNotification(
-        "Chuột phải đã bị vô hiệu hóa.",
-        "warning"
-    );
-});
-
+  
 </script>
   
 </body>
