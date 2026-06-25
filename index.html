@@ -1134,6 +1134,63 @@ function lockWebsite(reason = "Phát hiện hành vi truy cập công cụ dành
     document.head.appendChild(style);
     document.body.appendChild(overlay);
 }
+
+  /* =========================
+   ANTI DEVTOOLS + RIGHT CLICK
+   ========================= */
+
+function blockAction(reason) {
+    lockWebsite(reason);
+}
+
+/* CHẶN CHUỘT PHẢI */
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+    showNotification("Chuột phải đã bị vô hiệu hóa!", "warning");
+});
+
+/* CHẶN PHÍM DEVTOOLS */
+document.addEventListener("keydown", function(e){
+
+    const key = e.key.toLowerCase();
+
+    const blocked =
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && (key === "i" || key === "j" || key === "c")) ||
+        (e.ctrlKey && key === "u") ||
+        (e.ctrlKey && key === "s");
+
+    if(blocked){
+        e.preventDefault();
+        e.stopPropagation();
+
+        blockAction("Phát hiện truy cập công cụ lập trình (DevTools).");
+    }
+}, true);
+
+/* CHẶN COPY */
+document.addEventListener("copy", function(e){
+    e.preventDefault();
+    showNotification("Copy đã bị vô hiệu hóa!", "warning");
+});
+
+/* CHẶN SELECT ALL */
+document.addEventListener("selectstart", function(e){
+    e.preventDefault();
+});
+
+/* PHÁT HIỆN DEVTOOLS MỞ (DETECT THÊM) */
+let devtools = false;
+
+setInterval(() => {
+    const widthThreshold = window.outerWidth - window.innerWidth > 200;
+    const heightThreshold = window.outerHeight - window.innerHeight > 200;
+
+    if((widthThreshold || heightThreshold) && !devtools){
+        devtools = true;
+        blockAction("DevTools đã được phát hiện!");
+    }
+}, 1000);
   
 </script>
   
