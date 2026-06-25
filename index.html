@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="vi">
 
 <head>
@@ -51,19 +51,79 @@
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #7c3aed, #00d4ff); border-radius: 20px; }
 
-    /* =======================
-       LOADING SCREEN
+   /* =======================
+       LOADING SCREEN (PREMIUM THEME)
     ======================= */
     .loader {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050816;
-      display: flex; justify-content: center; align-items: center; z-index: 999999; transition: 0.8s ease;
+        position: fixed; inset: 0;
+        background: #050816; /* Đồng bộ màu nền web */
+        display: flex; justify-content: center; align-items: center;
+        z-index: 999999;
+        transition: opacity 0.8s ease, visibility 0.8s;
     }
+
     .loader.hide { opacity: 0; visibility: hidden; }
-    .loader h1 {
-      font-size: 60px; font-weight: 900; background: linear-gradient(90deg, #00d4ff, #7c3aed);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: pulse 1.2s infinite;
+
+    .loader-content {
+        position: relative;
+        display: flex; flex-direction: column; align-items: center;
     }
-    @keyframes pulse { 50% { transform: scale(1.1); } }
+
+    /* Vầng sáng 3D mờ ảo (Tạo cảm giác đắt tiền) */
+    .glow-bg {
+        position: absolute;
+        width: 150px; height: 150px;
+        background: linear-gradient(90deg, #00d4ff, #7c3aed);
+        filter: blur(60px);
+        border-radius: 50%;
+        opacity: 0.5;
+        animation: pulse-glow 2s infinite alternate;
+        z-index: -1;
+    }
+
+    /* Chữ HOANG KUN */
+    .loader-logo {
+        font-size: 50px; font-weight: 900;
+        color: #fff; letter-spacing: 2px;
+        margin-bottom: 5px;
+        text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .loader-logo span {
+        background: linear-gradient(90deg, #00d4ff, #7c3aed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Tiêu đề phụ (Rất Tây và chuyên nghiệp) */
+    .loader-subtitle {
+        font-size: 13px; font-weight: 500;
+        color: #bdbdbd; letter-spacing: 5px;
+        text-transform: uppercase;
+        margin-bottom: 35px;
+    }
+
+    /* Thanh loading siêu mỏng tinh tế */
+    .loader-bar-container {
+        width: 200px; height: 2px; /* Mỏng 2px cho sang */
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px; overflow: hidden;
+    }
+    .loader-bar {
+        height: 100%; width: 0%;
+        background: linear-gradient(90deg, #00d4ff, #7c3aed);
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+        animation: fill-bar 1.2s cubic-bezier(0.65, 0, 0.07, 1) forwards;
+    }
+
+    /* Hiệu ứng chuyển động */
+    @keyframes pulse-glow {
+        0% { transform: scale(0.8); opacity: 0.3; }
+        100% { transform: scale(1.3); opacity: 0.6; }
+    }
+    @keyframes fill-bar {
+        0% { width: 0%; }
+        100% { width: 100%; }
+    }
 
     /* =======================
        LOAD ANIMATIONS (HERO)
@@ -169,10 +229,54 @@
     .hero-desc { margin-top: 25px; line-height: 1.8; max-width: 600px; color: var(--text); }
     .hero-buttons { display: flex; gap: 20px; margin-top: 35px; }
     
-    .btn { padding: 15px 30px; border-radius: 14px; text-decoration: none; font-weight: 600; transition: .4s; }
-    .btn-primary { background: linear-gradient(90deg, #00d4ff, #7c3aed); color: #fff; }
-    .btn-secondary { border: 1px solid rgba(255, 255, 255, .15); color: #fff; }
-    .btn:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(0, 212, 255, .3), 0 0 50px rgba(124, 58, 237, .2); }
+ /* =========================
+       NÚT BẤM (BẢN SÁNG RÕ & SANG TRỌNG)
+       ========================= */
+    .btn { 
+        padding: 15px 35px; 
+        border-radius: 50px; /* Bo tròn hoàn toàn nhìn cực kỳ cao cấp */
+        text-decoration: none; 
+        font-weight: 600; 
+        font-size: 16px;
+        transition: all 0.4s ease; 
+        display: inline-flex; 
+        align-items: center; 
+        justify-content: center; 
+        letter-spacing: 1px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* NÚT XEM DỰ ÁN (Nổi bần bật, chữ trắng rõ ràng) */
+    .btn-primary { 
+        background: linear-gradient(90deg, #00d4ff, #7c3aed); 
+        color: #ffffff; 
+        border: none; 
+        box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3); 
+    }
+
+    .btn-primary:hover { 
+        /* Tỏa hào quang khi rê chuột vào */
+        box-shadow: 0 8px 30px rgba(0, 212, 255, 0.6), 0 8px 30px rgba(124, 58, 237, 0.5); 
+        transform: translateY(-5px) scale(1.05); 
+        color: #fff;
+    }
+
+    /* NÚT LIÊN HỆ (Nền kính mờ, viền trắng sáng) */
+    .btn-secondary { 
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(5px);
+        border: 2px solid rgba(255, 255, 255, 0.5); 
+        color: #ffffff; 
+    }
+
+    .btn-secondary:hover { 
+        background: #ffffff; 
+        color: #050816; /* Đổi màu chữ sang đen khi nền trắng */
+        border-color: #ffffff;
+        box-shadow: 0 5px 25px rgba(255, 255, 255, 0.6); 
+        transform: translateY(-5px);
+    }
     
     .hero-right { display: flex; justify-content: center; }
     .hero-right img { width: 650px; max-width: 100%; animation: floating 5s ease-in-out infinite, glow 2s ease-in-out infinite alternate; }
@@ -246,7 +350,32 @@
     ======================= */
     #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, #00d4ff, #7c3aed); z-index: 999999; }
     #topBtn { position: fixed; right: 30px; bottom: 30px; width: 55px; height: 55px; border: none; border-radius: 50%; font-size: 22px; cursor: pointer; background: linear-gradient(90deg, #00d4ff, #7c3aed); color: white; display: none; z-index: 999; }
-    .cursor-dot { width: 15px; height: 15px; border-radius: 50%; background: #00d4ff; position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 999999; box-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ff; }
+    
+    /* -- BẮT ĐẦU CSS CON TRỎ CHUỘT MỚI -- */
+    body { cursor: none; }
+
+    .cursor-dot { 
+        width: 8px; 
+        height: 8px; 
+        background: #00d4ff; 
+        border-radius: 50%; 
+        position: fixed; 
+        pointer-events: none; 
+        transform: translate(-50%, -50%); 
+        z-index: 999999; 
+        box-shadow: 0 0 10px #00d4ff, 0 0 20px #7c3aed;
+        transition: width 0.3s, height 0.3s, background 0.3s;
+    }
+
+    /* Khi rê vào menu hoặc nút bấm */
+    a:hover ~ .cursor-dot, button:hover ~ .cursor-dot {
+        width: 40px; 
+        height: 40px; 
+        background: rgba(0, 212, 255, 0.2);
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    }
+    /* -- KẾT THÚC CSS CON TRỎ CHUỘT MỚI -- */
+
     .particle { position: fixed; width: 6px; height: 6px; border-radius: 50%; background: #7c3aed; pointer-events: none; animation: fadeOut .8s linear forwards; }
 
     /* =======================
@@ -320,9 +449,22 @@
 </head>
 <body>
 
-  <div class="loader" id="loader">
-    <h1>HOANG KUN</h1>
-  </div>
+ <!-- MÀN HÌNH CHỜ CAO CẤP DÀNH CHO KHÁCH HÀNG -->
+<div class="loader" id="loader">
+    <div class="loader-content">
+        <!-- Vầng sáng mờ ảo phía sau -->
+        <div class="glow-bg"></div>
+        
+        <!-- Logo -->
+        <h1 class="loader-logo">HOANG <span>KUN</span></h1>
+        <p class="loader-subtitle">Creative Portfolio</p>
+        
+        <!-- Thanh tiến trình siêu mỏng, thanh lịch -->
+        <div class="loader-bar-container">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+</div>
 
   <canvas id="particles"></canvas>
 
@@ -425,7 +567,7 @@
         <div class="bar"><div class="fill js"></div></div>
       </div>
       <div class="skill-item reveal">
-        <div class="skill-header"><span>Server Management (ARK, Roblox)</span><span>85%</span></div>
+        <div class="skill-header"><span>Server Management </span><span>85%</span></div>
         <div class="bar"><div class="fill react"></div></div>
       </div>
     </div>
@@ -1033,7 +1175,7 @@ function lockWebsite(reason = "Phát hiện hành vi truy cập công cụ dành
     @keyframes move{
         from{transform:translateY(0);}
         to{transform:translateY(-200px);}
-    }
+    }
 
     /* card chính */
     .hk-card{
