@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Center | Hoang Kun</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #050816;
+            --card: rgba(255, 255, 255, .05);
+            --border: rgba(255, 255, 255, .08);
+            --primary: #7c3aed;
+            --secondary: #00d4ff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: var(--bg); color: #fff; min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+
+        body::before {
+            content: ''; position: fixed; inset: 0; z-index: -2;
+            background: radial-gradient(circle at top left, rgba(124, 58, 237, .2), transparent 50%),
+                        radial-gradient(circle at right, rgba(0, 212, 255, .1), transparent 50%);
+        }
+
+        .container {
+            max-width: 800px; width: 100%;
+            background: var(--card); backdrop-filter: blur(20px);
+            border: 1px solid var(--border); border-radius: 25px;
+            padding: 40px; position: relative;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            color: #bdbdbd; text-decoration: none; font-weight: 500;
+            margin-bottom: 30px; transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--secondary); transform: translateX(-5px); }
+
+        .header { text-align: center; margin-bottom: 40px; }
+        .header i { font-size: 60px; color: var(--secondary); margin-bottom: 20px; filter: drop-shadow(0 0 15px var(--secondary)); }
+        .header h1 { 
+            font-size: 40px; font-weight: 800; 
+            background: linear-gradient(90deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        }
+
+        .content-box {
+            background: rgba(0,0,0,0.3); border: 1px solid var(--border);
+            padding: 25px; border-radius: 15px; margin-bottom: 30px;
+        }
+        .content-box h3 { color: #fff; margin-bottom: 10px; font-size: 22px; }
+        .content-box p { color: #bdbdbd; line-height: 1.6; font-size: 15px; margin-bottom: 20px; }
+        
+        .info-list { list-style: none; margin-bottom: 20px; }
+        .info-list li { color: #bdbdbd; margin-bottom: 8px; font-size: 14px; display: flex; align-items: center; gap: 10px; }
+        .info-list li i { color: var(--primary); }
+
+        .action-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        .btn {
+            padding: 15px; border: none; border-radius: 12px; font-size: 16px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;
+        }
+        .btn-dl { background: linear-gradient(90deg, #00d4ff, #7c3aed); color: #fff; }
+        .btn-dl:hover { box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); transform: translateY(-3px); }
+        .btn-key { background: transparent; border: 1px solid var(--secondary); color: var(--secondary); }
+        .btn-key:hover { background: rgba(0, 212, 255, 0.1); transform: translateY(-3px); }
+
+        /* TOAST NOTIFICATION */
+        #toast-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 9999; }
+        .toast {
+            background: rgba(10, 15, 30, 0.95); backdrop-filter: blur(10px);
+            border-left: 4px solid; color: #fff; padding: 15px 25px; border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 15px;
+            font-size: 14px; animation: slideIn 0.5s ease forwards; min-width: 280px;
+        }
+        .toast.success { border-color: #00d4ff; } .toast.success i { color: #00d4ff; }
+        .toast.info { border-color: #7c3aed; } .toast.info i { color: #7c3aed; }
+        .toast.hide { animation: slideOut 0.5s ease forwards; }
+
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+
+        @media(max-width: 600px) {
+            .action-buttons { grid-template-columns: 1fr; }
+            .header h1 { font-size: 30px; }
+            .container { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Nút quay lại trang index.html -->
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Quay lại trang chủ
+        </a>
+
+        <div class="header">
+            <i class="fas fa-box-open"></i>
+            <h1>HOANG KUN SOFTWARE</h1>
+        </div>
+
+        <div class="content-box">
+            <h3>Tên Phần Mềm / Tên File </h3>
+            <p>Đây là khu vực để bạn ghi giới thiệu chi tiết về file tải xuống. Giao diện được tối ưu hiển thị mượt mà trên cả điện thoại và máy tính.</p>
+            
+            <ul class="info-list">
+                <li><i class="fas fa-check-circle"></i> Phiên bản: v1.0.0</li>
+                <li><i class="fas fa-check-circle"></i> Dung lượng: 15 MB</li>
+                <li><i class="fas fa-check-circle"></i> Cập nhật lần cuối: Hôm nay</li>
+            </ul>
+
+            <div class="action-buttons">
+                <!-- Nút Tải Xuống -->
+                <button class="btn btn-dl" onclick="handleDownload()">
+                    <i class="fas fa-download"></i> Tải Xuống
+                </button>
+                <!-- Nút Lấy Key -->
+                <button class="btn btn-key" onclick="handleGetKey()">
+                    <i class="fas fa-key"></i> Lấy Key Miễn Phí
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Khu vực hiện thông báo -->
+    <div id="toast-container"></div>
+
+    <script>
+        function showNotification(message, type) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-info-circle';
+            toast.innerHTML = `<i class="fas ${icon}"></i> <span>${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('hide');
+                toast.addEventListener('animationend', () => toast.remove());
+            }, 3000);
+        }
+
+        // Script xử lý khi bấm nút
+        function handleDownload() {
+            showNotification('Hệ thống đang chuẩn bị file tải xuống...', 'success');
+            // Thêm logic tải file của bạn ở đây (ví dụ: window.location.href = "link-file")
+        }
+
+        function handleGetKey() {
+            showNotification('Đã copy Key vào khay nhớ tạm!', 'info');
+            // Thêm logic lấy key của bạn ở đây
+        }
+    </script>
+
+</body>
+</html>
