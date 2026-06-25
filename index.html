@@ -430,15 +430,107 @@
     </div>
   </section>
 
-  <section class="contact" id="contact">
-    <h2 class="section-title reveal">CONTACT ME</h2>
-    <form class="contact-form reveal">
-      <input type="text" placeholder="Họ và tên">
-      <input type="email" placeholder="Email">
-      <textarea placeholder="Nội dung tin nhắn"></textarea>
-      <button type="submit">Gửi Tin Nhắn</button>
-    </form>
-  </section>
+ <section id="contact-section" class="contact-section">
+    <div class="contact-container">
+        
+        <div class="form-wrapper">
+            <h2>Liên Hệ</h2>
+            <p>Có điều gì muốn thảo luận? Hãy gửi tin nhắn cho tôi.</p>
+            <form id="contactForm">
+                <input type="text" class="input-field" placeholder="Họ và tên">
+                <input type="email" class="input-field" placeholder="Email của bạn">
+                <textarea class="input-field" rows="4" placeholder="Nội dung..."></textarea>
+                <button type="submit" class="btn-submit">Gửi Tin Nhắn</button>
+            </form>
+
+            <div class="connect-wrapper">
+                <h3>Kết nối với tôi</h3>
+                <div class="social-grid">
+                    <a href="#" class="social-item"><i class="fab fa-facebook"></i> <span>Facebook</span></a>
+                    <a href="#" class="social-item"><i class="fab fa-tiktok"></i> <span>TikTok</span></a>
+                    <a href="#" class="social-item"><i class="fab fa-github"></i> <span>Github</span></a>
+                    <a href="#" class="social-item"><i class="fab fa-telegram"></i> <span>Telegram</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-wrapper">
+            <h2>Bình Luận (220)</h2>
+            <form id="commentForm">
+                <input type="text" class="input-field" placeholder="Tên của bạn">
+                <textarea class="input-field" rows="3" placeholder="Viết bình luận..."></textarea>
+                <button type="submit" class="btn-submit">Đăng Bình Luận</button>
+            </form>
+
+            <div class="comments-list">
+                <div class="comment-item pinned">
+                    <div class="comment-header"><strong>Admin</strong> <span class="badge">Admin</span></div>
+                    <p>Cảm ơn các bạn đã ghé thăm! Nếu có thắc mắc cứ nhắn mình nhé.</p>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-header"><strong>Lam</strong></div>
+                    <p>Template đẹp quá bro ơi!</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* CSS CHO SECTION NÀY */
+    .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .form-wrapper {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 20px;
+    }
+
+    .input-field {
+        width: 100%; padding: 15px; margin-bottom: 20px;
+        background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px; color: white; outline: none;
+    }
+
+    .btn-submit {
+        width: 100%; padding: 15px; background: linear-gradient(90deg, #7c3aed, #00d4ff);
+        border: none; border-radius: 12px; color: white; font-weight: bold; cursor: pointer;
+    }
+
+    /* Social Grid */
+    .connect-wrapper { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .social-item {
+        display: flex; align-items: center; gap: 10px; padding: 12px;
+        background: rgba(255, 255, 255, 0.05); border-radius: 10px;
+        color: #fff; text-decoration: none; transition: 0.3s;
+    }
+    .social-item:hover { background: var(--primary); }
+
+    /* Comment List */
+    .comments-list { margin-top: 30px; }
+    .comment-item { 
+        padding: 15px; background: rgba(0, 0, 0, 0.2); 
+        border-radius: 10px; margin-bottom: 10px; border-left: 3px solid var(--primary);
+    }
+    .pinned { border: 1px solid var(--primary); background: rgba(124, 58, 237, 0.1); }
+    .comment-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+    .badge { font-size: 10px; background: var(--primary); padding: 2px 8px; border-radius: 5px; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .contact-container { grid-template-columns: 1fr; }
+    }
+</style>
 
   <footer class="footer">
     <h2 class="reveal">HOANG KUN</h2>
