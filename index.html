@@ -51,19 +51,79 @@
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #7c3aed, #00d4ff); border-radius: 20px; }
 
-    /* =======================
-       LOADING SCREEN
+   /* =======================
+       LOADING SCREEN (PREMIUM THEME)
     ======================= */
     .loader {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050816;
-      display: flex; justify-content: center; align-items: center; z-index: 999999; transition: 0.8s ease;
+        position: fixed; inset: 0;
+        background: #050816; /* Đồng bộ màu nền web */
+        display: flex; justify-content: center; align-items: center;
+        z-index: 999999;
+        transition: opacity 0.8s ease, visibility 0.8s;
     }
+
     .loader.hide { opacity: 0; visibility: hidden; }
-    .loader h1 {
-      font-size: 60px; font-weight: 900; background: linear-gradient(90deg, #00d4ff, #7c3aed);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: pulse 1.2s infinite;
+
+    .loader-content {
+        position: relative;
+        display: flex; flex-direction: column; align-items: center;
     }
-    @keyframes pulse { 50% { transform: scale(1.1); } }
+
+    /* Vầng sáng 3D mờ ảo (Tạo cảm giác đắt tiền) */
+    .glow-bg {
+        position: absolute;
+        width: 150px; height: 150px;
+        background: linear-gradient(90deg, #00d4ff, #7c3aed);
+        filter: blur(60px);
+        border-radius: 50%;
+        opacity: 0.5;
+        animation: pulse-glow 2s infinite alternate;
+        z-index: -1;
+    }
+
+    /* Chữ HOANG KUN */
+    .loader-logo {
+        font-size: 50px; font-weight: 900;
+        color: #fff; letter-spacing: 2px;
+        margin-bottom: 5px;
+        text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .loader-logo span {
+        background: linear-gradient(90deg, #00d4ff, #7c3aed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Tiêu đề phụ (Rất Tây và chuyên nghiệp) */
+    .loader-subtitle {
+        font-size: 13px; font-weight: 500;
+        color: #bdbdbd; letter-spacing: 5px;
+        text-transform: uppercase;
+        margin-bottom: 35px;
+    }
+
+    /* Thanh loading siêu mỏng tinh tế */
+    .loader-bar-container {
+        width: 200px; height: 2px; /* Mỏng 2px cho sang */
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px; overflow: hidden;
+    }
+    .loader-bar {
+        height: 100%; width: 0%;
+        background: linear-gradient(90deg, #00d4ff, #7c3aed);
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+        animation: fill-bar 1.2s cubic-bezier(0.65, 0, 0.07, 1) forwards;
+    }
+
+    /* Hiệu ứng chuyển động */
+    @keyframes pulse-glow {
+        0% { transform: scale(0.8); opacity: 0.3; }
+        100% { transform: scale(1.3); opacity: 0.6; }
+    }
+    @keyframes fill-bar {
+        0% { width: 0%; }
+        100% { width: 100%; }
+    }
 
     /* =======================
        LOAD ANIMATIONS (HERO)
@@ -320,9 +380,22 @@
 </head>
 <body>
 
-  <div class="loader" id="loader">
-    <h1>HOANG KUN</h1>
-  </div>
+ <!-- MÀN HÌNH CHỜ CAO CẤP DÀNH CHO KHÁCH HÀNG -->
+<div class="loader" id="loader">
+    <div class="loader-content">
+        <!-- Vầng sáng mờ ảo phía sau -->
+        <div class="glow-bg"></div>
+        
+        <!-- Logo -->
+        <h1 class="loader-logo">HOANG <span>KUN</span></h1>
+        <p class="loader-subtitle">Creative Portfolio</p>
+        
+        <!-- Thanh tiến trình siêu mỏng, thanh lịch -->
+        <div class="loader-bar-container">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+</div>
 
   <canvas id="particles"></canvas>
 
