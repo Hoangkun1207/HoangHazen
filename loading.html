@@ -215,56 +215,237 @@ const loading = setInterval(()=>{
 
 </script>
 
-    <script>
-        /* --- HỆ THỐNG BẢO MẬT HOANG KUN --- */
-let spamCount = 0;
-const commentForm = document.getElementById('commentForm');
-const btnSubmit = commentForm.querySelector('.btn-submit');
+<script>
+/* =========================
+   HOANG KUN SECURITY SYSTEM
+   ========================= */
 
-// 1. Chống Spam
-commentForm.addEventListener('submit', function(e) {
-    spamCount++;
-    if (spamCount > 3) {
+let submitTimes = [];
+const MAX_SUBMIT = 3;
+const BLOCK_TIME = 60000; // 60 giây
+
+const commentForm = document.getElementById("commentForm");
+const btnSubmit = commentForm.querySelector(".btn-submit");
+
+/* -------------------------
+   THÔNG BÁO ĐẸP
+------------------------- */
+function showNotification(message, type = "warning") {
+
+    let old = document.querySelector(".hk-alert");
+    if (old) old.remove();
+
+    const box = document.createElement("div");
+    box.className = "hk-alert";
+
+    const colors = {
+        success: "#00ff88",
+        warning: "#ffae00",
+        error: "#ff3333",
+        info: "#00bfff"
+    };
+
+    box.innerHTML = `
+        <div class="hk-alert-content">
+            <div class="hk-alert-icon">⚠</div>
+            <div class="hk-alert-text">${message}</div>
+        </div>
+    `;
+
+    box.style.cssText = `
+        position:fixed;
+        top:30px;
+        right:30px;
+        z-index:999999999;
+        background:#111;
+        border-left:5px solid ${colors[type]};
+        color:#fff;
+        padding:15px 20px;
+        min-width:300px;
+        border-radius:12px;
+        box-shadow:0 0 25px rgba(0,0,0,.5);
+        animation:slideIn .4s ease;
+        font-family:sans-serif;
+    `;
+
+    document.body.appendChild(box);
+
+    setTimeout(() => {
+        box.style.opacity = "0";
+        box.style.transform = "translateX(100px)";
+        setTimeout(() => box.remove(), 500);
+    }, 3500);
+}
+
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes slideIn{
+    from{
+        opacity:0;
+        transform:translateX(100px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+`;
+document.head.appendChild(style);
+
+/* -------------------------
+   CHỐNG SPAM FORM
+------------------------- */
+commentForm.addEventListener("submit", function(e){
+
+    const now = Date.now();
+
+    submitTimes = submitTimes.filter(
+        time => now - time < BLOCK_TIME
+    );
+
+    submitTimes.push(now);
+
+    if(submitTimes.length > MAX_SUBMIT){
+
         e.preventDefault();
+
         btnSubmit.disabled = true;
-        btnSubmit.innerText = "Bạn đã bị chặn spam!";
-        btnSubmit.style.background = "#555";
-        showNotification("Đừng spam nữa ông ơi! F5 để thử lại.", "info");
+        btnSubmit.innerHTML = "🚫 Đã khóa";
+
+        showNotification(
+            "Bạn thao tác quá nhanh! Hệ thống đã tạm khóa 60 giây.",
+            "error"
+        );
+
+        let countdown = 60;
+
+        const timer = setInterval(() => {
+
+            btnSubmit.innerHTML =
+                `⏳ ${countdown}s`;
+
+            countdown--;
+
+            if(countdown < 0){
+
+                clearInterval(timer);
+
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = "Gửi bình luận";
+
+                submitTimes = [];
+
+                showNotification(
+                    "Đã mở khóa bình luận.",
+                    "success"
+                );
+            }
+
+        },1000);
     }
 });
 
-// 2. Chặn F12 / Inspect và Khóa Web
-function lockWebsite() {
-    const overlay = document.createElement('div');
-    overlay.style.cssText = `
-        position: fixed; inset: 0; background: #000; z-index: 9999999;
-        display: flex; justify-content: center; align-items: center;
-        color: #fff; font-size: 24px; text-align: center; flex-direction: column;
-    `;
+/* -------------------------
+   MÀN HÌNH KHÓA WEB
+------------------------- */
+function lockWebsite(reason){
+
+    if(document.querySelector("#hk-lock"))
+        return;
+
+    const overlay = document.createElement("div");
+
+    overlay.id = "hk-lock";
+
     overlay.innerHTML = `
-        <h1 style="color: #ff0000;">Nghiêm cấm soi code!</h1>
-        <p>Web đã bị khóa. Vui lòng F5 (tải lại) để tiếp tục.</p>
+        <div class="hk-lock-box">
+            <h1>🛡 HOANG KUN SECURITY</h1>
+            <p>${reason}</p>
+            <button onclick="location.reload()">
+                TẢI LẠI TRANG
+            </button>
+        </div>
     `;
+
+    overlay.style.cssText = `
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.98);
+        backdrop-filter:blur(10px);
+        z-index:999999999;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        color:white;
+        text-align:center;
+        font-family:sans-serif;
+    `;
+
     document.body.appendChild(overlay);
 }
 
-// Theo dõi khi có người mở DevTools
-let threshold = 160; 
-window.addEventListener('resize', () => {
-    if (window.outerWidth - window.innerWidth > threshold || 
-        window.outerHeight - window.innerHeight > threshold) {
-        lockWebsite();
+/* -------------------------
+   CHẶN PHÍM TẮT
+------------------------- */
+document.addEventListener("keydown", function(e){
+
+    const blocked =
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && e.key === "I") ||
+        (e.ctrlKey && e.shiftKey && e.key === "J") ||
+        (e.ctrlKey && e.shiftKey && e.key === "C") ||
+        (e.ctrlKey && e.key === "U") ||
+        (e.ctrlKey && e.key === "S");
+
+    if(blocked){
+
+        e.preventDefault();
+
+        lockWebsite(
+            "Phát hiện hành vi truy cập công cụ dành cho nhà phát triển."
+        );
     }
 });
 
-// Chặn các phím tắt (F12, Ctrl+U, v.v)
-document.addEventListener('keydown', (e) => {
-    if (e.keyCode === 123 || (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 73))) {
-        e.preventDefault();
-        lockWebsite();
+/* -------------------------
+   PHÁT HIỆN DEVTOOLS
+------------------------- */
+let devtoolsOpened = false;
+
+setInterval(() => {
+
+    const widthThreshold =
+        window.outerWidth - window.innerWidth > 160;
+
+    const heightThreshold =
+        window.outerHeight - window.innerHeight > 160;
+
+    if((widthThreshold || heightThreshold) &&
+        !devtoolsOpened){
+
+        devtoolsOpened = true;
+
+        lockWebsite(
+            "DevTools đã được phát hiện. Trang web đã bị khóa."
+        );
     }
+
+},1000);
+
+/* -------------------------
+   CHUỘT PHẢI
+------------------------- */
+document.addEventListener("contextmenu", e => {
+
+    e.preventDefault();
+
+    showNotification(
+        "Chuột phải đã bị vô hiệu hóa.",
+        "warning"
+    );
 });
-    </script>
+
+</script>
 
 </body>
 </html>
