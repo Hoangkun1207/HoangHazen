@@ -306,7 +306,38 @@
     ======================= */
     #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, #00d4ff, #7c3aed); z-index: 999999; }
     #topBtn { position: fixed; right: 30px; bottom: 30px; width: 55px; height: 55px; border: none; border-radius: 50%; font-size: 22px; cursor: pointer; background: linear-gradient(90deg, #00d4ff, #7c3aed); color: white; display: none; z-index: 999; }
-    .cursor-dot { width: 15px; height: 15px; border-radius: 50%; background: #00d4ff; position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 999999; box-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ff; }
+
+    /* =======================
+       UTILITIES
+    ======================= */
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, #00d4ff, #7c3aed); z-index: 999999; }
+    #topBtn { position: fixed; right: 30px; bottom: 30px; width: 55px; height: 55px; border: none; border-radius: 50%; font-size: 22px; cursor: pointer; background: linear-gradient(90deg, #00d4ff, #7c3aed); color: white; display: none; z-index: 999; }
+    
+    /* -- BẮT ĐẦU CSS CON TRỎ CHUỘT MỚI -- */
+    body { cursor: none; }
+
+    .cursor-dot { 
+        width: 8px; 
+        height: 8px; 
+        background: #00d4ff; 
+        border-radius: 50%; 
+        position: fixed; 
+        pointer-events: none; 
+        transform: translate(-50%, -50%); 
+        z-index: 999999; 
+        box-shadow: 0 0 10px #00d4ff, 0 0 20px #7c3aed;
+        transition: width 0.3s, height 0.3s, background 0.3s;
+    }
+
+    /* Khi rê vào menu hoặc nút bấm */
+    a:hover ~ .cursor-dot, button:hover ~ .cursor-dot {
+        width: 40px; 
+        height: 40px; 
+        background: rgba(0, 212, 255, 0.2);
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    }
+    /* -- KẾT THÚC CSS CON TRỎ CHUỘT MỚI -- */
+
     .particle { position: fixed; width: 6px; height: 6px; border-radius: 50%; background: #7c3aed; pointer-events: none; animation: fadeOut .8s linear forwards; }
 
     /* =======================
