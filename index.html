@@ -858,30 +858,50 @@
       });
       counters.forEach(counter => observer.observe(counter));
 
-      /* SCROLL PROGRESS & REVEAL */
+     /* =========================================
+         TỐI ƯU HÓA SCROLL & REVEAL (CHỐNG LAG)
+         ========================================= */
       const topBtn = document.getElementById("topBtn");
+      const scrollProgress = document.getElementById("scroll-progress");
+      let isScrolling = false;
+
+      // 1. Tối ưu thanh cuộn và nút Top bằng RequestAnimationFrame
       window.addEventListener("scroll", () => {
-        let scroll = document.documentElement.scrollTop;
-        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        let percent = (scroll / height) * 100;
-        document.getElementById("scroll-progress").style.width = percent + "%";
-
-        if(scroll > 500) topBtn.style.display = "block";
-        else topBtn.style.display = "none";
-
-        // Scroll Reveal
-        document.querySelectorAll(".reveal").forEach(el => {
-          const top = el.getBoundingClientRect().top;
-          if(top < window.innerHeight - 100) el.classList.add("active");
-        });
-      });
-
-      // Kích hoạt reveal lúc mới load
-      document.querySelectorAll(".reveal").forEach(el => {
-        if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
-      });
+          if (!isScrolling) {
+              window.requestAnimationFrame(() => {
+                  let scroll = document.documentElement.scrollTop;
+                  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                  let percent = (scroll / height) * 100;
+                  
+                  if(scrollProgress) scrollProgress.style.width = percent + "%";
+                  if(topBtn) topBtn.style.display = scroll > 500 ? "block" : "none";
+                  
+                  isScrolling = false;
+              });
+              isScrolling = true;
+          }
+      }, { passive: true }); // passive: true giúp cuộn mượt hơn trên mobile
 
       topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+      // 2. Dùng Intersection Observer thay cho getBoundingClientRect để chống lag
+      const revealOptions = {
+          threshold: 0.1, // Hiện ra khi cuộn tới 10% phần tử
+          rootMargin: "0px 0px -50px 0px"
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add("active");
+                  observer.unobserve(entry.target); // Chỉ chạy hiệu ứng 1 lần rồi bỏ theo dõi để nhẹ máy
+              }
+          });
+      }, revealOptions);
+
+      document.querySelectorAll(".reveal").forEach(el => {
+          revealObserver.observe(el);
+      });
 
      /* =========================================
          JS ĐIỀU KHIỂN BÀN TAY BÁM THEO CHUỘT
