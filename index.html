@@ -936,8 +936,11 @@
         window.addEventListener('resize', resize);
         resize();
 
-        let particlesArray = [];
-        for(let i=0; i<100; i++){
+      let particlesArray = [];
+        // Lấy số lượng hạt: Máy tính 100 hạt, điện thoại 30 hạt
+        let particleCount = window.innerWidth < 768 ? 30 : 100; 
+
+        for(let i=0; i < particleCount; i++){
           particlesArray.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
