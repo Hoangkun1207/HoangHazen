@@ -351,29 +351,30 @@
     #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, #00d4ff, #7c3aed); z-index: 999999; }
     #topBtn { position: fixed; right: 30px; bottom: 30px; width: 55px; height: 55px; border: none; border-radius: 50%; font-size: 22px; cursor: pointer; background: linear-gradient(90deg, #00d4ff, #7c3aed); color: white; display: none; z-index: 999; }
    
-   /* =========================================
-       CSS CON TRỎ CHUỘT HÌNH BÀN TAY
+ /* =========================================
+       CSS CON TRỎ CHUỘT HÌNH BÀN TAY (FIX LỖI)
        ========================================= */
-    body { cursor: none; } /* Ẩn chuột mặc định của máy tính */
+    * { 
+        cursor: none !important; /* Ép ẩn chuột mặc định trên TẤT CẢ mọi thứ (nút bấm, link...) */
+    }
 
     .custom-cursor {
         position: fixed;
         top: 0;
         left: 0;
-        font-size: 26px; /* Kích thước bàn tay */
-        color: #00d4ff; /* Màu xanh neon */
+        font-size: 26px;
+        color: #00d4ff; /* Xanh neon mặc định */
         pointer-events: none;
         z-index: 999999;
-        /* Dịch nhẹ một chút để mũi nhọn ngón tay khớp chuẩn xác với vị trí click */
         transform: translate(-10%, -10%);
         filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.8));
         transition: transform 0.15s ease, color 0.3s ease;
     }
 
-    /* Hiệu ứng khi rê chuột vào nút hoặc link: Bàn tay to lên và nghiêng nhẹ */
-    a:hover ~ .custom-cursor, button:hover ~ .custom-cursor {
+    /* Lớp hover được thêm bằng JS để đổi màu */
+    .custom-cursor.hover-active {
         transform: translate(-10%, -10%) scale(1.2) rotate(-15deg);
-        color: #7c3aed; /* Chuyển sang màu tím */
+        color: #7c3aed; /* Chuyển thành Tím neon */
         filter: drop-shadow(0 0 15px rgba(124, 58, 237, 0.9));
     }
     
@@ -889,10 +890,22 @@
 
       document.addEventListener("mousemove", (e) => {
           if(customCursor) {
-              // Bàn tay bám sát tọa độ chuột thực tế
               customCursor.style.left = e.clientX + "px";
               customCursor.style.top = e.clientY + "px";
           }
+      });
+
+      // Lấy tất cả các link và nút bấm trên web
+      const hoverElements = document.querySelectorAll("a, button, input, textarea, .project-card");
+      
+      // Thêm sự kiện đổi màu khi rê chuột vào
+      hoverElements.forEach(el => {
+          el.addEventListener("mouseenter", () => {
+              if(customCursor) customCursor.classList.add("hover-active");
+          });
+          el.addEventListener("mouseleave", () => {
+              if(customCursor) customCursor.classList.remove("hover-active");
+          });
       });
       
       /* BACKGROUND PARTICLES */
