@@ -351,33 +351,32 @@
     #scroll-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, #00d4ff, #7c3aed); z-index: 999999; }
     #topBtn { position: fixed; right: 30px; bottom: 30px; width: 55px; height: 55px; border: none; border-radius: 50%; font-size: 22px; cursor: pointer; background: linear-gradient(90deg, #00d4ff, #7c3aed); color: white; display: none; z-index: 999; }
    
-    /* -- BẮT ĐẦU CSS CON TRỎ CHUỘT MỚI -- */
-    body { cursor: none; }
+   /* =========================================
+       CSS CON TRỎ CHUỘT HÌNH BÀN TAY
+       ========================================= */
+    body { cursor: none; } /* Ẩn chuột mặc định của máy tính */
 
-    .cursor-dot { 
-        width: 8px; 
-        height: 8px; 
-        background: #00d4ff; 
-        border-radius: 50%; 
-        position: fixed; 
-        pointer-events: none; 
-        transform: translate(-50%, -50%); 
-        z-index: 999999; 
-        box-shadow: 0 0 10px #00d4ff, 0 0 20px #7c3aed;
-        transition: width 0.3s, height 0.3s, background 0.3s;
+    .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        font-size: 26px; /* Kích thước bàn tay */
+        color: #00d4ff; /* Màu xanh neon */
+        pointer-events: none;
+        z-index: 999999;
+        /* Dịch nhẹ một chút để mũi nhọn ngón tay khớp chuẩn xác với vị trí click */
+        transform: translate(-10%, -10%);
+        filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.8));
+        transition: transform 0.15s ease, color 0.3s ease;
     }
 
-    /* Khi rê vào menu hoặc nút bấm */
-    a:hover ~ .cursor-dot, button:hover ~ .cursor-dot {
-        width: 40px; 
-        height: 40px; 
-        background: rgba(0, 212, 255, 0.2);
-        box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    /* Hiệu ứng khi rê chuột vào nút hoặc link: Bàn tay to lên và nghiêng nhẹ */
+    a:hover ~ .custom-cursor, button:hover ~ .custom-cursor {
+        transform: translate(-10%, -10%) scale(1.2) rotate(-15deg);
+        color: #7c3aed; /* Chuyển sang màu tím */
+        filter: drop-shadow(0 0 15px rgba(124, 58, 237, 0.9));
     }
-    /* -- KẾT THÚC CSS CON TRỎ CHUỘT MỚI -- */
-
-    .particle { position: fixed; width: 6px; height: 6px; border-radius: 50%; background: #7c3aed; pointer-events: none; animation: fadeOut .8s linear forwards; }
-
+    
     /* =======================
        RESPONSIVE (ĐIỆN THOẠI)
     ======================= */
@@ -804,7 +803,7 @@
 
   <div id="scroll-progress"></div>
   <button id="topBtn">↑</button>
-  <div class="cursor-dot"></div>
+<div class="custom-cursor"><i class="fas fa-hand-pointer"></i></div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -883,23 +882,19 @@
 
       topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-      /* CURSOR & PARTICLES TRAIL */
-      const cursor = document.querySelector(".cursor-dot");
-      document.addEventListener("mousemove", e => {
-        if(cursor) {
-          cursor.style.left = e.clientX + "px";
-          cursor.style.top = e.clientY + "px";
-        }
-       
-        // Hạt bay theo chuột
-        const particle = document.createElement("div");
-        particle.className = "particle";
-        particle.style.left = e.clientX + "px";
-        particle.style.top = e.clientY + "px";
-        document.body.appendChild(particle);
-        setTimeout(() => particle.remove(), 800);
-      });
+     /* =========================================
+         JS ĐIỀU KHIỂN BÀN TAY BÁM THEO CHUỘT
+         ========================================= */
+      const customCursor = document.querySelector(".custom-cursor");
 
+      document.addEventListener("mousemove", (e) => {
+          if(customCursor) {
+              // Bàn tay bám sát tọa độ chuột thực tế
+              customCursor.style.left = e.clientX + "px";
+              customCursor.style.top = e.clientY + "px";
+          }
+      });
+      
       /* BACKGROUND PARTICLES */
       const canvas = document.getElementById("particles");
       if(canvas) {
