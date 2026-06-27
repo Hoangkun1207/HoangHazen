@@ -363,9 +363,9 @@
         top: 0;
         left: 0;
         font-size: 26px;
-        color: #00d4ff; /* Xanh neon mặc định */
+        color: #00d4ff; 
         pointer-events: none;
-        z-index: 999999;
+        z-index: 9999999999 !important; /* Thêm thành 10 số 9 để vô địch thiên hạ, không gì đè lên được nữa */
         transform: translate(-10%, -10%);
         filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.8));
         transition: transform 0.15s ease, color 0.3s ease;
@@ -1125,7 +1125,7 @@ if (commentForm && btnSubmit) {
 }
 
 /* -------------------------
-   GIAO DIỆN KHÓA TRANG (CYBERPUNK GLITCH)
+   GIAO DIỆN KHÓA TRANG (RGB GAMING - ĐẸP MÀU MÈ)
 ------------------------- */
 function lockWebsite(reason = "Hành vi đáng ngờ đã bị phát hiện.") {
     if (document.getElementById("hk-lock")) return;
@@ -1134,32 +1134,32 @@ function lockWebsite(reason = "Hành vi đáng ngờ đã bị phát hiện.") {
     overlay.id = "hk-lock";
 
     overlay.innerHTML = `
-        <div class="hk-cyber-bg"></div>
+        <div class="hk-rgb-bg"></div>
         <div class="hk-scan-line"></div>
 
-        <div class="hk-cyber-card">
+        <div class="hk-rgb-card">
             <div class="hk-warning-icon">
-                <i class="fas fa-shield-alt"></i>
+                <i class="fas fa-biohazard"></i>
             </div>
 
-            <h1 class="glitch-text" data-text="ACCESS DENIED">ACCESS DENIED</h1>
+            <h1 class="rgb-glitch-text" data-text="SYSTEM LOCKED">SYSTEM LOCKED</h1>
 
             <div class="hk-reason-box">
                 <div class="reason-header">
                     <span class="dot red"></span>
                     <span class="dot yellow"></span>
                     <span class="dot green"></span>
-                    <small>SECURITY_PROTOCOL.EXE</small>
+                    <small>HOANG_KUN_FIREWALL.EXE</small>
                 </div>
                 <div class="reason-body">
-                    <p class="typewriter">> ERROR_CODE: 0x0000F12</p>
+                    <p class="typewriter">> ERROR_CODE: 0xDEADBEEF</p>
                     <p class="typewriter">> DETAILS: ${reason}</p>
-                    <p class="typewriter">> ACTION: CONNECTION TERMINATED.</p>
+                    <p class="typewriter">> ACTION: IP LOGGED & CONNECTION SEVERED.</p>
                 </div>
             </div>
 
-            <button class="cyber-btn" onclick="location.reload()">
-                <span>REBOOT SYSTEM</span>
+            <button class="rgb-btn" onclick="location.reload()">
+                <span>🔄 KHÔI PHỤC HỆ THỐNG</span>
             </button>
 
             <p class="hk-cyber-footer">HOANG KUN SECURITY &copy; 2026</p>
@@ -1169,121 +1169,139 @@ function lockWebsite(reason = "Hành vi đáng ngờ đã bị phát hiện.") {
     const lockStyle = document.createElement("style");
     lockStyle.innerHTML = `
     #hk-lock {
-        position: fixed; inset: 0; z-index: 999999999;
+        position: fixed; inset: 0; z-index: 99999999;
         display: flex; justify-content: center; align-items: center;
-        background: #050816; font-family: 'Courier New', Courier, monospace;
+        background: #050816; font-family: 'Poppins', Courier, monospace;
         overflow: hidden; user-select: none;
     }
 
-    /* Lưới nền không gian ảo */
-    .hk-cyber-bg {
+    /* Nền không gian ảo RGB */
+    .hk-rgb-bg {
         position: absolute; inset: 0;
         background-image: 
-            linear-gradient(rgba(255, 42, 42, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 42, 42, 0.05) 1px, transparent 1px);
-        background-size: 40px 40px;
+            linear-gradient(rgba(0, 212, 255, 0.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(124, 58, 237, 0.15) 1px, transparent 1px);
+        background-size: 50px 50px;
         z-index: 0;
+        animation: bg-pan 10s linear infinite;
+    }
+    @keyframes bg-pan {
+        0% { background-position: 0 0; }
+        100% { background-position: 50px 50px; }
     }
 
-    /* Hiệu ứng tia quét ngang màn hình */
+    /* Tia quét RGB 7 màu */
     .hk-scan-line {
         position: absolute; width: 100%; height: 5px;
-        background: rgba(255, 42, 42, 0.3);
-        box-shadow: 0 0 20px rgba(255, 42, 42, 0.6);
-        animation: scan 3s linear infinite; z-index: 1;
+        background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        animation: scan-rgb 3s linear infinite; z-index: 1;
     }
-    @keyframes scan {
+    @keyframes scan-rgb {
         0% { top: -10%; } 100% { top: 110%; }
     }
 
-    .hk-cyber-card {
-        position: relative; z-index: 2; width: 550px; max-width: 90%;
-        background: rgba(10, 5, 15, 0.9);
-        border: 1px solid #ff2a2a;
-        box-shadow: 0 0 30px rgba(255, 42, 42, 0.2), inset 0 0 20px rgba(255, 42, 42, 0.1);
-        padding: 40px; text-align: center;
+    /* Card trung tâm với viền LED RGB chạy vòng quanh */
+    .hk-rgb-card {
+        position: relative; z-index: 2; width: 600px; max-width: 90%;
+        background: rgba(10, 15, 30, 0.95);
+        border-radius: 20px;
+        padding: 45px 40px; text-align: center;
     }
-    .hk-cyber-card::before, .hk-cyber-card::after {
-        content: ''; position: absolute; width: 20px; height: 20px; border: 2px solid #ff2a2a;
+    
+    /* Tạo viền RGB gradient phát sáng xoay tròn */
+    .hk-rgb-card::before {
+        content: ''; position: absolute; inset: -4px; z-index: -1;
+        background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+        background-size: 400%;
+        border-radius: 24px;
+        animation: rgb-border 10s linear infinite;
+        filter: blur(12px); /* Tỏa hào quang */
     }
-    .hk-cyber-card::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-    .hk-cyber-card::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+    .hk-rgb-card::after {
+        content: ''; position: absolute; inset: 0; z-index: -1;
+        background: rgba(10, 15, 30, 0.95);
+        border-radius: 20px;
+    }
+    @keyframes rgb-border {
+        0% { background-position: 0 0; }
+        100% { background-position: 400% 0; }
+    }
 
+    /* Icon phát sáng đổi màu */
     .hk-warning-icon {
-        font-size: 50px; color: #ff2a2a; margin-bottom: 15px;
-        filter: drop-shadow(0 0 15px #ff2a2a);
-        animation: pulse-danger 1.5s infinite alternate;
+        font-size: 65px; margin-bottom: 15px;
+        background: linear-gradient(45deg, #ff007f, #7c3aed, #00d4ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: pulse-danger 1s infinite alternate;
+        filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.6));
     }
-    @keyframes pulse-danger { from { opacity: 0.5; } to { opacity: 1; transform: scale(1.1); } }
 
-    /* Hiệu ứng chữ Glitch */
-    .glitch-text {
-        font-size: 38px; font-weight: 900; color: #fff;
+    /* Hiệu ứng chữ đổi màu 7 sắc cầu vồng */
+    .rgb-glitch-text {
+        font-size: 48px; font-weight: 900;
         position: relative; display: inline-block; margin-bottom: 25px;
-        letter-spacing: 2px; text-transform: uppercase;
-        font-family: 'Poppins', sans-serif;
+        text-transform: uppercase; letter-spacing: 2px;
+        background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 3s linear infinite;
     }
-    .glitch-text::before, .glitch-text::after {
-        content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        opacity: 0.8;
-    }
-    .glitch-text::before {
-        left: 2px; text-shadow: -2px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0);
-        animation: glitch-anim 5s infinite linear alternate-reverse;
-    }
-    .glitch-text::after {
-        left: -2px; text-shadow: -2px 0 #00fff9; clip: rect(44px, 450px, 56px, 0);
-        animation: glitch-anim2 5s infinite linear alternate-reverse;
-    }
-    @keyframes glitch-anim {
-        0% { clip: rect(10px, 9999px, 86px, 0); }
-        20% { clip: rect(66px, 9999px, 15px, 0); }
-        40% { clip: rect(32px, 9999px, 99px, 0); }
-        60% { clip: rect(89px, 9999px, 42px, 0); }
-        80% { clip: rect(12px, 9999px, 55px, 0); }
-        100% { clip: rect(74px, 9999px, 23px, 0); }
-    }
-    @keyframes glitch-anim2 {
-        0% { clip: rect(65px, 9999px, 100px, 0); }
-        20% { clip: rect(12px, 9999px, 55px, 0); }
-        40% { clip: rect(89px, 9999px, 42px, 0); }
-        60% { clip: rect(32px, 9999px, 99px, 0); }
-        80% { clip: rect(66px, 9999px, 15px, 0); }
-        100% { clip: rect(10px, 9999px, 86px, 0); }
+    @keyframes shine {
+        to { background-position: 200% center; }
     }
 
+    /* Khung Console báo lỗi */
     .hk-reason-box {
-        background: #000; border: 1px solid #333; margin-bottom: 30px; text-align: left;
+        background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.1); 
+        border-radius: 12px; margin-bottom: 35px; text-align: left; overflow: hidden;
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
     }
     .reason-header {
-        background: #111; padding: 8px 15px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #333;
+        background: rgba(255,255,255,0.05); padding: 12px 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .reason-header .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
-    .reason-header small { color: #888; margin-left: auto; font-size: 12px; }
-    .reason-body { padding: 15px; color: #00ff00; font-size: 14px; line-height: 1.6; }
-    .typewriter { overflow: hidden; white-space: nowrap; border-right: 2px solid #00ff00; animation: typing 2s steps(40, end), blink-caret .75s step-end infinite; }
-    .typewriter:nth-child(1) { animation-delay: 0s; }
-    .typewriter:nth-child(2) { animation-delay: 1s; animation-fill-mode: both; }
-    .typewriter:nth-child(3) { animation-delay: 2s; animation-fill-mode: both; color: #ff2a2a; }
+    .reason-header .dot { width: 14px; height: 14px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; box-shadow: 0 0 10px #ff5f56;} 
+    .dot.yellow { background: #ffbd2e; box-shadow: 0 0 10px #ffbd2e;} 
+    .dot.green { background: #27c93f; box-shadow: 0 0 10px #27c93f;}
+    .reason-header small { color: #aaa; margin-left: auto; font-size: 13px; font-weight: bold; font-family: Courier, monospace;}
+    
+    .reason-body { padding: 20px; font-size: 15px; line-height: 1.8; font-family: Courier, monospace;}
+    .typewriter { overflow: hidden; white-space: nowrap; border-right: 2px solid #00d4ff; animation: typing 2s steps(40, end), blink-caret .75s step-end infinite; }
+    .typewriter:nth-child(1) { animation-delay: 0s; color: #ff007f;}
+    .typewriter:nth-child(2) { animation-delay: 1s; animation-fill-mode: both; color: #00ff88;}
+    .typewriter:nth-child(3) { animation-delay: 2s; animation-fill-mode: both; color: #ffbd2e; font-weight: bold;}
 
     @keyframes typing { from { width: 0 } to { width: 100% } }
-    @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #00ff00; } }
+    @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #00d4ff; } }
 
-    .cyber-btn {
-        background: transparent; color: #ff2a2a; font-size: 16px; font-weight: bold;
-        padding: 15px 40px; border: 1px solid #ff2a2a; cursor: pointer;
-        position: relative; overflow: hidden; transition: 0.3s;
-        font-family: 'Poppins', sans-serif;
+    /* Nút bấm RGB */
+    .rgb-btn {
+        background: #111; color: #fff; font-size: 16px; font-weight: 800;
+        padding: 16px 45px; border: none; border-radius: 50px; cursor: pointer;
+        position: relative; z-index: 1; letter-spacing: 1px;
+        transition: 0.3s;
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
     }
-    .cyber-btn::before {
-        content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-        background: rgba(255, 42, 42, 0.2); transition: 0.3s;
+    .rgb-btn::before {
+        content: ''; position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px;
+        z-index: -1; border-radius: 50px;
+        background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+        background-size: 400%;
+        animation: rgb-border 5s linear infinite;
+        opacity: 0; transition: opacity 0.3s;
     }
-    .cyber-btn:hover { box-shadow: 0 0 20px rgba(255, 42, 42, 0.5); background: rgba(255, 42, 42, 0.1); }
-    .cyber-btn:hover::before { left: 0; }
+    .rgb-btn:hover {
+        transform: translateY(-5px) scale(1.05);
+        color: #fff; text-shadow: 0 0 10px #fff;
+    }
+    .rgb-btn:hover::before {
+        opacity: 1;
+    }
 
-    .hk-cyber-footer { margin-top: 20px; font-size: 12px; color: #555; letter-spacing: 1px; }
+    .hk-cyber-footer { margin-top: 25px; font-size: 13px; color: #666; letter-spacing: 3px; text-transform: uppercase; }
     `;
 
     document.head.appendChild(lockStyle);
