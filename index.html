@@ -777,6 +777,66 @@
         .tab-btn { padding: 15px 5px; font-size: 13px; gap: 8px; }
         .tab-btn i { font-size: 18px; }
     }
+
+    /* =========================================
+       CSS CHO LƯỚI TECH STACK (CHUẨN MẪU)
+       ========================================= */
+    .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); /* Hiển thị 6 cột trên máy tính */
+        gap: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .tech-item {
+        background: #0f172a; /* Màu nền xanh đen sẫm giống ảnh */
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        padding: 30px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .tech-item i {
+        font-size: 55px; /* Kích thước icon to rõ */
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+        transition: transform 0.3s ease;
+    }
+
+    .tech-item span {
+        color: #e2e8f0; /* Màu trắng xám */
+        font-size: 14px;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .tech-item:hover {
+        background: #1e293b; /* Sáng lên khi rê chuột */
+        transform: translateY(-8px);
+        border-color: rgba(124, 58, 237, 0.5); /* Đổi viền sang tím sẫm */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .tech-item:hover i {
+        transform: scale(1.1); /* Phóng to icon nhẹ khi rê chuột */
+    }
+
+    /* Responsive cho điện thoại / Ipad */
+    @media(max-width: 900px) {
+        .tech-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media(max-width: 600px) {
+        .tech-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .tech-item { padding: 20px 5px; border-radius: 12px; }
+        .tech-item i { font-size: 40px; }
+        .tech-item span { font-size: 12px; }
+    }
     
   </style>
 </head>
