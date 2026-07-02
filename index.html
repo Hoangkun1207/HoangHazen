@@ -693,17 +693,18 @@
         }
     }
 
-    /* =========================================
-       CSS CHO 3 Ô TABS CHUẨN MẪU 
+   /* =========================================
+       CSS CHO KHUNG TABS (GIỐNG ẢNH.PNG)
        ========================================= */
     .tab-container {
         display: flex;
-        background: transparent;
-        border-radius: 16px;
+        background: rgba(15, 23, 42, 0.6); /* Nền tổng tối mờ */
+        border-radius: 20px; 
         max-width: 900px;
         margin: 0 auto 50px auto;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        overflow: hidden; /* Cắt góc viền để liền khối */
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 6px; /* Khoảng trống để nút bọc bên trong */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
     .tab-btn {
@@ -712,49 +713,91 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 12px;
         padding: 20px 10px;
-        background: rgba(255, 255, 255, 0.02);
+        background: transparent;
         border: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.05); /* Viền ngăn cách dọc giữa 3 ô */
         color: #94a3b8;
         font-size: 15px;
         font-weight: 600;
         font-family: 'Poppins', sans-serif;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .tab-btn:last-child {
-        border-right: none; /* Bỏ viền dọc của ô cuối cùng */
+        border-radius: 14px; /* Bo góc từng nút riêng lẻ */
+        cursor: none !important; /* Dùng chung với custom cursor */
+        transition: all 0.4s ease;
     }
 
     .tab-btn i {
-        font-size: 22px;
+        font-size: 24px;
+        transition: transform 0.3s ease;
     }
 
     .tab-btn:hover {
-        background: rgba(255, 255, 255, 0.05);
         color: #fff;
     }
 
-    /* Khi ô được bấm (Sáng lên màu tím đậm) */
-    .tab-btn.active {
-        background: #1e1b4b; /* Màu tím đen giống hệt ảnh mẫu */
-        color: #ffffff;
-        box-shadow: inset 0 0 20px rgba(124, 58, 237, 0.2);
+    .tab-btn:hover i {
+        transform: translateY(-3px);
     }
 
-    /* Hình ảnh chứng chỉ hiển thị cho đẹp */
+    /* Trạng thái Tab đang chọn */
+    .tab-btn.active {
+        background: rgba(30, 27, 75, 0.9); /* Màu tím sẫm nổi bật */
+        color: #ffffff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(124, 58, 237, 0.2);
+    }
+
+    /* =========================================
+       CSS CHO LƯỚI CHỨNG CHỈ NGĂN NẮP
+       ========================================= */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Ép cứng 3 cột bằng nhau */
+        gap: 25px; /* Khoảng cách đều tăm tắp */
+        max-width: 1000px; /* Độ rộng tổng của lưới ảnh */
+        margin: 0 auto;
+    }
+
     .cert-img {
         width: 100%;
-        border-radius: 10px;
+        aspect-ratio: 4 / 3; /* Ép tỷ lệ ảnh chuẩn, không bao giờ bị lệch dẫu ảnh gốc méo */
+        object-fit: cover; /* Đảm bảo hình lấp đầy khung mà không biến dạng */
+        border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: transform 0.3s ease;
+        background: #0f172a;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     }
+
     .cert-img:hover {
-        transform: scale(1.05);
+        transform: translateY(-8px) scale(1.02);
         border-color: #7c3aed;
+        box-shadow: 0 15px 30px rgba(124, 58, 237, 0.3);
+    }
+
+    /* Hiệu ứng mờ dần khi chuyển Tab */
+    .tab-content {
+        display: none;
+        animation: fadeInTab 0.5s ease forwards;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    @keyframes fadeInTab {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Điện thoại & Tablet */
+    @media(max-width: 991px) {
+        .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media(max-width: 768px) {
+        .tab-container { padding: 4px; margin: 0 15px 40px 15px; }
+        .tab-btn { padding: 12px 5px; font-size: 13px; gap: 8px; }
+        .tab-btn i { font-size: 20px; }
+        .gallery-grid { grid-template-columns: 1fr; margin: 0 15px; }
     }
 
     /* Hiệu ứng mờ dần khi chuyển Tab */
@@ -1109,16 +1152,15 @@
       </div>
     </div>
 
-    <!-- Tab 2: Certificates (Đang để active sáng lên như trong ảnh) -->
+   <!-- Tab 2: Certificates -->
     <div id="tab-certificates" class="tab-content active">
       <div class="gallery-grid">
-        <!-- Hiển thị các ảnh chứng chỉ dạng lưới giống hệt ảnh mẫu -->
         <img class="cert-img" src="IMG_1171.jpeg" alt="Certificate">
         <img class="cert-img" src="IMG_1172.jpeg" alt="Certificate">
         <img class="cert-img" src="IMG_2674.jpeg" alt="Certificate">
         <img class="cert-img" src="IMG_2675.jpeg" alt="Certificate">
         <img class="cert-img" src="IMG_2676.jpeg" alt="Certificate">
-        <img class="cert-img" src="IMG_2677.jpeg " alt="Certificate">
+        <img class="cert-img" src="IMG_2677.jpeg" alt="Certificate">
       </div>
     </div>
 
