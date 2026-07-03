@@ -217,6 +217,17 @@
     }
    
     .nav-links a:hover::after { width: 100%; }
+
+    /* =========================================
+       CSS CHO SCROLL SPY (SÁNG MENU KHI CUỘN)
+       ========================================= */
+    .nav-links a.active-nav { 
+      color: #00d4ff; /* Sáng màu chữ */
+    }
+    
+    .nav-links a.active-nav::after { 
+      width: 100%; /* Trải dài đường gạch chân */
+    }
     /* =======================
        HERO
     ======================= */
@@ -2013,6 +2024,47 @@ setInterval(() => {
           document.getElementById(tabName).classList.add("active");
           evt.currentTarget.classList.add("active");
       }
+  </script>
+
+  <script>
+    /* =========================================
+         JS ĐIỀU KHIỂN SCROLL SPY (TỰ SÁNG MENU)
+         ========================================= */
+      // Lấy tất cả các section có id và tất cả các link trong menu
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-links a");
+
+      // Cài đặt vùng quét (Quét khi section lọt vào giữa màn hình)
+      const scrollSpyOptions = {
+          root: null,
+          rootMargin: "-20% 0px -60% 0px", 
+          threshold: 0
+      };
+
+      const scrollSpyObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  let currentId = entry.target.getAttribute("id");
+                  
+                  // Chỉnh lại id cho khớp với menu Liên Hệ (contact-section -> contact)
+                  if (currentId === "contact-section") {
+                      currentId = "contact";
+                  }
+
+                  // Xóa gạch chân ở tất cả menu
+                  navLinks.forEach(link => {
+                      link.classList.remove("active-nav");
+                      // Thêm gạch chân vào menu có href khớp với id của vùng đang xem
+                      if (link.getAttribute("href") === `#${currentId}`) {
+                          link.classList.add("active-nav");
+                      }
+                  });
+              }
+          });
+      }, scrollSpyOptions);
+
+      // Cho bộ theo dõi chạy qua từng section
+      sections.forEach(sec => scrollSpyObserver.observe(sec));
   </script>
   
 </body>
