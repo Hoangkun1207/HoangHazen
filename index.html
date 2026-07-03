@@ -1522,17 +1522,20 @@
 
       topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-      // 2. Dùng Intersection Observer thay cho getBoundingClientRect để chống lag
+     // 2. Dùng Intersection Observer thay cho getBoundingClientRect để chống lag
       const revealOptions = {
           threshold: 0.1, // Hiện ra khi cuộn tới 10% phần tử
           rootMargin: "0px 0px -50px 0px"
       };
 
-      const revealObserver = new IntersectionObserver((entries, observer) => {
+      const revealObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
               if (entry.isIntersecting) {
+                  // Khi lướt tới -> Hiện hiệu ứng
                   entry.target.classList.add("active");
-                  observer.unobserve(entry.target); // Chỉ chạy hiệu ứng 1 lần rồi bỏ theo dõi để nhẹ máy
+              } else {
+                  // Khi lướt qua mất rồi -> Xóa hiệu ứng đi để lần sau lướt lại nó chạy từ đầu
+                  entry.target.classList.remove("active"); 
               }
           });
       }, revealOptions);
@@ -1540,7 +1543,7 @@
       document.querySelectorAll(".reveal").forEach(el => {
           revealObserver.observe(el);
       });
-
+      
      /* =========================================
          JS ĐIỀU KHIỂN BÀN TAY BÁM THEO CHUỘT
          ========================================= */
