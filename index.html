@@ -1976,15 +1976,18 @@ document.addEventListener("selectstart", function(e){
     e.preventDefault();
 });
 
-// PHÁT HIỆN DEVTOOLS MỞ BẰNG KÍCH THƯỚC CỬA SỔ
+// PHÁT HIỆN DEVTOOLS MỞ BẰNG KÍCH THƯỚC CỬA SỔ (ĐÃ FIX LỖI ĐIỆN THOẠI)
 let devtools = false;
 setInterval(() => {
-    const widthThreshold = window.outerWidth - window.innerWidth > 200;
-    const heightThreshold = window.outerHeight - window.innerHeight > 200;
+    // Thêm dòng IF này để hệ thống CHỈ PHẠT khi dùng màn hình máy tính (lớn hơn 768px)
+    if (window.innerWidth > 768) {
+        const widthThreshold = window.outerWidth - window.innerWidth > 200;
+        const heightThreshold = window.outerHeight - window.innerHeight > 200;
 
-    if((widthThreshold || heightThreshold) && !devtools){
-        devtools = true;
-        blockAction("Hệ thống phát hiện cửa sổ Console/DevTools đang mở.");
+        if((widthThreshold || heightThreshold) && !devtools){
+            devtools = true;
+            blockAction("Hệ thống phát hiện cửa sổ Console/DevTools đang mở.");
+        }
     }
 }, 1000);
 </script>
