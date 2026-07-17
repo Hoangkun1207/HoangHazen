@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Preview | Landing Page Sale</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: #050816; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden; /* Chống cuộn trang ở body, chỉ cuộn ở iframe */
+        }
+
+        /* =========================
+           THANH CÔNG CỤ DEMO (TOP BAR)
+           ========================= */
+        .demo-topbar {
+            height: 60px;
+            background: #0f172a;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 20px; font-weight: 800;
+            background: linear-gradient(90deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        /* Nút chuyển đổi thiết bị (Responsive Toggles) */
+        .device-controls {
+            display: flex;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 4px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .device-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            padding: 8px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .device-btn:hover { color: #fff; }
+        
+        /* Nút đang được chọn sẽ sáng màu tím */
+        .device-btn.active {
+            background: rgba(124, 58, 237, 0.2);
+            color: #fff;
+            box-shadow: inset 0 0 10px rgba(124, 58, 237, 0.4);
+        }
+
+        /* Nút Hành Động */
+        .action-btns a {
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-buy {
+            background: linear-gradient(90deg, #00d4ff, #7c3aed);
+            color: #fff;
+            margin-right: 10px;
+        }
+        .btn-buy:hover { opacity: 0.9; box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
+
+        .btn-close {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        .btn-close:hover { background: #ff2a2a; color: #fff; }
+
+        /* =========================
+           KHUNG HIỂN THỊ WEB DEMO (IFRAME)
+           ========================= */
+        .preview-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: #000; /* Nền đen đằng sau iframe */
+            overflow: auto;
+            padding-top: 20px;
+        }
+
+        #demoFrame {
+            width: 100%; /* Mặc định là Desktop full màn */
+            height: 100%;
+            border: none;
+            background: #fff;
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+
+        /* Khi xem dạng Ipad / Phone thì bo góc cho giống thiết bị thật */
+        #demoFrame.is-device {
+            height: 90%;
+            border-radius: 15px;
+            border: 8px solid #1e293b;
+        }
+
+        @media (max-width: 600px) {
+            .logo { display: none; }
+            .btn-buy { display: none; }
+            .device-controls { margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Thanh Topbar -->
+    <div class="demo-topbar">
+        <div class="logo">HOANG KUN</div>
+        
+        <!-- Các nút test giao diện -->
+        <div class="device-controls">
+            <button class="device-btn active" onclick="changeDevice('desktop', this)" title="Desktop View">
+                <i class="fas fa-desktop"></i>
+            </button>
+            <button class="device-btn" onclick="changeDevice('tablet', this)" title="Tablet View">
+                <i class="fas fa-tablet-alt"></i>
+            </button>
+            <button class="device-btn" onclick="changeDevice('mobile', this)" title="Mobile View">
+                <i class="fas fa-mobile-alt"></i>
+            </button>
+        </div>
+
+        <!-- Nút mua và đóng -->
+        <div class="action-btns">
+            <a href="#muahang" class="btn-buy"><i class="fas fa-shopping-cart"></i> Mua Ngay</a>
+            <!-- Link này sẽ dẫn người dùng quay về trang chi tiết hoặc trang chủ -->
+            <a href="landing-page.html" class="btn-close"><i class="fas fa-times"></i> Đóng Demo</a>
+        </div>
+    </div>
+
+    <!-- Khung tải web -->
+    <div class="preview-container">
+        <!-- ĐIỀN LINK WEB DEMO CỦA BẠN VÀO MỤC SRC BÊN DƯỚI -->
+        <iframe id="demoFrame" src="https://hoangkunstore.id.vn" title="Live Preview"></iframe>
+    </div>
+
+    <!-- Script điều khiển đổi kích thước -->
+    <script>
+        function changeDevice(device, btnElement) {
+            const frame = document.getElementById('demoFrame');
+            
+            // Xóa hiệu ứng sáng ở tất cả các nút
+            const buttons = document.querySelectorAll('.device-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Làm sáng nút vừa bấm
+            btnElement.classList.add('active');
+
+            // Đổi kích thước theo thiết bị
+            if(device === 'desktop') {
+                frame.style.width = '100%';
+                frame.classList.remove('is-device');
+            } 
+            else if (device === 'tablet') {
+                frame.style.width = '768px';
+                frame.classList.add('is-device');
+            } 
+            else if (device === 'mobile') {
+                frame.style.width = '375px';
+                frame.classList.add('is-device');
+            }
+        }
+    </script>
+</body>
+</html>
