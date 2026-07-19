@@ -1627,19 +1627,92 @@
       }
     });
 
-    document.getElementById('commentForm').addEventListener('submit', function(e) {
-    // 1. Chặn việc load lại trang
-    e.preventDefault();
+   /* =========================================
+       HỆ THỐNG BÌNH LUẬN "NHƯ THẬT" (LOCALSTORAGE)
+       ========================================= */
+    // 1. Dữ liệu mặc định (Luôn ghim)
+    const defaultComments = [
+        { name: "Admin", text: "Cảm ơn các bạn đã ghé thăm! Nếu có thắc mắc cứ nhắn mình nhé.", isPinned: true, badge: "Admin", time: "" },
+        { name: "Lam", text: "Template đẹp quá bro ơi!", isPinned: false, badge: "", time: "" }
+    ];
 
-    // 2. Lấy dữ liệu người dùng nhập
-    const nameInput = this.querySelector('input[type="text"]');
-    const messageInput = this.querySelector('textarea');
-   
-    if (nameInput.value === "" || messageInput.value === "") {
-        alert("Vui lòng điền đầy đủ tên và bình luận!");
-        return;
+    const cForm = document.getElementById('commentForm');
+    const cList = document.querySelector('.comments-list');
+    const cTitle = document.querySelector('.right-column .form-wrapper h2'); 
+
+    // 2. Hàm in bình luận và đếm số
+    function renderComments() {
+        // Lấy bình luận từ LocalStorage
+        const localComments = JSON.parse(localStorage.getItem('hoangkun_comments')) || [];
+        const allComments = [...defaultComments, ...localComments];
+        
+        // Tự động cập nhật số lượng trên tiêu đề
+        if(cTitle) cTitle.innerText = `Bình Luận (${allComments.length})`;
+
+        // Xóa danh sách HTML cũ và render lại
+        cList.innerHTML = '';
+        allComments.forEach(cmt => {
+            const cmtDiv = document.createElement('div');
+            cmtDiv.className = `comment-item ${cmt.isPinned ? 'pinned' : ''}`;
+            
+            let badgeHTML = cmt.badge ? `<span class="badge">${cmt.badge}</span>` : '';
+            let timeHTML = cmt.time ? `<span style="font-size: 11px; color: #888; float: right; margin-top: 2px;">${cmt.time}</span>` : '';
+
+            cmtDiv.innerHTML = `
+                <div class="comment-header">
+                    <div><strong>${cmt.name}</strong> ${badgeHTML}</div>
+                    ${timeHTML}
+                </div>
+                <p>${cmt.text}</p>
+            `;
+            cList.appendChild(cmtDiv);
+        });
     }
 
+    // Chạy khi web vừa load xong
+    renderComments();
+
+    // 3. Xử lý khi bấm Đăng Bình Luận
+    if (cForm) {
+        cForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nameInput = this.querySelector('input[type="text"]');
+            const messageInput = this.querySelector('textarea');
+            
+            if (nameInput.value.trim() === "" || messageInput.value.trim() === "") {
+                if(typeof showNotification !== 'undefined') showNotification("Vui lòng điền đầy đủ tên và bình luận!", "warning");
+                return;
+            }
+
+            // Lấy giờ hiện tại để thêm vào bình luận cho sinh động
+            const now = new Date();
+            const timeStr = `${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')} - ${now.getDate()}/${now.getMonth() + 1}`;
+
+            // Tạo data bình luận mới
+            const newComment = {
+                name: nameInput.value.trim(),
+                text: messageInput.value.trim(),
+                isPinned: false,
+                badge: "",
+                time: timeStr
+            };
+
+            // Kéo giỏ hàng ra, nhét bình luận mới vào, cất lại vào kho
+            const localComments = JSON.parse(localStorage.getItem('hoangkun_comments')) || [];
+            localComments.push(newComment);
+            localStorage.setItem('hoangkun_comments', JSON.stringify(localComments));
+
+            // Load lại màn hình danh sách bình luận
+            renderComments();
+
+            if(typeof showNotification !== 'undefined') showNotification('Bình luận của bạn đã được đăng!', 'success');
+            
+            nameInput.value = '';
+            messageInput.value = '';
+        });
+    }
+    
     // 3. Tạo một bình luận mới (giao diện)
     const newComment = document.createElement('div');
     newComment.className = 'comment-item';
