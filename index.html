@@ -1712,26 +1712,6 @@
             messageInput.value = '';
         });
     }
-    
-    // 3. Tạo một bình luận mới (giao diện)
-    const newComment = document.createElement('div');
-    newComment.className = 'comment-item';
-    newComment.innerHTML = `
-        <div class="comment-header"><strong>${nameInput.value}</strong></div>
-        <p>${messageInput.value}</p>
-    `;
-
-    // 4. Thêm bình luận vào danh sách
-    const commentList = document.querySelector('.comments-list');
-    commentList.appendChild(newComment);
-
-    // 5. Thông báo cho người dùng (dùng lại hàm toast của ông)
-    showNotification('Bình luận của bạn đã được đăng!', 'success');
-
-    // 6. Xóa dữ liệu trong form sau khi gửi
-    nameInput.value = '';
-    messageInput.value = '';
-});
    
   </script>
   
